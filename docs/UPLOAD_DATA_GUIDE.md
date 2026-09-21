@@ -1,11 +1,11 @@
 # Upload Sample Data
 
-Upload MacBook Pro and iPhone sample products into Supabase and build Chroma embeddings for RAG.
+Upload MacBook Pro and iPhone sample products into Supabase and build pgvector embeddings for RAG.
 
 ## Prerequisites
 
 1. Supabase project ready
-2. `backend/sql/supabase_setup.sql` run (products table)
+2. `backend/sql/supabase_setup.sql` and `backend/sql/pgvector_setup.sql` run
 3. `backend/.env` with Supabase + OpenAI keys
 4. Backend dependencies installed (`pip install -r requirements.txt`)
 5. Images under `frontend/images/` (if you care about thumbnails)
@@ -35,7 +35,7 @@ python upload_sample_data.py
 
 Expected: both products succeed, 20 reviews each. The script deletes and re-uploads if a product already exists.
 
-**Important:** After every backend restart, run the upload script again (with the server up) so Chroma has embeddings. Supabase still has the rows; the vector index does not survive restart in the current demo setup.
+Embeddings are stored in Supabase (`document_embeddings`), so a backend restart does **not** clear them. Re-run the upload script only when you want to refresh sample products or regenerate vectors.
 
 ---
 
@@ -63,7 +63,10 @@ Prefer the script or UI unless you need raw API testing. Full payloads live in `
 
 ## Verify
 
-**Supabase** → Table Editor → `products` → `macbook_pro_m3_2024`, `iphone_15_pro_max_2024`
+**Supabase** → Table Editor:
+
+- `products` → `macbook_pro_m3_2024`, `iphone_15_pro_max_2024`
+- `document_embeddings` → description + review rows per product
 
 **API**
 
@@ -83,14 +86,15 @@ curl http://localhost:8000/api/products
 | Product already exists | Script usually deletes/retries; or `DELETE /api/products/{id}` then re-run |
 | `SUPABASE_URL` / key issues | Check `backend/.env` |
 | `relation "products" does not exist` | Run `backend/sql/supabase_setup.sql` |
-| Chat finds 0 documents | Re-run `upload_sample_data.py` after backend restart |
+| `relation "document_embeddings" does not exist` | Run `backend/sql/pgvector_setup.sql` |
+| Chat finds 0 documents | Confirm pgvector SQL ran, then re-run `upload_sample_data.py` |
 | Images missing | Paths like `images/mbp.png` under `frontend/` |
 
 ---
 
 ## What gets written
 
-- Product metadata + 20 reviews → **Supabase**
-- Description + review embeddings → **Chroma** (for similarity search)
+- Product metadata + 20 reviews → **Supabase `products`**
+- Description + review embeddings → **Supabase `document_embeddings` (pgvector)**
 
 To add more products, edit `sample_products.json` and run the upload script again.

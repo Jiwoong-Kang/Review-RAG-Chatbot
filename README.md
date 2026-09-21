@@ -4,7 +4,7 @@ RAG chatbot that answers product questions from real user reviews, with citation
 
 ## Features
 
-- **RAG Q&A**: Retrieves the most relevant reviews (Chroma), then answers with GPT
+- **RAG Q&A**: Retrieves the most relevant reviews (pgvector), then answers with GPT
 - **Review citations**: Answers cite source reviews; UI shows the supporting snippets
 - **Auth gate**: Username / display name / password (Supabase Auth under the hood)
 - **Saved products**: Interest level + personal note per user
@@ -18,7 +18,7 @@ reviewer/
 ├── backend/
 │   ├── main.py              # FastAPI app (CORS + routers)
 │   ├── chat_engine.py       # RAG generation + citations
-│   ├── vector_store.py      # Chroma embeddings / similarity search
+│   ├── vector_store.py      # Sentence Transformers + Supabase pgvector search
 │   ├── upload_sample_data.py
 │   ├── database/            # Supabase client, auth, products, saved, chat history
 │   ├── routers/             # auth, products, saved, chat
@@ -40,12 +40,11 @@ reviewer/
 
 | Store | Role |
 |-------|------|
-| **Supabase** | Products, reviews (source of truth), auth, saved products, chat messages |
-| **Chroma** | Vector index for retrieving top relevant reviews at chat time |
+| **Supabase** | Products, reviews (source of truth), auth, saved products, chat messages, **embeddings (pgvector)** |
 | **OpenAI** | Answer generation from retrieved context |
 | **localStorage** | Auth session only |
 
-Chroma is the demo vector layer for RAG. After a backend restart, re-run `upload_sample_data.py` (with the server running) so embeddings exist again.
+Embeddings live in Supabase (`document_embeddings`) next to product data, so they survive backend restarts. Upload sample data once (or when you change products); you do not need to re-index after every API restart.
 
 ## Quick setup
 
@@ -65,8 +64,9 @@ cp env_example.txt .env
 In the Supabase SQL Editor, run **in order**:
 
 1. `backend/sql/supabase_setup.sql` — products
-2. `backend/sql/saved_products_setup.sql` — saved products + RLS
-3. `backend/sql/chat_history_setup.sql` — chat messages + RLS
+2. `backend/sql/pgvector_setup.sql` — embeddings table + match RPC
+3. `backend/sql/saved_products_setup.sql` — saved products + RLS
+4. `backend/sql/chat_history_setup.sql` — chat messages + RLS
 
 Also under **Authentication → Providers → Email**:
 
@@ -108,7 +108,7 @@ cd frontend && python3 -m http.server 3000
 
 ## Tech stack
 
-- **Backend**: FastAPI, OpenAI GPT-4o-mini, ChromaDB, Sentence Transformers, Supabase
+- **Backend**: FastAPI, OpenAI GPT-4o-mini, Sentence Transformers, Supabase + pgvector
 - **Frontend**: Vanilla JS (modular), HTML/CSS
 
 ## API (overview)

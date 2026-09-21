@@ -1,6 +1,6 @@
 # Supabase Setup Guide
 
-Set up Supabase for products, auth, saved products, and chat history.
+Set up Supabase for products, embeddings (pgvector), auth, saved products, and chat history.
 
 ## Prerequisites
 
@@ -24,12 +24,13 @@ Run these **in order** from this repo (paste each file into **SQL Editor → New
 | Order | File | Purpose |
 |-------|------|---------|
 | 1 | `backend/sql/supabase_setup.sql` | `products` table |
-| 2 | `backend/sql/saved_products_setup.sql` | `saved_products` + RLS |
-| 3 | `backend/sql/chat_history_setup.sql` | `chat_messages` + RLS |
+| 2 | `backend/sql/pgvector_setup.sql` | `document_embeddings` + `match_document_embeddings` |
+| 3 | `backend/sql/saved_products_setup.sql` | `saved_products` + RLS |
+| 4 | `backend/sql/chat_history_setup.sql` | `chat_messages` + RLS |
 
 SQL is **not** run by the Python app — only in the Supabase SQL Editor.
 
-If saved list or chat history returns 400, these tables/policies are usually missing.
+If saved list or chat history returns 400, those tables/policies are usually missing. If chat finds no reviews, confirm `pgvector_setup.sql` ran and sample upload completed.
 
 ---
 
@@ -67,7 +68,6 @@ SUPABASE_URL=https://your-project-id.supabase.co
 SUPABASE_KEY=eyJ...   # anon public
 HOST=0.0.0.0
 PORT=8000
-CHROMA_PERSIST_DIR=./chroma_db
 ```
 
 ---
@@ -99,10 +99,11 @@ See [UPLOAD_DATA_GUIDE.md](UPLOAD_DATA_GUIDE.md).
 ## Schema overview
 
 ```
-products          # shared catalog (id, name, description, image, reviews JSONB)
-saved_products    # per-user interest + note (RLS: own rows only)
-chat_messages     # per-user, per-product history + sources (RLS: own rows only)
-auth.users        # Supabase Auth
+products               # shared catalog (id, name, description, image, reviews JSONB)
+document_embeddings    # description + review text + vector(768) for RAG
+saved_products         # per-user interest + note (RLS: own rows only)
+chat_messages          # per-user, per-product history + sources (RLS: own rows only)
+auth.users             # Supabase Auth
 ```
 
 ---
@@ -112,6 +113,7 @@ auth.users        # Supabase Auth
 | Symptom | Likely fix |
 |---------|------------|
 | `relation "products" does not exist` | Run `supabase_setup.sql` |
+| `relation "document_embeddings" does not exist` / RPC missing | Run `pgvector_setup.sql` |
 | Saved / chat history **400** | Run `saved_products_setup.sql` and `chat_history_setup.sql` |
 | Invalid API key | Use **anon** key in `.env`, no quotes |
 | Email not confirmed | Disable Confirm email; delete old user; sign up again |

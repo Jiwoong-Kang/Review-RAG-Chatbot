@@ -9,9 +9,6 @@ SUPABASE_KEY=your-supabase-anon-key
 HOST=0.0.0.0
 PORT=8000
 
-# ChromaDB Configuration
-CHROMA_PERSIST_DIR=./chroma_db
-
 # How to use:
 # 1. Copy this file to .env: cp env_example.txt .env
 # 2. Replace placeholders with your real keys

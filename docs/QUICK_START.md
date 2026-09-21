@@ -21,7 +21,7 @@ cp env_example.txt .env
 Get an OpenAI key at https://platform.openai.com/api-keys
 
 Supabase project + SQL: see [SUPABASE_SETUP.md](SUPABASE_SETUP.md)  
-(You need all three SQL scripts and Confirm email disabled for local signup.)
+(You need all four SQL scripts and Confirm email disabled for local signup.)
 
 ## 3. Backend (~30 sec)
 
@@ -42,7 +42,7 @@ source venv/bin/activate
 python upload_sample_data.py
 ```
 
-This writes products to Supabase and builds Chroma embeddings. After every backend restart, run this again so chat search finds reviews.
+This writes products and pgvector embeddings to Supabase. You only need to re-run it when refreshing sample data — not after every backend restart.
 
 ## 5. Frontend (~30 sec)
 
@@ -68,7 +68,7 @@ Open http://localhost:3000
 
 - [ ] venv + `pip install -r requirements.txt`
 - [ ] `.env` with OpenAI + Supabase anon key
-- [ ] Three SQL scripts run in Supabase; Confirm email off
+- [ ] Four SQL scripts run in Supabase; Confirm email off
 - [ ] Backend on `:8000`
 - [ ] `upload_sample_data.py` succeeded
 - [ ] Frontend on `:3000`
@@ -82,7 +82,7 @@ Open http://localhost:3000
 
 **OpenAI errors / 429** — check key and account credits.
 
-**Chat finds 0 documents** — backend was restarted without re-upload; run `upload_sample_data.py` again with the server up.
+**Chat finds 0 documents** — run `pgvector_setup.sql`, then `upload_sample_data.py` with the server up.
 
 **Saved list / history 400** — run `saved_products_setup.sql` and `chat_history_setup.sql`.
 

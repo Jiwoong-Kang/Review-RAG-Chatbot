@@ -29,9 +29,6 @@ ENV/
 .env
 .env.local
 
-# ChromaDB 데이터
-backend/chroma_db/
-
 # IDE
 .vscode/
 .idea/

@@ -1,139 +1,167 @@
 import os
-import json
 from typing import List
-import numpy as np
+
 from sentence_transformers import SentenceTransformer
-import chromadb
-from chromadb.config import Settings
+
+from database.supabase_client import supabase
 
 # Disable tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# Initialize ChromaDB client
-chroma_client = chromadb.Client(Settings(
-    persist_directory="./chroma_db",
-    anonymized_telemetry=False
-))
+# Korean-capable embedding model (768-dim; must match pgvector column)
+model = SentenceTransformer("jhgan/ko-sroberta-multitask")
 
-# Load embedding model (Korean language support)
-model = SentenceTransformer('jhgan/ko-sroberta-multitask')
 
-def get_collection(product_id: str):
-    """Get or create a collection for each product."""
-    collection_name = f"product_{product_id}"
-    try:
-        collection = chroma_client.get_collection(name=collection_name)
-    except:
-        collection = chroma_client.create_collection(
-            name=collection_name,
-            metadata={"description": f"Reviews and description for product {product_id}"}
-        )
-    return collection
+def _embed_texts(texts: List[str]) -> List[List[float]]:
+    """Encode texts into L2-normalized vectors for cosine similarity."""
+    vectors = model.encode(texts, normalize_embeddings=True)
+    return [vector.tolist() for vector in vectors]
+
 
 def create_embeddings(product_id: str, description: str, reviews: List[dict]):
-    """Create embeddings for product description and reviews, then store in vector DB."""
-    collection = get_collection(product_id)
-    
-    documents = []
-    metadatas = []
-    ids = []
-    
-    # Add product description
-    documents.append(description)
-    metadatas.append({
-        "type": "description",
-        "product_id": product_id
-    })
-    ids.append(f"{product_id}_description")
-    
-    # Add reviews
-    for idx, review in enumerate(reviews):
-        documents.append(review.get('content', ''))
-        metadatas.append({
-            "type": "review",
+    """Upsert embeddings for a product description and its reviews into Supabase pgvector."""
+    # Replace any previous vectors for this product (re-upload / add-review safe)
+    supabase.table("document_embeddings").delete().eq("product_id", product_id).execute()
+
+    documents = [description]
+    rows_meta = [
+        {
+            "id": f"{product_id}_description",
             "product_id": product_id,
-            "review_id": review.get('review_id', f"review_{idx}"),
-            "rating": str(review.get('rating', 'N/A')),
-            # ChromaDB metadata cannot hold None, so unknown dates are stored empty
-            "date": str(review.get('date') or ""),
-            "index": idx
-        })
-        ids.append(f"{product_id}_review_{idx}")
-    
-    # Save to ChromaDB
-    collection.add(
-        documents=documents,
-        metadatas=metadatas,
-        ids=ids
-    )
-    
-    print(f"✓ Created embeddings for product {product_id}: {len(documents)} documents")
-    print(f"  - Description: 1")
+            "content_type": "description",
+            "content": description,
+            "review_id": None,
+            "rating": None,
+            "review_date": None,
+            "review_index": None,
+        }
+    ]
+
+    for idx, review in enumerate(reviews):
+        content = review.get("content", "")
+        documents.append(content)
+        rows_meta.append(
+            {
+                "id": f"{product_id}_review_{idx}",
+                "product_id": product_id,
+                "content_type": "review",
+                "content": content,
+                "review_id": review.get("review_id", f"review_{idx}"),
+                "rating": str(review.get("rating", "N/A")),
+                "review_date": str(review.get("date") or ""),
+                "review_index": idx,
+            }
+        )
+
+    embeddings = _embed_texts(documents)
+    rows = []
+    for meta, embedding in zip(rows_meta, embeddings):
+        row = {**meta, "embedding": embedding}
+        rows.append(row)
+
+    # Supabase accepts batches; keep size modest for large review sets
+    batch_size = 50
+    for start in range(0, len(rows), batch_size):
+        supabase.table("document_embeddings").insert(rows[start : start + batch_size]).execute()
+
+    print(f"✓ Created embeddings for product {product_id}: {len(rows)} documents")
+    print("  - Description: 1")
     print(f"  - Reviews: {len(reviews)}")
-    
-    # Verify embeddings were saved
+
     try:
-        test_results = collection.query(query_texts=["test"], n_results=1)
-        if test_results['documents']:
-            print(f"  - Verification: Embeddings successfully saved ✓")
+        probe = search_similar_content(product_id, description[:80] or "product", top_k=1)
+        if probe["documents"]:
+            print("  - Verification: Embeddings successfully saved ✓")
         else:
-            print(f"  - WARNING: Verification failed - no embeddings found!")
+            print("  - WARNING: Verification failed - no embeddings found!")
     except Exception as e:
         print(f"  - WARNING: Could not verify embeddings: {e}")
 
+
 def search_similar_content(product_id: str, query: str, top_k: int = 5):
-    """Search for reviews/descriptions similar to the query."""
+    """Search for reviews/descriptions similar to the query via pgvector."""
     try:
-        collection = get_collection(product_id)
-        
-        results = collection.query(
-            query_texts=[query],
-            n_results=top_k
-        )
-        
+        query_embedding = _embed_texts([query])[0]
+        result = supabase.rpc(
+            "match_document_embeddings",
+            {
+                "query_embedding": query_embedding,
+                "match_product_id": product_id,
+                "match_count": top_k,
+            },
+        ).execute()
+
+        rows = result.data or []
+        ids = []
+        documents = []
+        metadatas = []
+        distances = []
+
+        for row in rows:
+            ids.append(row["id"])
+            documents.append(row["content"])
+            metadatas.append(
+                {
+                    "type": row["content_type"],
+                    "product_id": row["product_id"],
+                    "review_id": row.get("review_id") or "",
+                    "rating": row.get("rating") or "N/A",
+                    "date": row.get("review_date") or "",
+                    "index": row.get("review_index"),
+                }
+            )
+            similarity = row.get("similarity")
+            distances.append(1.0 - float(similarity) if similarity is not None else 1.0)
+
         return {
-            "ids": results['ids'][0] if results['ids'] else [],
-            "documents": results['documents'][0] if results['documents'] else [],
-            "metadatas": results['metadatas'][0] if results['metadatas'] else [],
-            "distances": results['distances'][0] if results['distances'] else []
+            "ids": ids,
+            "documents": documents,
+            "metadatas": metadatas,
+            "distances": distances,
         }
     except Exception as e:
         print(f"Error searching: {e}")
         return {"ids": [], "documents": [], "metadatas": [], "distances": []}
 
+
 def delete_embeddings(product_id: str):
-    """Delete embeddings for a product."""
+    """Delete embeddings for a product (also cascaded when the product row is deleted)."""
     try:
-        collection_name = f"product_{product_id}"
-        chroma_client.delete_collection(name=collection_name)
+        supabase.table("document_embeddings").delete().eq("product_id", product_id).execute()
         print(f"✓ Deleted embeddings for product {product_id}")
     except Exception as e:
         print(f"Error deleting embeddings: {e}")
 
+
 def get_all_reviews_summary(product_id: str):
-    """Get summary of all reviews for a product."""
+    """Get summary of all reviews for a product from stored embedding rows."""
     try:
-        collection = get_collection(product_id)
-        results = collection.get()
-        
+        result = (
+            supabase.table("document_embeddings")
+            .select("content_type, content, rating")
+            .eq("product_id", product_id)
+            .execute()
+        )
+
         reviews = []
         description = ""
-        
-        for doc, meta in zip(results['documents'], results['metadatas']):
-            if meta['type'] == 'description':
-                description = doc
-            elif meta['type'] == 'review':
-                reviews.append({
-                    "content": doc,
-                    "rating": meta.get('rating', 'N/A')
-                })
-        
+
+        for row in result.data or []:
+            if row["content_type"] == "description":
+                description = row["content"]
+            elif row["content_type"] == "review":
+                reviews.append(
+                    {
+                        "content": row["content"],
+                        "rating": row.get("rating") or "N/A",
+                    }
+                )
+
         return {
             "description": description,
             "reviews": reviews,
-            "total_reviews": len(reviews)
+            "total_reviews": len(reviews),
         }
     except Exception as e:
         print(f"Error getting summary: {e}")
         return {"description": "", "reviews": [], "total_reviews": 0}
-

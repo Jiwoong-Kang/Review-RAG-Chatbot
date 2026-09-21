@@ -13,7 +13,7 @@ INSUFFICIENT_EVIDENCE_TOKEN = "INSUFFICIENT_EVIDENCE"
 NO_EVIDENCE_MESSAGE = "I don't have any reviews indexed for this product yet, so I can't answer from evidence."
 
 def _parse_rating(raw_rating: str) -> Optional[float]:
-    """Ratings are stored as strings in ChromaDB metadata ('4.5', 'N/A')."""
+    """Ratings are stored as strings in embedding metadata ('4.5', 'N/A')."""
     try:
         return float(raw_rating)
     except (TypeError, ValueError):
