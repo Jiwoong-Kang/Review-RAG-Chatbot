@@ -43,7 +43,7 @@ Embeddings are stored in Supabase (`document_embeddings`), so a backend restart 
 
 1. Start backend + frontend (`python3 -m http.server 3000` in `frontend/`)
 2. Sign in at http://localhost:3000
-3. Use **+ Upload Product** and paste fields from `sample_products.json`
+3. Use **+ Upload Product** and paste fields from a file under `sample_data/`
 
 ---
 
@@ -57,7 +57,7 @@ curl -X POST http://localhost:8000/api/products/upload \
 EOF
 ```
 
-Prefer the script or UI unless you need raw API testing. Full payloads live in `sample_products.json` at the repo root.
+Prefer the script or UI unless you need raw API testing. Full payloads live in `sample_data/` (one product per JSON file).
 
 ---
 
@@ -97,4 +97,4 @@ curl http://localhost:8000/api/products
 - Product metadata + 20 reviews → **Supabase `products`**
 - Description + review embeddings → **Supabase `document_embeddings` (pgvector)**
 
-To add more products, edit `sample_products.json` and run the upload script again.
+To add more products, add a new `sample_data/<product_id>.json` and run the upload script again.

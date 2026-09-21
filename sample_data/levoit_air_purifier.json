@@ -1,0 +1,308 @@
+{
+  "product_id": "levoit_air_purifier",
+  "name": "Levoit Core Air Purifier",
+  "image": "images/airpurifier.jpg",
+  "description": "The Levoit Core air purifier is a compact cylindrical home air cleaner designed for bedrooms and small-to-medium living spaces. It combines a multi-stage filtration system — typically a pre-filter for large particles, a True HEPA-style filter for fine dust, pollen, and pet dander, and an activated carbon layer for household odors and smoke — with adjustable fan speeds including a quiet sleep mode. A top-mounted touch control panel provides power, fan speed, sleep, timer, and filter-indicator controls, while an LED display can show air-quality related readouts and be dimmed or turned off for nighttime use. Auto mode adjusts fan speed based on detected air conditions, and many Core models support optional app/voice connectivity for scheduling and remote control. The perforated lower intake and spiral top outlet promote 360-degree air circulation with a small footprint that fits beside furniture. Intended for continuous daily use against dust, allergies, cooking smells, and urban pollution, with replaceable filters as ongoing maintenance.",
+  "reviews": [
+    {
+      "review_id": "air_r001",
+      "content": "Quiet enough for my bedroom. Sleep mode is nearly silent and the air feels fresher by morning. App scheduling is simple. Filter replacement reminder is useful.",
+      "rating": 5.0,
+      "date": "2024-11-27"
+    },
+    {
+      "review_id": "air_r002",
+      "content": "Set up in five minutes. Noticeably less dust on furniture after a week. Night light is too bright even on low — covered it with tape.",
+      "rating": 4.0,
+      "date": "2026-08-28"
+    },
+    {
+      "review_id": "air_r003",
+      "content": "For the price it's solid, but the 'air quality' number jumps around oddly. Still, allergies feel milder since I started running it 24/7.",
+      "rating": 4.0,
+      "date": "2024-06-03"
+    },
+    {
+      "review_id": "air_r004",
+      "content": "Louder than expected on turbo. Fine for daytime cleaning bursts, not for movie night. Filter cost adds up yearly.",
+      "rating": 3.0,
+      "date": "2025-02-08"
+    },
+    {
+      "review_id": "air_r005",
+      "content": "Levoit looks clean in our living room. HEPA filter trapped a shocking amount of pet hair debris. Worth it with two cats.",
+      "rating": 5.0,
+      "date": "2025-10-28"
+    },
+    {
+      "review_id": "air_r006",
+      "content": "Wi-Fi setup failed twice before it worked. Once connected, Alexa control is handy. Wish local controls had clearer labels.",
+      "rating": 3.5,
+      "date": "2024-02-19"
+    },
+    {
+      "review_id": "air_r007",
+      "content": "Reduced cooking smells faster than opening windows in winter. Compact footprint fits beside our shelf. Happy purchase.",
+      "rating": 4.5,
+      "date": "2024-03-15"
+    },
+    {
+      "review_id": "air_r008",
+      "content": "Plastic build feels cheap up close. Performance is okay for a small bedroom. Don't expect miracles in a large open plan.",
+      "rating": 3.0,
+      "date": "2026-04-20"
+    },
+    {
+      "review_id": "air_r009",
+      "content": "After wildfire season smoke, this was a lifesaver. Max fan cleared the haze in our apartment surprisingly well.",
+      "rating": 5.0,
+      "date": "2025-07-02"
+    },
+    {
+      "review_id": "air_r010",
+      "content": "Filter door latch is fiddly. Replacement filters are proprietary pricing. Machine itself runs reliably so far.",
+      "rating": 3.5,
+      "date": "2024-04-06"
+    },
+    {
+      "review_id": "air_r011",
+      "content": "Sleep mode + auto mode is set-and-forget. Woke up without morning congestion for the first time in months.",
+      "rating": 5.0,
+      "date": "2025-01-09"
+    },
+    {
+      "review_id": "air_r012",
+      "content": "Display is bright at night; glad it can turn off. CADR seems adequate for our 200 sq ft room. Good value.",
+      "rating": 4.5,
+      "date": "2025-08-19"
+    },
+    {
+      "review_id": "air_r013",
+      "content": "Did nothing obvious for my dust mite allergies. Maybe expectations were too high. Returning it.",
+      "rating": 2.0,
+      "date": "2024-02-29"
+    },
+    {
+      "review_id": "air_r014",
+      "content": "Kids like the glow; I like the quiet. Two weeks in and less sneezing during homework time. Recommend for small rooms.",
+      "rating": 4.5,
+      "date": "2026-07-20"
+    },
+    {
+      "review_id": "air_r015",
+      "content": "Remote is basic but works across the room. Auto mode ramps up when we cook. Better than our old tower fan 'purifier'.",
+      "rating": 4.0,
+      "date": "2025-06-03"
+    },
+    {
+      "review_id": "air_r016",
+      "content": "Unit tips slightly if bumped — base could be heavier. Airflow is strong on high. Mid settings are the sweet spot.",
+      "rating": 3.5,
+      "date": "2024-08-07"
+    },
+    {
+      "review_id": "air_r017",
+      "content": "Bought two for upstairs/downstairs. Consistent build quality. Energy use seems modest on low. Satisfied.",
+      "rating": 4.5,
+      "date": "2024-02-08"
+    },
+    {
+      "review_id": "air_r018",
+      "content": "App notifications are spammy. Mute them and it's fine. Physically the purifier does its job well.",
+      "rating": 3.5,
+      "date": "2024-03-29"
+    },
+    {
+      "review_id": "air_r019",
+      "content": "Noticeable difference for pollen season. Windows closed + this running beats medication alone for me.",
+      "rating": 5.0,
+      "date": "2025-03-20"
+    },
+    {
+      "review_id": "air_r020",
+      "content": "Takes forever to show 'good' air after vacuuming. Sensors might be slow or optimistic. Still keeps dust down.",
+      "rating": 3.0,
+      "date": "2025-03-04"
+    },
+    {
+      "review_id": "air_r021",
+      "content": "Design matches modern decor better than bulky competitors. Whisper quiet at night. Exactly what I wanted.",
+      "rating": 5.0,
+      "date": "2024-03-12"
+    },
+    {
+      "review_id": "air_r022",
+      "content": "Stopped connecting to Wi-Fi after a router change. Manual buttons still work. Support chat was slow.",
+      "rating": 2.5,
+      "date": "2024-09-03"
+    },
+    {
+      "review_id": "air_r023",
+      "content": "Great for home office — less dry throat from dust. Fan curve is smooth. No weird ozone smell.",
+      "rating": 4.5,
+      "date": "2024-04-02"
+    },
+    {
+      "review_id": "air_r024",
+      "content": "Filter was clogged earlier than the 6-month claim with pets. Budget for extras. Performance before clog was excellent.",
+      "rating": 3.5,
+      "date": "2025-07-18"
+    },
+    {
+      "review_id": "air_r025",
+      "content": "Compared with a pricier Dyson, this Levoit gets close enough for everyday air. Missing some smart polish, winning on price.",
+      "rating": 4.0,
+      "date": "2025-03-10"
+    },
+    {
+      "review_id": "air_r026",
+      "content": "Packaging was crushed; unit fine. Smell of new plastic for a day then gone. Runs cool to the touch.",
+      "rating": 4.0,
+      "date": "2024-03-01"
+    },
+    {
+      "review_id": "air_r027",
+      "content": "Bedroom PM feels better per a cheap particle meter I own. Not lab grade, but trend is clear. Keeping it.",
+      "rating": 4.5,
+      "date": "2026-04-26"
+    },
+    {
+      "review_id": "air_r028",
+      "content": "Buttons feel mushy. Mode cycling is annoying without the app. Air cleaning is competent for the size.",
+      "rating": 3.0,
+      "date": "2025-08-02"
+    },
+    {
+      "review_id": "air_r029",
+      "content": "Gifted to my parents — they love how simple it is. No complicated menus. Just works on auto.",
+      "rating": 5.0,
+      "date": "2024-05-06"
+    },
+    {
+      "review_id": "air_r030",
+      "content": "On high it pushes air across the whole studio apartment. On low it's background quiet. Versatile.",
+      "rating": 4.5,
+      "date": "2026-08-28"
+    },
+    {
+      "review_id": "air_r031",
+      "content": "Overstated room-size marketing. Fine for a bedroom, weak for our combined loft. Read the CADR carefully.",
+      "rating": 2.5,
+      "date": "2024-08-16"
+    },
+    {
+      "review_id": "air_r032",
+      "content": "No more musty closet smell near the unit. Surprising side benefit. Will buy another for the basement.",
+      "rating": 5.0,
+      "date": "2025-10-07"
+    },
+    {
+      "review_id": "air_r033",
+      "content": "Periodic chirps when air quality changes get old. Disabled sounds. Otherwise happy with filtration.",
+      "rating": 4.0,
+      "date": "2025-10-04"
+    },
+    {
+      "review_id": "air_r034",
+      "content": "Black Friday deal made this a no-brainer. Build is average; results for smoke and dust are above average.",
+      "rating": 4.5,
+      "date": "2025-08-19"
+    },
+    {
+      "review_id": "air_r035",
+      "content": "Husband thought it was placebo until guests commented the apartment smells fresher. Converted skeptic.",
+      "rating": 5.0,
+      "date": "2026-08-28"
+    },
+    {
+      "review_id": "air_r036",
+      "content": "Power cord is short. Needed an extension along the wall. Minor gripe on an otherwise good product.",
+      "rating": 4.0,
+      "date": "2024-03-04"
+    },
+    {
+      "review_id": "air_r037",
+      "content": "Turbo mode for 20 minutes after frying fish works wonders. Then back to sleep mode. Perfect routine.",
+      "rating": 5.0,
+      "date": "2025-08-13"
+    },
+    {
+      "review_id": "air_r038",
+      "content": "Cheap competitor died in a year; hoping this lasts longer. So far motor is steady and bearings quiet.",
+      "rating": 4.0,
+      "date": "2025-08-22"
+    },
+    {
+      "review_id": "air_r039",
+      "content": "Asthma nights improved modestly, not cured. Still worth running. Pair with proper meds and cleaning.",
+      "rating": 3.5,
+      "date": "2025-02-10"
+    },
+    {
+      "review_id": "air_r040",
+      "content": "Looks fake-smart with the animated AQI but filtration is real. Ignore the theater, keep the HEPA.",
+      "rating": 3.5,
+      "date": "2024-02-20"
+    },
+    {
+      "review_id": "air_r041",
+      "content": "Easy filter swap — no tools. Instructions are clear. First replacement went smoothly.",
+      "rating": 4.5,
+      "date": "2024-08-14"
+    },
+    {
+      "review_id": "air_r042",
+      "content": "Neighbor's cigarette smoke used to seep in; this cuts it down a lot with windows shut. Grateful.",
+      "rating": 5.0,
+      "date": "2024-02-17"
+    },
+    {
+      "review_id": "air_r043",
+      "content": "Rattles faintly on hardwood at certain speeds. Foam pad fixed it. QC issue maybe.",
+      "rating": 3.0,
+      "date": "2025-07-24"
+    },
+    {
+      "review_id": "air_r044",
+      "content": "Energy bill barely moved with 24/7 low. Peace of mind for city pollution. Recommend for renters.",
+      "rating": 4.5,
+      "date": "2026-05-29"
+    },
+    {
+      "review_id": "air_r045",
+      "content": "Returned the first unit for a grinding noise; replacement is silent. Hit or miss QC but support honored return.",
+      "rating": 3.5,
+      "date": "2024-05-16"
+    },
+    {
+      "review_id": "air_r046",
+      "content": "Doesn't humidify — obvious, but people ask. Pair with a humidifier in dry winters. Purifier part is strong.",
+      "rating": 4.0,
+      "date": "2024-10-23"
+    },
+    {
+      "review_id": "air_r047",
+      "content": "Top controls are reachable behind a nightstand. Compact cylinder design wins for small spaces.",
+      "rating": 4.5,
+      "date": "2025-03-05"
+    },
+    {
+      "review_id": "air_r048",
+      "content": "After six months still strong airflow. No weird odors from the filter. Maintenance is easy.",
+      "rating": 5.0,
+      "date": "2024-05-27"
+    },
+    {
+      "review_id": "air_r049",
+      "content": "Expected Dyson-level quiet and didn't get it on mid. Acceptable for the money. Soften expectations.",
+      "rating": 3.0,
+      "date": "2025-07-07"
+    },
+    {
+      "review_id": "air_r050",
+      "content": "Overall: reliable, affordable, effective for bedroom air. Not perfect software, solid hardware. I'd buy again.",
+      "rating": 4.5,
+      "date": "2024-04-30"
+    }
+  ]
+}

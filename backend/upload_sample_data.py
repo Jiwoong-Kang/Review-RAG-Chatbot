@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Upload sample products from sample_products.json to the database via API
+Upload sample products from sample_data/*.json to the database via API
 """
 
 import json
@@ -12,17 +12,27 @@ from pathlib import Path
 API_BASE = "http://localhost:8000"
 
 def load_sample_data():
-    """Load sample products from JSON file"""
-    json_path = Path(__file__).parent.parent / "sample_products.json"
-    
-    if not json_path.exists():
-        print(f"❌ Error: {json_path} not found")
+    """Load sample products from sample_data/*.json (one product per file)."""
+    data_dir = Path(__file__).parent.parent / "sample_data"
+
+    if not data_dir.is_dir():
+        print(f"❌ Error: {data_dir} not found")
         sys.exit(1)
-    
-    with open(json_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    return data.get('products', [])
+
+    products = []
+    for json_path in sorted(data_dir.glob("*.json")):
+        with open(json_path, "r", encoding="utf-8") as f:
+            product = json.load(f)
+        if not isinstance(product, dict) or "product_id" not in product:
+            print(f"❌ Error: {json_path.name} must be a single product object with product_id")
+            sys.exit(1)
+        products.append(product)
+
+    if not products:
+        print(f"❌ Error: no product JSON files in {data_dir}")
+        sys.exit(1)
+
+    return products
 
 def delete_product(product_id):
     """Delete a product if it exists"""

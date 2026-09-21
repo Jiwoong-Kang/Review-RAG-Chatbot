@@ -1,0 +1,308 @@
+{
+  "product_id": "cerave_foaming_facial_cleanser",
+  "name": "CeraVe Foaming Facial Cleanser",
+  "image": "images/facialcleanser.jpg",
+  "description": "CeraVe Foaming Facial Cleanser is a fragrance-free gel-to-foam face wash for normal to oily skin. It cleanses and helps control oil while using three essential ceramides, niacinamide, and hyaluronic acid to support the skin barrier instead of leaving a stripped feel. The pump bottle is made for daily morning and evening use, including light makeup and sunscreen removal as part of a simple routine. Developed with dermatologists, it targets people who want a non-irritating foaming cleanse without perfume.",
+  "reviews": [
+    {
+      "review_id": "cln_r001",
+      "content": "Finally a foaming cleanser that doesn't strip my oily skin raw. Nose stays clearer without tight squeaky feel.",
+      "rating": 5.0,
+      "date": "2025-11-24"
+    },
+    {
+      "review_id": "cln_r002",
+      "content": "Pump is convenient vs jar creams. Morning and night staple. Fragrance-free win.",
+      "rating": 5.0,
+      "date": "2024-02-14"
+    },
+    {
+      "review_id": "cln_r003",
+      "content": "Good for gym sweat rinse. Makeup needs a first cleanse still — this is step two for me.",
+      "rating": 4.0,
+      "date": "2026-03-14"
+    },
+    {
+      "review_id": "cln_r004",
+      "content": "A bit drying in winter on cheeks. I buffer with moisturizer ASAP. Summers: perfect.",
+      "rating": 3.5,
+      "date": "2026-07-05"
+    },
+    {
+      "review_id": "cln_r005",
+      "content": "Derm recommended for acne-prone skin. No perfume drama. Ceramides keep barrier happier than drugstore foams I tried.",
+      "rating": 5.0,
+      "date": "2025-06-16"
+    },
+    {
+      "review_id": "cln_r006",
+      "content": "Foam is gentle, not salon-fluffy. Gets SPF off with a flannel assist.",
+      "rating": 4.0,
+      "date": "2024-05-03"
+    },
+    {
+      "review_id": "cln_r007",
+      "content": "Broke me out along jaw for two weeks then settled. Push through the purge carefully or patch test.",
+      "rating": 3.0,
+      "date": "2025-06-07"
+    },
+    {
+      "review_id": "cln_r008",
+      "content": "Travel size would be nice; I decant. Full bottle lasts a long time with pea-sized pumps.",
+      "rating": 4.5,
+      "date": "2024-07-23"
+    },
+    {
+      "review_id": "cln_r009",
+      "content": "Husband with combination skin stole it. Non-irritating for both of us.",
+      "rating": 4.5,
+      "date": "2025-02-06"
+    },
+    {
+      "review_id": "cln_r010",
+      "content": "Not emulsifying enough for heavy sunscreen alone. Oil cleanse first, then this. Combo is chef's kiss.",
+      "rating": 4.0,
+      "date": "2024-12-21"
+    },
+    {
+      "review_id": "cln_r011",
+      "content": "Price is fair. Foams rinse clean — no filmy residue like cream cleansers.",
+      "rating": 4.5,
+      "date": "2025-06-25"
+    },
+    {
+      "review_id": "cln_r012",
+      "content": "Eyes sting if I'm sloppy. Keep it on the face proper. Otherwise gentle.",
+      "rating": 3.5,
+      "date": "2024-10-23"
+    },
+    {
+      "review_id": "cln_r013",
+      "content": "Oil-control claim is real by midday for my T-zone. Not a miracle for hormonal chin cysts.",
+      "rating": 4.0,
+      "date": "2025-08-21"
+    },
+    {
+      "review_id": "cln_r014",
+      "content": "Pump occasionally sputters air. Upside-down trick helps. Formula is consistent.",
+      "rating": 3.5,
+      "date": "2024-05-31"
+    },
+    {
+      "review_id": "cln_r015",
+      "content": "AM cleanse + moisturizer + SPF is my boring effective routine. This is the cleanse.",
+      "rating": 5.0,
+      "date": "2025-09-01"
+    },
+    {
+      "review_id": "cln_r016",
+      "content": "Too foamy/stripping if I use hot water. Lukewarm only. User error mostly.",
+      "rating": 3.0,
+      "date": "2024-09-24"
+    },
+    {
+      "review_id": "cln_r017",
+      "content": "Sensitive skin tolerated it better than gel salicylics. Calm redness after a week.",
+      "rating": 4.5,
+      "date": "2024-04-20"
+    },
+    {
+      "review_id": "cln_r018",
+      "content": "Removes light BB cream fine. Full glam needs micellar first. Set expectations.",
+      "rating": 4.0,
+      "date": "2024-09-23"
+    },
+    {
+      "review_id": "cln_r019",
+      "content": "Bottle looks clinical — I like that. No spa scent marketing nonsense.",
+      "rating": 5.0,
+      "date": "2025-02-25"
+    },
+    {
+      "review_id": "cln_r020",
+      "content": "Cap/pump leaked in a gym bag once. Seal the nozzle. Lesson learned.",
+      "rating": 3.0,
+      "date": "2024-12-01"
+    },
+    {
+      "review_id": "cln_r021",
+      "content": "Teens in the house can use it without turning into flakes. Family bathroom win.",
+      "rating": 4.5,
+      "date": "2026-09-18"
+    },
+    {
+      "review_id": "cln_r022",
+      "content": "After retinoid nights this feels comforting vs harsh foams. Keep going CeraVe.",
+      "rating": 5.0,
+      "date": "2024-10-01"
+    },
+    {
+      "review_id": "cln_r023",
+      "content": "Doesn't smell like anything. If you want spa vibes, look elsewhere. I want clean.",
+      "rating": 4.0,
+      "date": "2026-05-04"
+    },
+    {
+      "review_id": "cln_r024",
+      "content": "Hard water leaves my face feeling less soft — not the cleanser's fault entirely. Still repurchase.",
+      "rating": 4.0,
+      "date": "2024-04-20"
+    },
+    {
+      "review_id": "cln_r025",
+      "content": "Niacinamide mention on label matches my routine goals. Plays nice with other actives.",
+      "rating": 4.5,
+      "date": "2026-03-02"
+    },
+    {
+      "review_id": "cln_r026",
+      "content": "One bottle dried out near the end — leftover was thicker. Shake/squeeze remaining.",
+      "rating": 3.5,
+      "date": "2024-11-29"
+    },
+    {
+      "review_id": "cln_r027",
+      "content": "Morning face feels fresh not squeaky. That's the bar, and it clears it.",
+      "rating": 5.0,
+      "date": "2026-07-07"
+    },
+    {
+      "review_id": "cln_r028",
+      "content": "Acne scarring care: cleansing without inflammation matters. This helps the mundane step.",
+      "rating": 4.5,
+      "date": "2024-11-14"
+    },
+    {
+      "review_id": "cln_r029",
+      "content": "Foam disappears fast on wet hands — use less water when lathering.",
+      "rating": 3.5,
+      "date": "2024-01-24"
+    },
+    {
+      "review_id": "cln_r030",
+      "content": "Compared to cream hydrating cleanser, this is better for humidity and oil. Seasonal swap maybe.",
+      "rating": 4.0,
+      "date": "2025-08-05"
+    },
+    {
+      "review_id": "cln_r031",
+      "content": "No microbeads, no glitter, no nonsense. Rinses down the drain cleanly.",
+      "rating": 5.0,
+      "date": "2025-09-24"
+    },
+    {
+      "review_id": "cln_r032",
+      "content": "Pump broke after 5 months; formula transferred to a foamer bottle. Product still good.",
+      "rating": 3.0,
+      "date": "2024-07-25"
+    },
+    {
+      "review_id": "cln_r033",
+      "content": "Makeup artists at my counter recommended it for clients with reactive skin. Trust earned.",
+      "rating": 5.0,
+      "date": "2026-06-19"
+    },
+    {
+      "review_id": "cln_r034",
+      "content": "Slightly squeaky if I double-cleanse too aggressively. One thorough pass is enough.",
+      "rating": 3.5,
+      "date": "2024-03-13"
+    },
+    {
+      "review_id": "cln_r035",
+      "content": "Value size lasts ~4 months for one person BID. Math works vs boutique cleansers.",
+      "rating": 4.5,
+      "date": "2026-07-31"
+    },
+    {
+      "review_id": "cln_r036",
+      "content": "Doesn't treat acne alone — pair with treatment. As a cleanser: solid A-.",
+      "rating": 4.0,
+      "date": "2024-07-26"
+    },
+    {
+      "review_id": "cln_r037",
+      "content": "Post-workout face rinse stops pillowcase oil stains. Underrated use case.",
+      "rating": 4.5,
+      "date": "2024-04-26"
+    },
+    {
+      "review_id": "cln_r038",
+      "content": "Label claims match experience more than most beauty marketing. Refreshing.",
+      "rating": 5.0,
+      "date": "2025-07-09"
+    },
+    {
+      "review_id": "cln_r039",
+      "content": "Lather is low-moderate. Not a bubble bath face experience — effective anyway.",
+      "rating": 4.0,
+      "date": "2025-04-11"
+    },
+    {
+      "review_id": "cln_r040",
+      "content": "Dry skin friends hate it; oily friends love it. Know thyself.",
+      "rating": 3.5,
+      "date": "2025-02-01"
+    },
+    {
+      "review_id": "cln_r041",
+      "content": "Gentle enough around beard area without itch. Grooming adjacent win.",
+      "rating": 4.5,
+      "date": "2026-06-05"
+    },
+    {
+      "review_id": "cln_r042",
+      "content": "Store brand foams sting; this doesn't. Worth the few extra dollars.",
+      "rating": 5.0,
+      "date": "2026-01-21"
+    },
+    {
+      "review_id": "cln_r043",
+      "content": "I use evenings only when skin is cranky. Mornings water sometimes enough. Flexible.",
+      "rating": 4.0,
+      "date": "2024-03-16"
+    },
+    {
+      "review_id": "cln_r044",
+      "content": "No HA sticky feel — cleans then gone. Moisturizer goes on right after.",
+      "rating": 4.5,
+      "date": "2026-04-02"
+    },
+    {
+      "review_id": "cln_r045",
+      "content": "Bottle is slick when wet. One drop in the shower. Hang onto it.",
+      "rating": 3.0,
+      "date": "2024-04-10"
+    },
+    {
+      "review_id": "cln_r046",
+      "content": "Helped reduce that midday grease without mattifying primers. Quiet improvement.",
+      "rating": 4.5,
+      "date": "2025-02-28"
+    },
+    {
+      "review_id": "cln_r047",
+      "content": "Not 'fun' skincare — functional. That's why it stays on the shelf.",
+      "rating": 4.0,
+      "date": "2024-01-18"
+    },
+    {
+      "review_id": "cln_r048",
+      "content": "Dermatologist sample got me hooked; full size repurchase was automatic.",
+      "rating": 5.0,
+      "date": "2024-04-11"
+    },
+    {
+      "review_id": "cln_r049",
+      "content": "Works with hard-to-remove mineral SPF better than my old gel. Still massage well.",
+      "rating": 4.0,
+      "date": "2025-08-15"
+    },
+    {
+      "review_id": "cln_r050",
+      "content": "Bottom line: reliable foaming cleanser for normal-to-oily and acne-prone skin without wrecking the barrier.",
+      "rating": 4.5,
+      "date": "2026-01-15"
+    }
+  ]
+}

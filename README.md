@@ -31,8 +31,8 @@ reviewer/
 │   ├── app.js               # Boot
 │   ├── auth.js / products.js / chat.js / saved.js
 │   └── images/
+├── sample_data/             # One JSON file per sample product
 ├── docs/                    # Setup guides
-├── sample_products.json
 └── README.md
 ```
 

@@ -1,0 +1,308 @@
+{
+  "product_id": "logitech_gpro_x_superlight",
+  "name": "Logitech G Pro X Superlight Wireless Gaming Mouse",
+  "image": "images/gamingmouse.jpg",
+  "description": "The Logitech G Pro X Superlight is an ultra-lightweight wireless gaming mouse designed for competitive FPS play. It features a refined right-handed shape, HERO high-precision optical sensor, low-latency LIGHTSPEED wireless with a USB receiver, mechanical-feeling button switches, and a minimal two-side-button layout to keep weight down. The matte shell (often offered in white or black) omits heavy RGB in favor of battery life and reduced mass, typically around the mid-60g range depending on configuration. It is aimed at players who want fast starts, consistent tracking, and a tournament-simple control scheme rather than an MMO button deck.",
+  "reviews": [
+    {
+      "review_id": "mse_r001",
+      "content": "Incredibly light — aim feels effortless after a week. Hermox sensor tracking is clean at 800 DPI. Battery lasts forever on the white Superlight.",
+      "rating": 5.0,
+      "date": "2024-09-22"
+    },
+    {
+      "review_id": "mse_r002",
+      "content": "Shape is perfect for my claw grip. Clicks are crisp. Only miss a third side button for binds.",
+      "rating": 4.5,
+      "date": "2024-10-24"
+    },
+    {
+      "review_id": "mse_r003",
+      "content": "Too minimal for MMO players. For FPS though, this is the meta for a reason. Glides like ice on a cloth pad.",
+      "rating": 4.5,
+      "date": "2025-12-02"
+    },
+    {
+      "review_id": "mse_r004",
+      "content": "Scroll wheel is loud and a bit notchy. Got used to it. Wireless is rock solid with the USB dongle.",
+      "rating": 3.5,
+      "date": "2026-07-20"
+    },
+    {
+      "review_id": "mse_r005",
+      "content": "Switched from a heavy Razer — my wrist pain dropped a lot. Weight savings are not marketing fluff.",
+      "rating": 5.0,
+      "date": "2025-12-01"
+    },
+    {
+      "review_id": "mse_r006",
+      "content": "White shell shows dirt fast. Clean weekly if you care. Performance is flagship.",
+      "rating": 4.0,
+      "date": "2026-04-01"
+    },
+    {
+      "review_id": "mse_r007",
+      "content": "Stock skates wore quicker than expected. Aftermarket dots fixed it. Mouse itself is excellent.",
+      "rating": 3.5,
+      "date": "2026-05-19"
+    },
+    {
+      "review_id": "mse_r008",
+      "content": "No RGB is a plus for me — less distraction, better battery. Pure aiming tool.",
+      "rating": 5.0,
+      "date": "2026-06-30"
+    },
+    {
+      "review_id": "mse_r009",
+      "content": "Side buttons are a tad forward for my thumb. Almost returned it; software remaps helped enough to keep.",
+      "rating": 3.0,
+      "date": "2024-07-09"
+    },
+    {
+      "review_id": "mse_r010",
+      "content": "G HUB is bloated but DPI and report rate just work. 1000Hz feels responsive in Valorant.",
+      "rating": 4.0,
+      "date": "2025-10-29"
+    },
+    {
+      "review_id": "mse_r011",
+      "content": "Coating on the white model gets glossy on the right side from sweat. Grip tape recommended.",
+      "rating": 3.5,
+      "date": "2024-08-24"
+    },
+    {
+      "review_id": "mse_r012",
+      "content": "Best wireless mouse I've used for competitive play. Zero spinouts, zero stutters in three months.",
+      "rating": 5.0,
+      "date": "2025-11-13"
+    },
+    {
+      "review_id": "mse_r013",
+      "content": "Price is steep for plastic and two buttons. You're paying for weight and sensor. Know that going in.",
+      "rating": 3.0,
+      "date": "2024-05-30"
+    },
+    {
+      "review_id": "mse_r014",
+      "content": "Left click developed double-click after 8 months. Logitech replaced it. Love the mouse, hate the QC lottery.",
+      "rating": 3.0,
+      "date": "2026-06-09"
+    },
+    {
+      "review_id": "mse_r015",
+      "content": "Travel pair with a tiny pad — whole kit fits in a hoodie pocket. Tournament ready.",
+      "rating": 5.0,
+      "date": "2024-08-18"
+    },
+    {
+      "review_id": "mse_r016",
+      "content": "Sensor lifts cleanly; no weird jitter on mousepad edges. Aim trainers finally feel consistent.",
+      "rating": 4.5,
+      "date": "2025-10-18"
+    },
+    {
+      "review_id": "mse_r017",
+      "content": "Feet scratch easily on dirty desks. Keep the pad clean. Otherwise buttery.",
+      "rating": 4.0,
+      "date": "2026-01-21"
+    },
+    {
+      "review_id": "mse_r018",
+      "content": "Came from a G Pro wired — wireless freedom is worth it. Same familiar shape.",
+      "rating": 4.5,
+      "date": "2024-07-10"
+    },
+    {
+      "review_id": "mse_r019",
+      "content": "Not for big hands; my palm overhangs. Try before buying if you're 20cm+.",
+      "rating": 2.5,
+      "date": "2024-05-13"
+    },
+    {
+      "review_id": "mse_r020",
+      "content": "Battery indicator in software is vague, but I charge maybe once every two weeks of heavy play.",
+      "rating": 4.0,
+      "date": "2024-03-13"
+    },
+    {
+      "review_id": "mse_r021",
+      "content": "Clicks feel lighter than my old DeathAdder — fewer accidental misclicks in spray control.",
+      "rating": 4.5,
+      "date": "2025-06-28"
+    },
+    {
+      "review_id": "mse_r022",
+      "content": "Dongle is easy to lose. Wish it stored in the mouse. Magnets when?",
+      "rating": 3.5,
+      "date": "2026-05-16"
+    },
+    {
+      "review_id": "mse_r023",
+      "content": "Pure FPS beast. Inventory management games feel button-starved. Buy according to genre.",
+      "rating": 4.0,
+      "date": "2024-08-07"
+    },
+    {
+      "review_id": "mse_r024",
+      "content": "Packaging is premium; mouse is lighter than expected in hand. Instant smile.",
+      "rating": 5.0,
+      "date": "2026-02-01"
+    },
+    {
+      "review_id": "mse_r025",
+      "content": "Optical switches are snappy. No debounce weirdness. Firmware updates were painless.",
+      "rating": 4.5,
+      "date": "2024-10-28"
+    },
+    {
+      "review_id": "mse_r026",
+      "content": "Right-handed only — obvious, but lefties beware. Ambiguous marketing photos online.",
+      "rating": 3.0,
+      "date": "2024-01-31"
+    },
+    {
+      "review_id": "mse_r027",
+      "content": "After a month my K/D actually ticked up. Placebo maybe, but confidence is real.",
+      "rating": 4.5,
+      "date": "2025-03-17"
+    },
+    {
+      "review_id": "mse_r028",
+      "content": "Cable for charging is short USB-A. Fine at a desk, annoying on a couch PC.",
+      "rating": 3.5,
+      "date": "2024-05-09"
+    },
+    {
+      "review_id": "mse_r029",
+      "content": "Skates + Corepad combo made it even faster. Stock is already good for most people.",
+      "rating": 4.0,
+      "date": "2026-05-07"
+    },
+    {
+      "review_id": "mse_r030",
+      "content": "No onboard profiles without software quirks. LAN cafes are annoying. Main PC: perfect.",
+      "rating": 3.5,
+      "date": "2025-12-01"
+    },
+    {
+      "review_id": "mse_r031",
+      "content": "Build creaks faintly if I squeeze hard. Doesn't affect aim. Still premium overall.",
+      "rating": 4.0,
+      "date": "2025-09-15"
+    },
+    {
+      "review_id": "mse_r032",
+      "content": "White G logo LED is subtle — love that. Less gamer-cliché than rainbow bricks.",
+      "rating": 5.0,
+      "date": "2024-01-15"
+    },
+    {
+      "review_id": "mse_r033",
+      "content": "Returned the black, kept white for visibility on dark pads. Same performance.",
+      "rating": 4.0,
+      "date": "2024-10-09"
+    },
+    {
+      "review_id": "mse_r034",
+      "content": "Motion sync / high polling feels responsive. Not magic, but refined.",
+      "rating": 4.5,
+      "date": "2026-05-04"
+    },
+    {
+      "review_id": "mse_r035",
+      "content": "Too slippery without grip tape for sweaty hands. Tape fixed it in ten minutes.",
+      "rating": 3.5,
+      "date": "2024-05-30"
+    },
+    {
+      "review_id": "mse_r036",
+      "content": "Customer support asked for videos but eventually RMA'd my click issue. Decent outcome.",
+      "rating": 3.5,
+      "date": "2024-03-27"
+    },
+    {
+      "review_id": "mse_r037",
+      "content": "Pairs with a large cloth pad beautifully. Hard pad made it feel skatey; cloth is the match.",
+      "rating": 4.5,
+      "date": "2026-06-11"
+    },
+    {
+      "review_id": "mse_r038",
+      "content": "Minimalism means fewer failure points. After a year still my main.",
+      "rating": 5.0,
+      "date": "2026-03-24"
+    },
+    {
+      "review_id": "mse_r039",
+      "content": "Scroll tilt? None. Miss it from office mice for horizontal spreadsheet jumps.",
+      "rating": 3.0,
+      "date": "2026-04-09"
+    },
+    {
+      "review_id": "mse_r040",
+      "content": "Esports branding is loud; product underneath is quietly excellent engineering.",
+      "rating": 4.5,
+      "date": "2026-06-28"
+    },
+    {
+      "review_id": "mse_r041",
+      "content": "Lightweight caused overflicks the first days. Recalibrated sensitivity and I'm hooked.",
+      "rating": 4.0,
+      "date": "2026-04-05"
+    },
+    {
+      "review_id": "mse_r042",
+      "content": "Charges while playing with cord — fine, but defeats wireless until you unplug. Plan sessions.",
+      "rating": 3.5,
+      "date": "2024-09-25"
+    },
+    {
+      "review_id": "mse_r043",
+      "content": "Compared to newer Superlight 2 hype, this still aims great and often costs less used/new.",
+      "rating": 4.0,
+      "date": "2026-04-26"
+    },
+    {
+      "review_id": "mse_r044",
+      "content": "Thumb rest area could use more texture. Minor ergonomic nit on an otherwise great shape.",
+      "rating": 4.0,
+      "date": "2025-04-06"
+    },
+    {
+      "review_id": "mse_r045",
+      "content": "Zero acceleration nonsense — 1:1 tracking for me. What I needed.",
+      "rating": 5.0,
+      "date": "2026-02-01"
+    },
+    {
+      "review_id": "mse_r046",
+      "content": "Kids borrowed it and dropped it; still tracks fine. Tough little shell.",
+      "rating": 4.5,
+      "date": "2025-03-23"
+    },
+    {
+      "review_id": "mse_r047",
+      "content": "Not an office mouse — too light and clicky for all-day docs. Gaming sessions: star.",
+      "rating": 3.5,
+      "date": "2026-08-30"
+    },
+    {
+      "review_id": "mse_r048",
+      "content": "Bought on sale; full price would sting. Performance matches the reputation either way.",
+      "rating": 4.0,
+      "date": "2024-05-22"
+    },
+    {
+      "review_id": "mse_r049",
+      "content": "Sensor loft and landing are predictable. Flick shots finally consistent night to night.",
+      "rating": 5.0,
+      "date": "2026-03-23"
+    },
+    {
+      "review_id": "mse_r050",
+      "content": "Bottom line: light, accurate, reliable wireless FPS mouse. I'd buy again in white.",
+      "rating": 4.5,
+      "date": "2026-06-17"
+    }
+  ]
+}

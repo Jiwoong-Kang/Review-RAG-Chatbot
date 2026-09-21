@@ -1,0 +1,308 @@
+{
+  "product_id": "soundcore_anc_earbuds",
+  "name": "soundcore Adaptive ANC Wireless Earbuds",
+  "image": "images/NCearbuds.jpg",
+  "description": "These soundcore wireless earbuds focus on adaptive active noise cancelling, long battery life with a compact charging case, and app-tuned EQ for everyday music and calls. Stems use a modern stick design with touch controls, while the case provides additional charges and a visible status light. Feature badges commonly include Hi-Res Audio Wireless, LDAC support on compatible Android devices, and Adaptive ANC modes that adjust to surroundings. They target commuters and workouts where isolation, convenience, and value matter more than flagship brand pricing.",
+  "reviews": [
+    {
+      "review_id": "ebd_r001",
+      "content": "ANC cuts subway rumble enough to enjoy podcasts at low volume. Case LED strip looks slick. Great value vs big-brand buds.",
+      "rating": 5.0,
+      "date": "2025-07-15"
+    },
+    {
+      "review_id": "ebd_r002",
+      "content": "Bass is fun for workouts. LDAC on Android sounds clearer than my old buds. iPhone users won't get LDAC — still solid AAC.",
+      "rating": 4.5,
+      "date": "2024-03-18"
+    },
+    {
+      "review_id": "ebd_r003",
+      "content": "Tips take experimentation — stock mediums sealed poorly for me. Foam tips fixed isolation and bass.",
+      "rating": 4.0,
+      "date": "2024-12-20"
+    },
+    {
+      "review_id": "ebd_r004",
+      "content": "Calls are okay outdoors, windy streets are rough. Fine for quiet offices.",
+      "rating": 3.5,
+      "date": "2025-09-04"
+    },
+    {
+      "review_id": "ebd_r005",
+      "content": "Adaptive ANC 2.0 auto-ramps in noisy cafes. Less fiddling than manual modes. Battery easily lasts my commute week.",
+      "rating": 5.0,
+      "date": "2026-05-15"
+    },
+    {
+      "review_id": "ebd_r006",
+      "content": "Case is chunky in jeans pockets. Sound quality makes up for it. Hi-Res logo isn't just sticker bait to my ears.",
+      "rating": 4.0,
+      "date": "2025-09-12"
+    },
+    {
+      "review_id": "ebd_r007",
+      "content": "One bud died after 10 months; warranty replaced it. Soundcore support was decent.",
+      "rating": 3.5,
+      "date": "2024-10-22"
+    },
+    {
+      "review_id": "ebd_r008",
+      "content": "Multipoint to laptop + phone works most days. Occasional reconnect dance after sleep.",
+      "rating": 3.5,
+      "date": "2024-03-29"
+    },
+    {
+      "review_id": "ebd_r009",
+      "content": "Gym sweat hasn't killed them yet. IP rating holds up for indoor runs.",
+      "rating": 4.5,
+      "date": "2025-06-06"
+    },
+    {
+      "review_id": "ebd_r010",
+      "content": "Touch controls mis-tap when adjusting fit. Mapped volume to the app buttons less grabby.",
+      "rating": 3.0,
+      "date": "2026-08-07"
+    },
+    {
+      "review_id": "ebd_r011",
+      "content": "Transparency mode is usable for checkout lines. Voices slightly hollow but safe.",
+      "rating": 4.0,
+      "date": "2024-12-18"
+    },
+    {
+      "review_id": "ebd_r012",
+      "content": "For the price, ANC competes with buds twice as costly. Not Bose-quiet, close enough for trains.",
+      "rating": 4.5,
+      "date": "2025-02-06"
+    },
+    {
+      "review_id": "ebd_r013",
+      "content": "Left bud sits looser — different ear shapes. Comply tips evened it out.",
+      "rating": 3.5,
+      "date": "2025-03-01"
+    },
+    {
+      "review_id": "ebd_r014",
+      "content": "App EQ presets are actually useful. Bass booster without mud if you nudge mids.",
+      "rating": 4.5,
+      "date": "2024-01-20"
+    },
+    {
+      "review_id": "ebd_r015",
+      "content": "Charging pins needed a wipe after pocket lint. Then charge reliability returned.",
+      "rating": 3.5,
+      "date": "2024-02-03"
+    },
+    {
+      "review_id": "ebd_r016",
+      "content": "Travel essential: plane ANC + playlist = nap. Case battery topped both buds twice on a long haul.",
+      "rating": 5.0,
+      "date": "2024-04-16"
+    },
+    {
+      "review_id": "ebd_r017",
+      "content": "Mic quality got complaints on Zoom. Fine for quick calls, headset still better for work.",
+      "rating": 3.0,
+      "date": "2026-05-17"
+    },
+    {
+      "review_id": "ebd_r018",
+      "content": "Pairing was instant out of box. No weird proprietary dongle nonsense.",
+      "rating": 5.0,
+      "date": "2025-03-31"
+    },
+    {
+      "review_id": "ebd_r019",
+      "content": "Stem design looks modern. Gloss fingerprints show on the case interior.",
+      "rating": 4.0,
+      "date": "2025-10-29"
+    },
+    {
+      "review_id": "ebd_r020",
+      "content": "Soundstage is intimate not speaker-wide — expected for IEMs. Detail is good for pop/hip-hop.",
+      "rating": 4.0,
+      "date": "2024-08-18"
+    },
+    {
+      "review_id": "ebd_r021",
+      "content": "ANC hiss audible in dead-silent rooms. Turn ANC off at home; on for transit.",
+      "rating": 3.0,
+      "date": "2026-04-02"
+    },
+    {
+      "review_id": "ebd_r022",
+      "content": "Dropped the open case — buds survived, lid scuffed. Build is average plastic, not tanky.",
+      "rating": 3.5,
+      "date": "2024-12-23"
+    },
+    {
+      "review_id": "ebd_r023",
+      "content": "Gaming latency on phone is acceptable; competitive mobile needs a real adapter. Casual fine.",
+      "rating": 3.5,
+      "date": "2024-03-28"
+    },
+    {
+      "review_id": "ebd_r024",
+      "content": "Wake-up alarms through buds via phone — dangerous if ANC is max. Use awareness.",
+      "rating": 3.0,
+      "date": "2025-05-24"
+    },
+    {
+      "review_id": "ebd_r025",
+      "content": "Best budget-friendly LDAC option I've tried. Wired lossless still wins at desk.",
+      "rating": 4.5,
+      "date": "2024-12-03"
+    },
+    {
+      "review_id": "ebd_r026",
+      "content": "Sweat in the charging pins caused a false 'charge' once. Dry thoroughly after workouts.",
+      "rating": 3.0,
+      "date": "2026-07-28"
+    },
+    {
+      "review_id": "ebd_r027",
+      "content": "Spouse stole the black set; buying another. Comfortable for 2-hour study blocks.",
+      "rating": 5.0,
+      "date": "2025-09-14"
+    },
+    {
+      "review_id": "ebd_r028",
+      "content": "Firmware update improved ANC smoothness. Keep the app updated.",
+      "rating": 4.5,
+      "date": "2025-07-09"
+    },
+    {
+      "review_id": "ebd_r029",
+      "content": "No wireless charging on my unit — cable only. Check the exact SKU before buying.",
+      "rating": 3.5,
+      "date": "2025-03-05"
+    },
+    {
+      "review_id": "ebd_r030",
+      "content": "Spatial/expand modes feel gimmicky; stick to normal + EQ. Core sound is better raw.",
+      "rating": 4.0,
+      "date": "2026-05-06"
+    },
+    {
+      "review_id": "ebd_r031",
+      "content": "Seals well enough that I hear my footsteps less on pavement. Motivating for runs.",
+      "rating": 4.5,
+      "date": "2026-01-17"
+    },
+    {
+      "review_id": "ebd_r032",
+      "content": "Case LED is bright in theaters — wish it dimmed more. Tape hack exists; shouldn't need it.",
+      "rating": 3.0,
+      "date": "2024-07-23"
+    },
+    {
+      "review_id": "ebd_r033",
+      "content": "Compared to AirPods Pro, fit is less 'universal' but bass hits harder for me.",
+      "rating": 4.0,
+      "date": "2025-04-02"
+    },
+    {
+      "review_id": "ebd_r034",
+      "content": "Random disconnect on old Android; new phone is stable. Source device matters.",
+      "rating": 3.5,
+      "date": "2024-06-23"
+    },
+    {
+      "review_id": "ebd_r035",
+      "content": "Came with extra tips and a cable. Accessories kit feels complete.",
+      "rating": 4.5,
+      "date": "2024-08-12"
+    },
+    {
+      "review_id": "ebd_r036",
+      "content": "Voice prompt language can be swapped in app. Small UX plus.",
+      "rating": 4.0,
+      "date": "2025-03-20"
+    },
+    {
+      "review_id": "ebd_r037",
+      "content": "Not audiophile endgame — excellent daily driver. Know the lane.",
+      "rating": 4.0,
+      "date": "2026-03-13"
+    },
+    {
+      "review_id": "ebd_r038",
+      "content": "Wind noise on calls near bike paths is bad. Pause and talk or use phone mic.",
+      "rating": 2.5,
+      "date": "2025-02-21"
+    },
+    {
+      "review_id": "ebd_r039",
+      "content": "Battery meter in OS is approximate; app percentage is closer. Still lasts days of commuting.",
+      "rating": 4.0,
+      "date": "2025-11-21"
+    },
+    {
+      "review_id": "ebd_r040",
+      "content": "Matte stems resist smudges better than shiny rivals. Looks premium in photos too.",
+      "rating": 4.5,
+      "date": "2026-03-22"
+    },
+    {
+      "review_id": "ebd_r041",
+      "content": "Find-my style features are basic — don't lose them in snow. Case beep helps at home.",
+      "rating": 3.5,
+      "date": "2025-12-01"
+    },
+    {
+      "review_id": "ebd_r042",
+      "content": "EQ saved a harsh treble peak for my ears. Without EQ I would've returned them.",
+      "rating": 4.0,
+      "date": "2025-07-30"
+    },
+    {
+      "review_id": "ebd_r043",
+      "content": "Kids' tablet pairing was easy for flights. Volume limit via phone parental controls still advised.",
+      "rating": 4.5,
+      "date": "2025-06-20"
+    },
+    {
+      "review_id": "ebd_r044",
+      "content": "One tip fell into a grate — buy spare tips. Soundcore packs extras thankfully.",
+      "rating": 4.0,
+      "date": "2024-07-20"
+    },
+    {
+      "review_id": "ebd_r045",
+      "content": "Low-end rumble ANC is strong; higher voices leak more. Classic ANC tradeoff.",
+      "rating": 4.0,
+      "date": "2025-07-10"
+    },
+    {
+      "review_id": "ebd_r046",
+      "content": "Price dipped on sale; full MSRP is still fair for the feature set.",
+      "rating": 4.5,
+      "date": "2025-11-21"
+    },
+    {
+      "review_id": "ebd_r047",
+      "content": "Wearing glasses + buds pressure on my temple after 3 hours. Breaks needed.",
+      "rating": 3.5,
+      "date": "2025-03-08"
+    },
+    {
+      "review_id": "ebd_r048",
+      "content": "Fast charge: 10 minutes saved my morning run playlist. Appreciated.",
+      "rating": 5.0,
+      "date": "2024-11-01"
+    },
+    {
+      "review_id": "ebd_r049",
+      "content": "Stereo imaging for podcasts is clear; hosts aren't muddy. Everyday content king.",
+      "rating": 4.5,
+      "date": "2024-10-11"
+    },
+    {
+      "review_id": "ebd_r050",
+      "content": "Bottom line: strong ANC-for-the-money earbuds with solid app EQ and battery; tip fit is everything.",
+      "rating": 4.5,
+      "date": "2025-06-08"
+    }
+  ]
+}

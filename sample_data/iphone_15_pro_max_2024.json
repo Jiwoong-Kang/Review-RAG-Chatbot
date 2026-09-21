@@ -1,0 +1,308 @@
+{
+  "product_id": "iphone_15_pro_max_2024",
+  "name": "iPhone 15 Pro Max 256GB",
+  "image": "images/iphone.webp",
+  "description": "The iPhone 15 Pro Max represents the absolute pinnacle of smartphone engineering, powered by the groundbreaking A17 Pro chip - the industry's first 3-nanometer smartphone processor delivering unprecedented performance and efficiency. The A17 Pro features a new 6-core CPU (2 performance cores up to 10% faster and 4 efficiency cores up to 3x faster than A16), a completely redesigned 6-core GPU with hardware-accelerated ray tracing (4x faster than software-based), and advanced 16-core Neural Engine performing 35 trillion operations per second for sophisticated machine learning and computational photography. The display is a marvel of technology: a 6.7-inch Super Retina XDR OLED screen with 2796x1290 pixel resolution at 460 pixels per inch, delivering extraordinary clarity and detail. ProMotion technology provides adaptive refresh rates from 1Hz to 120Hz for fluid scrolling and responsive touch input while conserving battery. Peak brightness reaches 2000 nits for outdoor visibility in direct sunlight, with typical brightness of 1000 nits and precise 2,000,000:1 contrast ratio. The display supports HDR with Dolby Vision, wide color (P3), True Tone for natural color temperature adjustment, and haptic touch for contextual menus. Always-On display keeps important information visible with minimal power consumption. Protected by Ceramic Shield front cover - tougher than any smartphone glass with 4x better drop performance. The revolutionary aerospace-grade titanium frame (Grade 5 titanium alloy) with brushed finish makes it the lightest Pro model ever at just 221 grams (7.81 ounces), yet incredibly strong and premium. Physical dimensions are 6.29 inches (159.9 mm) tall, 3.02 inches (76.7 mm) wide, and remarkably thin at 0.32 inches (8.25 mm). The pro camera system is extraordinary: 48MP Main (wide) camera with second-generation sensor-shift optical image stabilization, ƒ/1.78 aperture, 24mm equivalent focal length, sensor size 65% larger than iPhone 14 Pro, enabling quad-pixel sensor technology for 12MP or 48MP output with incredible low-light performance and detail. Next-generation portraits with Focus and Depth Control allow adjustment after capture. 12MP Ultra Wide camera with ƒ/2.2 aperture, 13mm equivalent, 120° field of view enabling macro photography as close as 2cm. Advanced 12MP Telephoto camera with ƒ/2.8 aperture offering 5x optical zoom (120mm equivalent focal length), tetraprism design with optical image stabilization for steady long-range shots. Total zoom range: 0.5x, 1x, 2x, 3x, 5x optical and up to 25x digital zoom. Photonic Engine enhances all photos with improved color, texture, and low-light performance. Smart HDR 5 recognizes up to 4 people and optimizes each individually. Video capabilities are professional-grade: 4K Dolby Vision at up to 60fps, 4K ProRes at 60fps (up to 4K 30fps when recording to external storage via USB 3), Cinematic mode in 4K at 30fps with real-time focus transitions, Action mode for incredible stabilization, and ability to capture spatial photos and videos for Apple Vision Pro. Advanced video features include Log encoding for color grading flexibility, Academy Color Encoding System, and ProRes encoding. The customizable Action button replaces the ring/silent switch, enabling quick access to camera, flashlight, voice memo, Focus mode, translation, accessibility features, or shortcuts - all with a single press. USB-C connector with USB 3.2 Gen 2 provides transfer speeds up to 10Gb/s (20x faster than USB 2.0), enabling professional video workflows and fast backups. Supports DisplayPort for external displays up to 4K at 60Hz. Advanced connectivity includes 5G (sub-6 GHz and mmWave) with 4x4 MIMO and LAA for blazing-fast downloads up to 4Gb/s, Gigabit LTE with 4x4 MIMO, Wi-Fi 6E (802.11ax) with 2x2 MIMO supporting speeds up to 2.4Gb/s across 2.4GHz, 5GHz, and 6GHz bands, Bluetooth 5.3 with enhanced range and efficiency, Ultra Wideband (UWB) second-generation chip for precise spatial awareness enabling Precision Finding for AirTags, Thread network protocol for smart home devices, and NFC with reader mode for Apple Pay and digital keys. Dual eSIM support (no physical SIM tray in US models) enables two active lines simultaneously. Face ID - the most secure facial authentication system - uses TrueDepth camera with dot projector, flood illuminator, and infrared camera for secure unlock even in darkness. Advanced sensors include LiDAR Scanner for Night mode portraits and AR experiences, barometer, high dynamic range gyroscope, high-g accelerometer enabling Crash Detection (automatically calls emergency services if severe car crash detected), ambient light sensor, and proximity sensor. Emergency SOS via satellite enables texting emergency services and sharing location when cellular coverage unavailable (requires clear view of sky). Roadside Assistance via satellite provides help when stranded. Battery life is exceptional: up to 29 hours video playback, 25 hours streaming video, 95 hours audio playback. Supports MagSafe wireless charging up to 15W with magnetic alignment, Qi wireless charging up to 7.5W, and fast wired charging with 20W+ adapter (50% in 30 minutes). Water and dust resistance rated IP68 under IEC standard 60529 (maximum depth of 6 meters for up to 30 minutes). Available in four stunning titanium finishes: Natural Titanium with exposed metal, Blue Titanium, White Titanium, and Black Titanium - all with color-infused glass back featuring matte texture. Runs iOS 17 with groundbreaking features: StandBy mode transforms iPhone into smart display while charging in landscape, Live Voicemail with real-time transcription, NameDrop for easy contact sharing by bringing iPhones together, Contact Posters for customized caller ID, enhanced autocorrect with transformer language model, offline maps, Journal app for reflection and memories, interactive widgets, FaceTime video voicemail, improved Messages search, Safety Check for domestic abuse situations, Medical ID accessible from lock screen, Check In to share arrival status, and privacy features like app privacy reports and Mail Privacy Protection. Compatible with entire ecosystem including AirPods with seamless switching, Apple Watch for health tracking and notifications, HomePod for spatial audio handoff, Mac with Universal Clipboard and AirDrop, iPad with Sidecar, Apple TV with AirPlay, and Apple Vision Pro for spatial computing. Accessibility features include VoiceOver screen reader, Magnifier, Voice Control, AssistiveTouch, and Live Speech. Environmental responsibility includes 100% recycled cobalt in battery, 100% recycled gold and copper in camera wire, 100% recycled aluminum in frame, and 75% recycled aluminum in other components. Box includes iPhone 15 Pro Max, USB-C to USB-C cable (1m), and documentation. Power adapter and EarPods sold separately. Perfect for professional photography, videography, mobile gaming, productivity, content creation, augmented reality, health tracking, and seamless ecosystem integration.",
+  "reviews": [
+    {
+      "review_id": "iph_r001",
+      "content": "Best iPhone ever made! The titanium frame feels incredibly premium and is noticeably lighter than my 14 Pro Max. The Action button is genius - I have it set to launch my camera instantly. The A17 Pro is blazingly fast, apps open instantly, and gaming performance is console-quality. Battery easily lasts me through a full day of heavy use. Camera quality is phenomenal, especially in low light!",
+      "rating": 5.0,
+      "date": "2024-11-22"
+    },
+    {
+      "review_id": "iph_r002",
+      "content": "The camera system is mind-blowing! The 48MP sensor captures incredible detail. Portrait mode is significantly improved with better edge detection. Night mode produces photos that look like they were taken in daylight. The 5x optical zoom on the telephoto lens is a game changer for concerts and sports events. ProRes video recording is professional grade.",
+      "rating": 5.0,
+      "date": "2024-11-20"
+    },
+    {
+      "review_id": "iph_r003",
+      "content": "Extremely overpriced for minimal upgrades from the 14 Pro Max. The Action button is a gimmick that I rarely use. USB-C is great but should've happened years ago. Titanium looks nice but scratches easily - already have micro scratches after two weeks with a case. The price increase isn't justified by the features. Feels like Apple is coasting.",
+      "rating": 2.5,
+      "date": "2024-11-18"
+    },
+    {
+      "review_id": "iph_r004",
+      "content": "Love the switch to USB-C! Finally one cable for everything. The faster charging and data transfer speeds are noticeable. The display is gorgeous - colors pop and the 120Hz makes everything buttery smooth. Face ID works flawlessly even in low light. Dynamic Island is actually useful for multitasking. The ecosystem integration is unmatched.",
+      "rating": 5.0,
+      "date": "2024-11-16"
+    },
+    {
+      "review_id": "iph_r005",
+      "content": "Battery life is disappointing. Barely makes it through a full day with moderate use. The phone gets noticeably warm during intensive tasks like gaming or video recording. The titanium frame shows fingerprints badly - constantly wiping it clean. The Action button is awkwardly placed and I keep accidentally pressing it. Expected better for $1200.",
+      "rating": 3.0,
+      "date": "2024-11-14"
+    },
+    {
+      "review_id": "iph_r006",
+      "content": "Upgraded from iPhone 12 and the difference is staggering! The camera upgrade alone is worth it - photos look professional. The speed is incredible, Face ID is instantaneous, and the Always-On display is super convenient. The build quality is exceptional, feels like a luxury item. Battery life gets me through the day easily. Very happy with this purchase!",
+      "rating": 5.0,
+      "date": "2024-11-12"
+    },
+    {
+      "review_id": "iph_r007",
+      "content": "The lack of a SIM card tray is frustrating for international travel. eSIM support isn't universal yet. The titanium finish on my Blue model has developed a weird patina after just a month. AppleCare+ is almost mandatory given how expensive repairs are. The phone is still slippery despite the textured back - definitely need a case. Good phone but with annoying compromises.",
+      "rating": 3.5,
+      "date": "2024-11-10"
+    },
+    {
+      "review_id": "iph_r008",
+      "content": "The ProMotion display is absolutely stunning! Scrolling is silky smooth and responsive. The Always-On display is practical and looks great. Ceramic Shield really works - dropped it twice and no cracks. The Spatial Audio speakers are impressive for a phone. Gaming at 120Hz is incredible. iOS 17 runs flawlessly with no bugs or crashes.",
+      "rating": 5.0,
+      "date": "2024-11-08"
+    },
+    {
+      "review_id": "iph_r009",
+      "content": "Camera quality is excellent in good lighting but disappointing in challenging conditions. Still see noise in low light despite the larger sensor. The zoom quality at 5x isn't as sharp as advertised. Portrait mode still struggles with hair detail. Video stabilization is good but not groundbreaking. For a 'Pro' camera phone, expected more.",
+      "rating": 3.5,
+      "date": "2024-11-06"
+    },
+    {
+      "review_id": "iph_r010",
+      "content": "The A17 Pro chip is overkill for everyday tasks but future-proofing is nice. Heavy apps and games run perfectly. The neural engine makes photo processing instantaneous. Face ID is noticeably faster than my old phone. The 256GB storage is adequate but wish the base model was 256GB given the price. Build quality is impeccable.",
+      "rating": 4.5,
+      "date": "2024-11-04"
+    },
+    {
+      "review_id": "iph_r011",
+      "content": "Worst iPhone I've owned. Constant software bugs - apps crashing, random reboots, Face ID failing. The phone overheats even with light use. Battery drains absurdly fast, barely lasts half a day. Apple Support has been unhelpful. Feels like a beta product. Deeply regret this $1200 purchase. Should've waited for the 16 or stuck with my 13 Pro.",
+      "rating": 1.5,
+      "date": "2024-11-02"
+    },
+    {
+      "review_id": "iph_r012",
+      "content": "The titanium design is beautiful and the weight reduction is noticeable. Feels less fatiguing to hold for extended periods. The matte finish resists fingerprints better than stainless steel. Action button is super handy for quick voice memos. USB-C compatibility with my MacBook cables is convenient. Premium in every way. Worth the upgrade!",
+      "rating": 5.0,
+      "date": "2024-10-30"
+    },
+    {
+      "review_id": "iph_r013",
+      "content": "Screen is gorgeous but the notch is still annoying in 2024. Dynamic Island is cool but mostly just shows music controls. The lack of TouchID is frustrating when wearing a mask. No Apple Pencil support is a missed opportunity. The camera bump is massive - phone wobbles on flat surfaces. Good but not great.",
+      "rating": 3.5,
+      "date": "2024-10-28"
+    },
+    {
+      "review_id": "iph_r014",
+      "content": "The ecosystem integration is unbeatable! Seamless handoff with my Mac, instant AirDrop, shared clipboard across devices - everything just works. iMessage improvements are great. The Standby mode turns it into a perfect bedside clock. Widgets are finally useful. iOS 17 is polished and intuitive. The best smartphone experience available.",
+      "rating": 5.0,
+      "date": "2024-10-26"
+    },
+    {
+      "review_id": "iph_r015",
+      "content": "Terrible value proposition. Minor upgrades for a huge price increase. The Action button is useless. Titanium scratches easier than steel. Camera improvements are marginal at best. Battery life is worse than my 14 Pro Max. Apple is charging more while delivering less innovation. Feels like they're milking loyal customers. Very disappointed.",
+      "rating": 2.0,
+      "date": "2024-10-24"
+    },
+    {
+      "review_id": "iph_r016",
+      "content": "The cinematic mode and ProRes recording capabilities are professional-grade. Edited a short film entirely shot on this iPhone - the quality is broadcast-ready. The color accuracy and dynamic range are exceptional. Log recording gives incredible flexibility in post. Audio recording quality with the array of microphones is excellent. A genuine creative tool!",
+      "rating": 5.0,
+      "date": "2024-10-22"
+    },
+    {
+      "review_id": "iph_r017",
+      "content": "Emergency SOS via satellite gave me peace of mind during a hiking trip. Crash Detection is a great safety feature even if I hope to never use it. The water resistance is legit - survived a drop in the pool. Build quality inspires confidence. However, the lack of a sim ejector tool in the box is cheap. Should include basic accessories at this price.",
+      "rating": 4.0,
+      "date": "2024-10-20"
+    },
+    {
+      "review_id": "iph_r018",
+      "content": "Face ID works great until you're lying down in bed - then it's a nightmare. Still wish Apple would add an under-display fingerprint sensor. The always-on display drains battery noticeably. The phone is too big for one-handed use - constantly doing hand gymnastics. Screen is beautiful but 6.7 inches is unwieldy for smaller hands.",
+      "rating": 3.0,
+      "date": "2024-10-18"
+    },
+    {
+      "review_id": "iph_r019",
+      "content": "Gaming performance is incredible! Genshin Impact runs at max settings without frame drops. The A17 Pro with hardware ray tracing makes games look stunning. The display's 120Hz refresh rate is perfect for competitive gaming. The large screen is great for gaming but the phone does get warm during extended sessions. Best gaming phone I've owned.",
+      "rating": 4.5,
+      "date": "2024-10-16"
+    },
+    {
+      "review_id": "iph_r020",
+      "content": "Absolutely love this phone! Every detail is refined and polished. The haptic feedback is precise and satisfying. The stereo speakers sound amazing. The MagSafe charging is convenient and fast. The camera captures memories beautifully - photos of my kids are stunning. Battery improvement is noticeable from my 13 Pro. This phone does everything I need perfectly!",
+      "rating": 5.0,
+      "date": "2024-10-14"
+    },
+    {
+      "review_id": "iph_r021",
+      "content": "Switched from Android after a decade and honestly the learning curve was shorter than I expected. Messages and photos sync across my Mac without fiddling with settings. The titanium finish feels more premium than any glass sandwich phone I've owned. Only downside is how aggressively Apple pushes their services during setup.",
+      "rating": 4.5,
+      "date": "2024-10-12"
+    },
+    {
+      "review_id": "iph_r022",
+      "content": "Macro photography is underrated here. I shoot tiny product details for work and the ultra-wide macro is sharp enough for client drafts. Colors look natural out of camera, which saves me editing time. Wish Apple would expose more RAW controls without needing third-party apps.",
+      "rating": 4.5,
+      "date": "2024-10-10"
+    },
+    {
+      "review_id": "iph_r023",
+      "content": "Too big, too heavy even with the titanium diet, and still no high refresh always-on that doesn't eat battery. I returned mine after a week and kept my smaller Pro. If you have small hands, try it in a store before you spend this much.",
+      "rating": 2.0,
+      "date": "2024-10-08"
+    },
+    {
+      "review_id": "iph_r024",
+      "content": "Travel photography is where this shines. 5x optical zoom lets me capture architecture details from the street without carrying a camera. USB-C finally means I can charge it from the same brick as my laptop. MagSafe wallet plus Find My has already saved me once.",
+      "rating": 5.0,
+      "date": "2024-10-06"
+    },
+    {
+      "review_id": "iph_r025",
+      "content": "Solid phone, but carrier bloatware and forced eSIM activation made day one miserable. Once set up it's snappy and the screen is excellent outdoors. Still think Apple should include a charger at this price - feels nickel-and-dime for a flagship.",
+      "rating": 3.5,
+      "date": "2024-10-04"
+    },
+    {
+      "review_id": "iph_r026",
+      "content": "As a parent, Crash Detection and satellite SOS sold me more than the camera. The phone is fast, reliable, and the kids' photos look fantastic. Case is non-negotiable if you want the titanium to stay nice. Happy overall.",
+      "rating": 4.5,
+      "date": "2024-10-02"
+    },
+    {
+      "review_id": "iph_r027",
+      "content": "Speakers are loud and clear for podcasts, but the bottom-firing design gets muffled when the phone sits flat on a desk. Haptics are still the best in class. Dynamic Island notifications for timers and rideshare are actually useful once you get used to them.",
+      "rating": 4.0,
+      "date": "2024-09-30"
+    },
+    {
+      "review_id": "iph_r028",
+      "content": "I bought this mainly for video. Action mode for kids' sports is excellent, and transferring ProRes clips over USB-C is night-and-day faster than Lightning. Phone does get warm during long 4K shoots, so plan for cooling breaks.",
+      "rating": 4.5,
+      "date": "2024-09-28"
+    },
+    {
+      "review_id": "iph_r029",
+      "content": "Overheats during mobile hotspot use and drains the battery in under four hours when tethered. For a Pro Max that is unacceptable. Performance is fine otherwise, but connectivity heat is a dealbreaker for road warriors.",
+      "rating": 2.5,
+      "date": "2024-09-26"
+    },
+    {
+      "review_id": "iph_r030",
+      "content": "Display brightness outdoors is best-in-class - readable even at noon. Color accuracy for casual photo review is excellent. I wish Apple would offer a flatter camera bump; the wobble on tables still annoys me every day.",
+      "rating": 4.0,
+      "date": "2024-09-24"
+    },
+    {
+      "review_id": "iph_r031",
+      "content": "Coming from a Pixel, I miss the cleaner Google Assistant integration, but the hardware quality is clearly ahead. Face ID is faster than my old fingerprint sensor. App optimization on iOS makes everything feel smoother. Miss unlimited photo backup though.",
+      "rating": 4.0,
+      "date": "2024-09-22"
+    },
+    {
+      "review_id": "iph_r032",
+      "content": "The Action button mapped to Translate is genuinely useful when I travel. Camera translation overlays work surprisingly well on menus. Battery lasts a full day of sightseeing with maps and photos. This is the first iPhone that feels worth the Max size for me.",
+      "rating": 5.0,
+      "date": "2024-09-20"
+    },
+    {
+      "review_id": "iph_r033",
+      "content": "Repair quote for a cracked back glass was absurd. Without AppleCare this phone is a financial risk. Software is polished, camera is great, but planned obsolescence vibes with the repair pricing. Renting via upgrade program might be smarter.",
+      "rating": 3.0,
+      "date": "2024-09-18"
+    },
+    {
+      "review_id": "iph_r034",
+      "content": "Low-light video is dramatically better than my old 12 Pro Max. Noise is controlled and autofocus sticks to faces well. Stereo mic pickup for interviews is cleaner than I expected. For creators on a budget who refuse a mirrorless kit, this is enough.",
+      "rating": 5.0,
+      "date": "2024-09-16"
+    },
+    {
+      "review_id": "iph_r035",
+      "content": "Pretty average experience. Fast, pretty, expensive. No single feature made me gasp after the first week. If you already own a recent Pro, skip a generation. If you're coming from anything older than an iPhone 13, you'll notice the jump.",
+      "rating": 3.5,
+      "date": "2024-09-14"
+    },
+    {
+      "review_id": "iph_r036",
+      "content": "Wi-Fi 6E and 5G speeds in my city are excellent - downloads finish before I put the phone away. Bluetooth connections to my car and earbuds are rock solid. Only complaint is how aggressively iOS suggests Apple Music and Arcade after every update.",
+      "rating": 4.5,
+      "date": "2024-09-12"
+    },
+    {
+      "review_id": "iph_r037",
+      "content": "The matte glass back looks premium until the first drop - mine scuffed even with a 'military grade' case. Screen is gorgeous but reflective with greasy fingerprints. Performance is top-tier; durability marketing feels overstated.",
+      "rating": 3.0,
+      "date": "2024-09-10"
+    },
+    {
+      "review_id": "iph_r038",
+      "content": "Workplace MFA and banking apps work flawlessly with Face ID. Secure Enclave gives me more confidence than my previous Android. MagSafe desk stand plus StandBy mode is a surprisingly good secondary display for calendars and timers.",
+      "rating": 5.0,
+      "date": "2024-09-08"
+    },
+    {
+      "review_id": "iph_r039",
+      "content": "Zoom at 5x is usable; beyond that digital zoom turns mushy fast. Marketing photos are more flattering than what I get in real mixed lighting. Still better than most phones, but 'Pro' expectations set the bar too high for casual shooters.",
+      "rating": 3.5,
+      "date": "2024-09-06"
+    },
+    {
+      "review_id": "iph_r040",
+      "content": "Bought Natural Titanium and love the understated look. Weight reduction is real after long reading sessions. Keyboard typing feels accurate with haptic feedback. iCloud photo library across devices is the killer feature for my family.",
+      "rating": 5.0,
+      "date": "2024-09-04"
+    },
+    {
+      "review_id": "iph_r041",
+      "content": "Notification management is still messy compared to Android. Too many banners, too few sensible defaults. Hardware is fantastic; software habits fight me daily. If Apple fixed Focus modes to be less confusing this would be a perfect daily driver.",
+      "rating": 3.5,
+      "date": "2024-09-02"
+    },
+    {
+      "review_id": "iph_r042",
+      "content": "Charging from empty to usable takes less time than making coffee with a 30W USB-C brick. Wireless MagSafe is slower but convenient overnight. Battery health after three months is still 100%, which is reassuring after horror stories online.",
+      "rating": 4.5,
+      "date": "2024-08-30"
+    },
+    {
+      "review_id": "iph_r043",
+      "content": "Audio quality on calls is clear, but people still say I sound muffled in windy outdoors. Wish there was a stronger wind-noise mode. Otherwise signal reception in my building is better than the 14 Pro Max I traded in.",
+      "rating": 4.0,
+      "date": "2024-08-28"
+    },
+    {
+      "review_id": "iph_r044",
+      "content": "I expected magic and got an incremental upgrade. Titanium looks nicer, USB-C is overdue, camera is slightly better. For the money I should have bought the non-Pro and a weekend trip. Not bad - just underwhelming.",
+      "rating": 2.5,
+      "date": "2024-08-26"
+    },
+    {
+      "review_id": "iph_r045",
+      "content": "Accessibility features are excellent. Voice Control and Live Speech help my relative communicate more easily. Display text scaling stays sharp. Apple doesn't get enough credit for how thoughtful these tools are on such a high-end device.",
+      "rating": 5.0,
+      "date": "2024-08-24"
+    },
+    {
+      "review_id": "iph_r046",
+      "content": "Storage filled up faster than expected with 4K video. 256GB feels tight for a Pro Max shooter. Cloud uploads help but eat mobile data. Plan for 512GB if you record a lot - the upcharge hurts but so does managing space weekly.",
+      "rating": 3.5,
+      "date": "2024-08-22"
+    },
+    {
+      "review_id": "iph_r047",
+      "content": "Gaming and multitasking never hitch. Split view with Stage Manager-ish workflows on a large phone screen is productive for email and docs. The phone replaces my tablet for short trips. Battery still finishes the evening with 20% left.",
+      "rating": 5.0,
+      "date": "2024-08-20"
+    },
+    {
+      "review_id": "iph_r048",
+      "content": "Customer service replaced a defective unit quickly, which earned goodwill. The second phone has been flawless. Lesson learned: buy from Apple directly if you can. Hardware design remains the reason I stay in the ecosystem.",
+      "rating": 4.5,
+      "date": "2024-08-18"
+    },
+    {
+      "review_id": "iph_r049",
+      "content": "Always-On display is neat for a week, then I turned it off to save battery. Dynamic Island animations feel like decoration more than utility. Under the chrome, it's still a very good smartphone - just stop pretending every UI flourish is revolutionary.",
+      "rating": 3.0,
+      "date": "2024-08-16"
+    },
+    {
+      "review_id": "iph_r050",
+      "content": "After two months of daily use I'm keeping it. Camera, screen, and performance justify the cost for my work. Not perfect - pricey repairs, huge camera bump, occasional heat - but the overall package is still the one I'd recommend to most people upgrading in 2024.",
+      "rating": 4.5,
+      "date": "2024-08-14"
+    }
+  ]
+}

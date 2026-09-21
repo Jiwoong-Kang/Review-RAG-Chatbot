@@ -1,0 +1,308 @@
+{
+  "product_id": "cerave_moisturizing_cream",
+  "name": "CeraVe Moisturizing Cream",
+  "image": "images/moisturizingcream.jpg",
+  "description": "CeraVe Moisturizing Cream is a fragrance-free, dermatologist-developed cream for normal to dry skin. It uses three essential ceramides plus supporting humectants to help restore the skin barrier and lock in moisture for face and body. The rich jar texture is designed for lasting hydration without perfume, making it a common recommendation for dry skin and eczema-prone routines. The large tub format is meant for daily household use with simple, non-irritating ingredients.",
+  "reviews": [
+    {
+      "review_id": "crm_r001",
+      "content": "Saved my dry winter skin. Thick but spreads if I warm it first. Face and body both tolerate it well.",
+      "rating": 5.0,
+      "date": "2025-06-18"
+    },
+    {
+      "review_id": "crm_r002",
+      "content": "Dermatologist recommended — finally something that doesn't sting. Ceramides feel like they do something over weeks.",
+      "rating": 5.0,
+      "date": "2025-02-28"
+    },
+    {
+      "review_id": "crm_r003",
+      "content": "Jar packaging is unsanitary if you dip fingers. I scoop with a spatula. Cream itself is excellent.",
+      "rating": 4.0,
+      "date": "2026-04-06"
+    },
+    {
+      "review_id": "crm_r004",
+      "content": "Too heavy for oily T-zone; great for legs and arms. Know your skin type.",
+      "rating": 3.5,
+      "date": "2024-11-06"
+    },
+    {
+      "review_id": "crm_r005",
+      "content": "Eczema patches calmed down after a week of twice-daily use. Fragrance-free is a blessing.",
+      "rating": 5.0,
+      "date": "2026-09-10"
+    },
+    {
+      "review_id": "crm_r006",
+      "content": "Pills on my sweater if I don't let it absorb. Wait five minutes before dressing.",
+      "rating": 3.0,
+      "date": "2025-01-09"
+    },
+    {
+      "review_id": "crm_r007",
+      "content": "Huge tub lasts months. Best cost-per-use moisturizer I've bought.",
+      "rating": 5.0,
+      "date": "2024-10-23"
+    },
+    {
+      "review_id": "crm_r008",
+      "content": "Slightly tacky finish — not a silky luxury cream. Results > aesthetics for me.",
+      "rating": 4.0,
+      "date": "2024-06-27"
+    },
+    {
+      "review_id": "crm_r009",
+      "content": "Broke me out on my chin when used as face cream. Body only now. YMMV.",
+      "rating": 2.5,
+      "date": "2026-02-23"
+    },
+    {
+      "review_id": "crm_r010",
+      "content": "Kids' dry hands finally stopped cracking. Gentle enough for the whole family.",
+      "rating": 5.0,
+      "date": "2025-12-23"
+    },
+    {
+      "review_id": "crm_r011",
+      "content": "National Eczema Association seal gave me confidence to try. Did not disappoint.",
+      "rating": 4.5,
+      "date": "2025-12-22"
+    },
+    {
+      "review_id": "crm_r012",
+      "content": "Hard to wash off hands before cooking — very occlusive. That's also why it works overnight.",
+      "rating": 4.0,
+      "date": "2025-07-07"
+    },
+    {
+      "review_id": "crm_r013",
+      "content": "Compared to fancy $60 creams, this wins. Barrier repair without the perfume.",
+      "rating": 5.0,
+      "date": "2025-11-08"
+    },
+    {
+      "review_id": "crm_r014",
+      "content": "Lid doesn't seal perfectly after months; cream near the rim dried a bit. Still fine deeper in.",
+      "rating": 3.5,
+      "date": "2024-10-11"
+    },
+    {
+      "review_id": "crm_r015",
+      "content": "Layer under sunscreen in winter mornings. No pilling with my SPF surprisingly.",
+      "rating": 4.5,
+      "date": "2024-04-22"
+    },
+    {
+      "review_id": "crm_r016",
+      "content": "Smell is basically none — perfect. Texture is dense cream, not lotion.",
+      "rating": 4.5,
+      "date": "2026-07-28"
+    },
+    {
+      "review_id": "crm_r017",
+      "content": "Not enough for extreme heel cracks alone; pair with urea sometimes. Good daily driver though.",
+      "rating": 3.5,
+      "date": "2024-01-28"
+    },
+    {
+      "review_id": "crm_r018",
+      "content": "Post-retinoid dryness? This is my buffer. Redness calmed without greasy shine.",
+      "rating": 5.0,
+      "date": "2024-09-11"
+    },
+    {
+      "review_id": "crm_r019",
+      "content": "Travel is annoying — jar isn't TSA cute. Decant into a smaller pot.",
+      "rating": 3.0,
+      "date": "2025-01-28"
+    },
+    {
+      "review_id": "crm_r020",
+      "content": "Husband stole it for his ashy elbows. Buying a second tub.",
+      "rating": 4.5,
+      "date": "2026-04-14"
+    },
+    {
+      "review_id": "crm_r021",
+      "content": "Absorbs slower than gel creams. Night routine staple more than daytime for me.",
+      "rating": 4.0,
+      "date": "2026-02-03"
+    },
+    {
+      "review_id": "crm_r022",
+      "content": "Sensitive skin miracle. No alcohol burn, no essential oils. Boring in the best way.",
+      "rating": 5.0,
+      "date": "2025-03-05"
+    },
+    {
+      "review_id": "crm_r023",
+      "content": "Felt greasy in humid summer. Switched to the lotion version seasonally.",
+      "rating": 3.0,
+      "date": "2024-09-15"
+    },
+    {
+      "review_id": "crm_r024",
+      "content": "Pump version please, CeraVe. Product is 5 stars; packaging is 3.",
+      "rating": 4.0,
+      "date": "2026-05-30"
+    },
+    {
+      "review_id": "crm_r025",
+      "content": "Makeup sits okay if I use a tiny amount. Too much and foundation slides.",
+      "rating": 3.5,
+      "date": "2025-05-28"
+    },
+    {
+      "review_id": "crm_r026",
+      "content": "After shower + this = soft skin until evening. Simple routine that sticks.",
+      "rating": 5.0,
+      "date": "2026-04-01"
+    },
+    {
+      "review_id": "crm_r027",
+      "content": "Tub arrived dented; seal intact. Cream texture consistent, no separation.",
+      "rating": 4.0,
+      "date": "2024-11-21"
+    },
+    {
+      "review_id": "crm_r028",
+      "content": "Helped my toddler's dry patches when pediatrician signed off. Gentle formula matters.",
+      "rating": 5.0,
+      "date": "2025-10-17"
+    },
+    {
+      "review_id": "crm_r029",
+      "content": "Occlusive enough that I skip body oil. One-and-done nights.",
+      "rating": 4.5,
+      "date": "2026-05-16"
+    },
+    {
+      "review_id": "crm_r030",
+      "content": "Some batches feel slightly different thickness? Maybe storage heat. Still usable.",
+      "rating": 3.5,
+      "date": "2025-12-01"
+    },
+    {
+      "review_id": "crm_r031",
+      "content": "Face: cheeks only. Nose gets shiny. Body: everywhere. Versatile if you're strategic.",
+      "rating": 4.0,
+      "date": "2026-08-25"
+    },
+    {
+      "review_id": "crm_r032",
+      "content": "Price jumped at my drugstore — still cheaper than boutique barrier creams.",
+      "rating": 4.0,
+      "date": "2026-01-11"
+    },
+    {
+      "review_id": "crm_r033",
+      "content": "Doesn't foam, doesn't tingle, doesn't 'exfoliate'. Just moisturizes. Exactly what I want.",
+      "rating": 5.0,
+      "date": "2025-02-15"
+    },
+    {
+      "review_id": "crm_r034",
+      "content": "White cast? None. Stains? None. Boring reliability.",
+      "rating": 4.5,
+      "date": "2024-05-20"
+    },
+    {
+      "review_id": "crm_r035",
+      "content": "Took two weeks to notice eczema improvement, not overnight. Stick with it.",
+      "rating": 4.0,
+      "date": "2025-07-18"
+    },
+    {
+      "review_id": "crm_r036",
+      "content": "I scoop, then wash hands — hygiene solved. Stop dunking whole fingers people.",
+      "rating": 4.5,
+      "date": "2024-03-04"
+    },
+    {
+      "review_id": "crm_r037",
+      "content": "Too rich under heavy sweat at the gym. Fine for rest days and evenings.",
+      "rating": 3.0,
+      "date": "2024-05-23"
+    },
+    {
+      "review_id": "crm_r038",
+      "content": "Derm brand hype is real here. Shelf staple next to the cleanser.",
+      "rating": 5.0,
+      "date": "2026-04-12"
+    },
+    {
+      "review_id": "crm_r039",
+      "content": "Minimal ingredient list relative to scented lotions. Fewer mystery reactions.",
+      "rating": 4.5,
+      "date": "2026-03-21"
+    },
+    {
+      "review_id": "crm_r040",
+      "content": "Lid threads get creamy and messy. Wipe occasionally. First-world problem.",
+      "rating": 3.5,
+      "date": "2026-06-15"
+    },
+    {
+      "review_id": "crm_r041",
+      "content": "Layered with petroleum on worst patches — combo therapy works. Cream alone for maintenance.",
+      "rating": 4.5,
+      "date": "2024-07-20"
+    },
+    {
+      "review_id": "crm_r042",
+      "content": "Bought the 16oz — heavy to ship but value wins. Won't run out mid-winter.",
+      "rating": 5.0,
+      "date": "2024-06-03"
+    },
+    {
+      "review_id": "crm_r043",
+      "content": "Not a glow cream; finish is matte-natural. Manage expectations from TikTok.",
+      "rating": 3.5,
+      "date": "2026-06-22"
+    },
+    {
+      "review_id": "crm_r044",
+      "content": "Father with diabetes-related dry skin finally found something tolerable. Big win.",
+      "rating": 5.0,
+      "date": "2025-12-23"
+    },
+    {
+      "review_id": "crm_r045",
+      "content": "Occasionally get a grainy bit near the bottom. Mix it; still okay.",
+      "rating": 3.0,
+      "date": "2025-06-29"
+    },
+    {
+      "review_id": "crm_r046",
+      "content": "Works under glycerin toner stacks for dry climate living. Hydration sandwich success.",
+      "rating": 4.5,
+      "date": "2025-07-26"
+    },
+    {
+      "review_id": "crm_r047",
+      "content": "Refunded a luxury cream after switching. This is the one I repurchase blindly.",
+      "rating": 5.0,
+      "date": "2026-04-01"
+    },
+    {
+      "review_id": "crm_r048",
+      "content": "Slightly shiny on ankles until rubbed in thoroughly. Technique matters.",
+      "rating": 4.0,
+      "date": "2026-09-05"
+    },
+    {
+      "review_id": "crm_r049",
+      "content": "For the money and tolerance, hard to beat. Keep a tub at home and one at work.",
+      "rating": 4.5,
+      "date": "2025-12-03"
+    },
+    {
+      "review_id": "crm_r050",
+      "content": "Bottom line: thick, fragrance-free barrier cream that actually helps dry and eczema-prone skin.",
+      "rating": 5.0,
+      "date": "2024-08-03"
+    }
+  ]
+}

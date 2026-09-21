@@ -1,0 +1,308 @@
+{
+  "product_id": "sony_wh_wireless_headphones",
+  "name": "Sony Wireless Noise Cancelling Headphones",
+  "image": "images/sonyheadphones.jpeg",
+  "description": "Sony over-ear wireless headphones with active noise cancelling, designed for commuting, travel, and all-day listening. They combine a lightweight headband, cushioned ear cups, Bluetooth multipoint connectivity, and app-based EQ/ANC controls. USB-C charging and long battery life support extended use, with optional wired listening when needed. The understated light-gray finish targets users who want comfortable isolation and consumer-friendly sound without bulky gamer styling.",
+  "reviews": [
+    {
+      "review_id": "hph_r001",
+      "content": "Comfortable for long flights. ANC knocks down engine drone well. Light gray looks less fingerprinty than black.",
+      "rating": 5.0,
+      "date": "2024-01-13"
+    },
+    {
+      "review_id": "hph_r002",
+      "content": "Sound is V-shaped fun — great for pop. Not neutral studio monitors, and that's fine for commuting.",
+      "rating": 4.5,
+      "date": "2025-04-25"
+    },
+    {
+      "review_id": "hph_r003",
+      "content": "Clamping force loosened after a week to the sweet spot. First day was tight on my glasses.",
+      "rating": 4.0,
+      "date": "2024-04-25"
+    },
+    {
+      "review_id": "hph_r004",
+      "content": "Mic for calls is average outdoors. Office calls are clear enough. Don't expect headset-grade voice.",
+      "rating": 3.5,
+      "date": "2026-02-21"
+    },
+    {
+      "review_id": "hph_r005",
+      "content": "Battery easily survives a workweek of mixed use. USB-C charging is quick. Fold flat in a backpack.",
+      "rating": 5.0,
+      "date": "2025-02-06"
+    },
+    {
+      "review_id": "hph_r006",
+      "content": "App has useful EQ and ANC levels. Multipoint to laptop/phone is reliable after the latest firmware.",
+      "rating": 4.5,
+      "date": "2024-05-24"
+    },
+    {
+      "review_id": "hph_r007",
+      "content": "Ear pads got warm in summer walks. Breathable enough for trains, sweaty for summer runs — use buds then.",
+      "rating": 3.5,
+      "date": "2025-12-01"
+    },
+    {
+      "review_id": "hph_r008",
+      "content": "Build feels solid for the price tier. Hinges don't creak. Sony branding understated on the headband.",
+      "rating": 4.5,
+      "date": "2024-02-14"
+    },
+    {
+      "review_id": "hph_r009",
+      "content": "Transparency mode helps hear announcements. A bit artificial but safer than blasting ANC forever.",
+      "rating": 4.0,
+      "date": "2024-05-22"
+    },
+    {
+      "review_id": "hph_r010",
+      "content": "Bass can bloom on default EQ; dial it back for podcasts. Voices become clearer immediately.",
+      "rating": 4.0,
+      "date": "2026-08-31"
+    },
+    {
+      "review_id": "hph_r011",
+      "content": "Paired instantly with iPhone and Android. No drama. LDAC available on my Pixel for hi-res listening.",
+      "rating": 5.0,
+      "date": "2024-04-25"
+    },
+    {
+      "review_id": "hph_r012",
+      "content": "Headband padding is soft; after 3 hours I still forget I'm wearing them. Rare for over-ears.",
+      "rating": 5.0,
+      "date": "2025-07-02"
+    },
+    {
+      "review_id": "hph_r013",
+      "content": "Case not included on my bundle — annoying. Bought a third-party sleeve. Headphones themselves: excellent.",
+      "rating": 3.5,
+      "date": "2024-08-25"
+    },
+    {
+      "review_id": "hph_r014",
+      "content": "ANC isn't flagship XM5 territory, but for the money it's very effective on buses and offices.",
+      "rating": 4.0,
+      "date": "2025-12-29"
+    },
+    {
+      "review_id": "hph_r015",
+      "content": "Right cup controls took a day to learn. Once mapped in my muscle memory, great walking UX.",
+      "rating": 4.0,
+      "date": "2026-02-14"
+    },
+    {
+      "review_id": "hph_r016",
+      "content": "Slight plastic creak if I fold carelessly. Treat the hinge kindly. Sound remains the reason to buy.",
+      "rating": 3.5,
+      "date": "2024-05-22"
+    },
+    {
+      "review_id": "hph_r017",
+      "content": "Gaming on PC has noticeable latency via BT. Fine for single-player; competitive needs a dongle/wired.",
+      "rating": 3.0,
+      "date": "2024-05-30"
+    },
+    {
+      "review_id": "hph_r018",
+      "content": "Colorway is office-friendly. Don't look like RGB gamer cans. Wear them to meetings without stares.",
+      "rating": 4.5,
+      "date": "2026-01-28"
+    },
+    {
+      "review_id": "hph_r019",
+      "content": "Wind noise on calls near the bike path is bad. Pause music and use phone for important calls.",
+      "rating": 3.0,
+      "date": "2024-02-03"
+    },
+    {
+      "review_id": "hph_r020",
+      "content": "Leakage at high volume is modest. Library use at moderate levels didn't bother neighbors.",
+      "rating": 4.0,
+      "date": "2025-11-09"
+    },
+    {
+      "review_id": "hph_r021",
+      "content": "Firmware update fixed a random disconnect quirk. Keep Headphones Connect updated.",
+      "rating": 4.5,
+      "date": "2024-03-03"
+    },
+    {
+      "review_id": "hph_r022",
+      "content": "Compared to older Sony WH models, this feels lighter and less fatiguing. Happy upgrade.",
+      "rating": 5.0,
+      "date": "2024-05-19"
+    },
+    {
+      "review_id": "hph_r023",
+      "content": "Pads are replaceable — good longevity plan. Stock pads still plush after months.",
+      "rating": 4.5,
+      "date": "2024-08-24"
+    },
+    {
+      "review_id": "hph_r024",
+      "content": "Auto-pause when removing works most times. False triggers when I adjust glasses occasionally.",
+      "rating": 3.5,
+      "date": "2025-07-02"
+    },
+    {
+      "review_id": "hph_r025",
+      "content": "Neutral fans may prefer other brands; fun listeners will smile. Know your preference.",
+      "rating": 4.0,
+      "date": "2026-01-19"
+    },
+    {
+      "review_id": "hph_r026",
+      "content": "Travel pillow + these = long-haul survival kit. ANC naps are real.",
+      "rating": 5.0,
+      "date": "2025-04-03"
+    },
+    {
+      "review_id": "hph_r027",
+      "content": "Bluetooth range drops through two walls. Normal for the class. Stay in-room for stable audio.",
+      "rating": 3.5,
+      "date": "2025-06-22"
+    },
+    {
+      "review_id": "hph_r028",
+      "content": "Spoke to support about a defective ear cup LED; quick swap. Service experience was positive.",
+      "rating": 4.0,
+      "date": "2025-02-26"
+    },
+    {
+      "review_id": "hph_r029",
+      "content": "Wired mode works when battery dies — underrated safety net on long trips.",
+      "rating": 4.5,
+      "date": "2024-07-28"
+    },
+    {
+      "review_id": "hph_r030",
+      "content": "Soundstage is in-head, not speaker-like. Immersive modes try; I keep them off.",
+      "rating": 3.5,
+      "date": "2025-08-30"
+    },
+    {
+      "review_id": "hph_r031",
+      "content": "Matte finish hides scuffs from backpack zippers better than glossy cans I've owned.",
+      "rating": 4.5,
+      "date": "2024-04-05"
+    },
+    {
+      "review_id": "hph_r032",
+      "content": "Spouse and I argue over who gets them for flights. Solving by buying a second pair.",
+      "rating": 5.0,
+      "date": "2024-04-30"
+    },
+    {
+      "review_id": "hph_r033",
+      "content": "Touch panel registered rain droplets as taps once. Wipe before play in storms.",
+      "rating": 3.0,
+      "date": "2024-01-21"
+    },
+    {
+      "review_id": "hph_r034",
+      "content": "Voice assistant double-tap is optional — disabled mine to avoid accidents.",
+      "rating": 4.0,
+      "date": "2026-02-27"
+    },
+    {
+      "review_id": "hph_r035",
+      "content": "Weight distribution is excellent. No hotspot on the crown of my head.",
+      "rating": 5.0,
+      "date": "2026-08-20"
+    },
+    {
+      "review_id": "hph_r036",
+      "content": "Not the last word in isolation; glasses arms leak a bit of noise. Still a daily driver.",
+      "rating": 4.0,
+      "date": "2026-06-27"
+    },
+    {
+      "review_id": "hph_r037",
+      "content": "EQ preset 'bright' fixed muffled voices in Netflix dialogue for me.",
+      "rating": 4.5,
+      "date": "2025-02-16"
+    },
+    {
+      "review_id": "hph_r038",
+      "content": "Packaging was minimal; headphones were pristine. No odor from pads.",
+      "rating": 4.0,
+      "date": "2024-12-15"
+    },
+    {
+      "review_id": "hph_r039",
+      "content": "Latency watching mobile YouTube is acceptable. Lip-sync rarely bothers me.",
+      "rating": 4.0,
+      "date": "2024-07-22"
+    },
+    {
+      "review_id": "hph_r040",
+      "content": "Cheap knockoffs don't match Sony's ANC algorithm tuning. Paying for the brand made sense here.",
+      "rating": 4.5,
+      "date": "2024-07-29"
+    },
+    {
+      "review_id": "hph_r041",
+      "content": "One side played quieter until I cleaned the mesh. Maintenance tip: soft brush monthly.",
+      "rating": 3.5,
+      "date": "2024-12-04"
+    },
+    {
+      "review_id": "hph_r042",
+      "content": "Works as a Zoom mic in a pinch; dedicated mic still clearer. Hybrid WFH stack.",
+      "rating": 3.5,
+      "date": "2025-02-05"
+    },
+    {
+      "review_id": "hph_r043",
+      "content": "Folded size fits a work tote easily. Commute companion of the year for me.",
+      "rating": 5.0,
+      "date": "2025-01-08"
+    },
+    {
+      "review_id": "hph_r044",
+      "content": "Drops in a cafe once — scuffed, still perfect sonically. Survivable build.",
+      "rating": 4.0,
+      "date": "2025-09-03"
+    },
+    {
+      "review_id": "hph_r045",
+      "content": "Default ANC is strong; adaptive modes are fine. I leave it on max for planes.",
+      "rating": 4.5,
+      "date": "2026-09-05"
+    },
+    {
+      "review_id": "hph_r046",
+      "content": "Treble can get sharp on poorly mastered tracks. EQ shelving helps. Source quality matters.",
+      "rating": 3.5,
+      "date": "2024-09-09"
+    },
+    {
+      "review_id": "hph_r047",
+      "content": "Battery percentage in OS is rough; app meter is better. Still lasts longer than my patience for charging.",
+      "rating": 4.0,
+      "date": "2024-08-03"
+    },
+    {
+      "review_id": "hph_r048",
+      "content": "Gifted a pair — recipient texted 'why did I wait'. Strong gift item for remote workers.",
+      "rating": 5.0,
+      "date": "2026-01-11"
+    },
+    {
+      "review_id": "hph_r049",
+      "content": "Slight hiss with ANC in silent rooms if you're sensitive. I only notice before music starts.",
+      "rating": 3.5,
+      "date": "2024-08-10"
+    },
+    {
+      "review_id": "hph_r050",
+      "content": "Bottom line: comfortable, capable wireless ANC headphones with fun tuning and strong battery for everyday and travel use.",
+      "rating": 4.5,
+      "date": "2025-03-02"
+    }
+  ]
+}

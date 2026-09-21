@@ -1,0 +1,308 @@
+{
+  "product_id": "macbook_pro_m3_2024",
+  "name": "MacBook Pro 14-inch M3 2024",
+  "image": "images/mbp.png",
+  "description": "The MacBook Pro 14-inch with M3 chip represents Apple's most advanced professional laptop, built on groundbreaking 3-nanometer technology that delivers unprecedented performance and efficiency. At its heart lies the revolutionary M3 chip featuring an 8-core CPU (4 performance cores and 4 efficiency cores), 10-core GPU with Dynamic Caching and hardware-accelerated ray tracing, and a 16-core Neural Engine capable of 18 trillion operations per second for advanced machine learning tasks. The display is a masterpiece: a 14.2-inch Liquid Retina XDR screen with 3024x1964 native resolution (254 pixels per inch), offering extreme dynamic range with 1000 nits sustained brightness and up to 1600 nits peak brightness for HDR content. With support for 1 billion colors, P3 wide color gamut, and True Tone technology, it delivers cinema-grade color accuracy. ProMotion technology enables adaptive refresh rates from 47.95Hz to 120Hz for incredibly smooth scrolling and responsive performance. The system includes 8GB of unified memory with 100GB/s memory bandwidth (configurable up to 24GB), and ultrafast 512GB SSD storage with sequential read speeds up to 3000MB/s (expandable to 2TB). Three Thunderbolt 4 (USB-C) ports support charging, DisplayPort, Thunderbolt 4 (up to 40Gb/s), and USB 4 (up to 40Gb/s), plus dedicated HDMI 2.1 port supporting 4K displays at 240Hz or 8K displays at 60Hz, SDXC card slot for professional photography workflows, and MagSafe 3 magnetic charging port with fast charge capability (50% in 30 minutes with 96W adapter). The audio system features six speakers with force-cancelling woofers for deep bass and minimal distortion, supporting Spatial Audio with Dolby Atmos for immersive sound. Three studio-quality microphones with high signal-to-noise ratio and directional beamforming capture crystal-clear audio. The 1080p FaceTime HD camera with advanced image signal processor delivers sharp video calls even in low light. Touch ID integrated into the keyboard provides secure authentication and Apple Pay authorization. The backlit Magic Keyboard features full-height function keys, ambient light sensor, and comfortable key travel. The Force Touch trackpad is massive (5.9 inches diagonal) with precise cursor control and pressure-sensing capabilities. Connectivity includes Wi-Fi 6E (802.11ax) with 2x2 MIMO for speeds up to 2.4Gb/s, and Bluetooth 5.3 for wireless accessories. The 70-watt-hour lithium-polymer battery delivers up to 22 hours of Apple TV app movie playback, 15 hours of wireless web browsing, and supports fast charging. Physical dimensions are 12.31 inches (31.26 cm) wide, 8.71 inches (22.12 cm) deep, and just 0.61 inches (1.55 cm) thin, weighing only 3.5 pounds (1.6 kg). The precision-milled aluminum unibody enclosure is available in Space Gray and Silver finishes. Runs macOS Sonoma with advanced features including Stage Manager for window organization, Continuity Camera using iPhone as webcam, Universal Control for seamless Mac and iPad integration, Focus modes for productivity, iCloud integration, Time Machine backup, FileVault encryption, and compatibility with thousands of professional applications including Final Cut Pro, Logic Pro, Xcode, Adobe Creative Cloud, Microsoft Office, and more. Environmental commitments include 100% recycled aluminum in the enclosure, 100% recycled rare earth elements in magnets, and arsenic-free display glass. Includes 67W USB-C Power Adapter and USB-C to MagSafe 3 Cable (2m). Supports one external display up to 6K resolution at 60Hz. Perfect for professional content creation, software development, 3D rendering, video editing, music production, graphic design, data science, and demanding multitasking workflows.",
+  "reviews": [
+    {
+      "review_id": "mbp_r001",
+      "content": "Absolutely phenomenal machine! The M3 chip handles 4K video editing like butter. I can run Final Cut Pro, Logic Pro, and multiple Chrome tabs simultaneously without any lag. Battery life is incredible - easily lasts me through a full workday and then some. The display is stunning, colors are so vibrant and accurate. Best laptop I've ever owned!",
+      "rating": 5.0,
+      "date": "2024-11-20"
+    },
+    {
+      "review_id": "mbp_r002",
+      "content": "Coming from a Windows PC, the transition was smooth. The build quality is impeccable - feels premium and solid. The keyboard is comfortable for long typing sessions. MagSafe charging is genius, saved my laptop from falling multiple times. Speakers are shockingly good for a laptop. Development work is a breeze with Docker and multiple IDEs running.",
+      "rating": 5.0,
+      "date": "2024-11-18"
+    },
+    {
+      "review_id": "mbp_r003",
+      "content": "Great performance but the price is really steep. For what you pay, you'd expect at least 16GB RAM as standard. 8GB feels limiting when running virtual machines. Also, the lack of USB-A ports is annoying - have to carry dongles everywhere. Otherwise, it's a solid machine.",
+      "rating": 3.5,
+      "date": "2024-11-15"
+    },
+    {
+      "review_id": "mbp_r004",
+      "content": "The display is absolutely gorgeous! Perfect for photo editing with its color accuracy and brightness. The notch doesn't bother me at all. Face ID would've been nice but Touch ID works well. The trackpad is the best I've used - so smooth and responsive. Compiling code is lightning fast compared to my old Intel Mac.",
+      "rating": 5.0,
+      "date": "2024-11-12"
+    },
+    {
+      "review_id": "mbp_r005",
+      "content": "Battery life is not as advertised. I get about 12-15 hours with my workflow, not 22. Still good, but misleading marketing. The laptop runs warm when under heavy load, though never uncomfortably hot. Screen is beautiful but gets quite reflective in bright environments. Still a good purchase overall.",
+      "rating": 4.0,
+      "date": "2024-11-10"
+    },
+    {
+      "review_id": "mbp_r006",
+      "content": "This is my first Mac and I'm blown away! The ecosystem integration with my iPhone and iPad is seamless. AirDrop works flawlessly. The silent operation is amazing - no fan noise even when rendering videos. The Liquid Retina display makes everything look crisp. Highly recommend for anyone in the Apple ecosystem!",
+      "rating": 5.0,
+      "date": "2024-11-08"
+    },
+    {
+      "review_id": "mbp_r007",
+      "content": "Disappointed with the storage options. 512GB fills up quickly with large projects. Should have gotten the 1TB model but the price jump is ridiculous. Also, the base 8GB RAM is a joke in 2024. Apple is clearly nickel and diming customers. The performance is great when it doesn't hit memory pressure though.",
+      "rating": 3.0,
+      "date": "2024-11-05"
+    },
+    {
+      "review_id": "mbp_r008",
+      "content": "Perfect for software development! Xcode runs smoothly, iOS simulator is fast, and multiple virtual machines don't slow it down. The three Thunderbolt ports are sufficient for my setup. Love the physical function keys row. Keyboard has great travel and doesn't feel mushy. Migration from my old Mac was seamless with Migration Assistant.",
+      "rating": 5.0,
+      "date": "2024-11-02"
+    },
+    {
+      "review_id": "mbp_r009",
+      "content": "The speakers are phenomenal! Can't believe the sound quality coming from such a thin laptop. Video calls look great with the improved camera. The six-speaker system with Spatial Audio makes watching movies a treat. However, the webcam is still just 1080p - would've loved 4K in this price range.",
+      "rating": 4.5,
+      "date": "2024-10-30"
+    },
+    {
+      "review_id": "mbp_r010",
+      "content": "Had major compatibility issues with some professional audio software. Not all plugins are optimized for Apple Silicon yet. Had to run some apps through Rosetta 2 which defeats the purpose of the M3. Do your research on software compatibility before buying. Hardware is excellent, but software ecosystem still catching up.",
+      "rating": 3.0,
+      "date": "2024-10-28"
+    },
+    {
+      "review_id": "mbp_r011",
+      "content": "Upgraded from M1 MacBook Air and the difference is night and day! The additional ports are super convenient. The improved sustained performance means no throttling during long renders. The HDR display makes content creation work stunning. Worth every penny for professional work. Gaming performance is surprisingly decent too!",
+      "rating": 5.0,
+      "date": "2024-10-25"
+    },
+    {
+      "review_id": "mbp_r012",
+      "content": "The laptop is heavy for its size. After carrying it in my backpack all day, I feel the weight. The sharp edges on the chassis can dig into your wrists during extended typing. Screen is beautiful but the high resolution drains battery faster when at maximum brightness. Good laptop but not perfect.",
+      "rating": 3.5,
+      "date": "2024-10-22"
+    },
+    {
+      "review_id": "mbp_r013",
+      "content": "As a data scientist, this machine handles large datasets with ease. Python notebooks run smoothly, machine learning model training is fast, and the thermal management is impressive. RAM feels adequate for most tasks but wish I could upgrade it later. The unified memory architecture is efficient but not expandable which is limiting.",
+      "rating": 4.0,
+      "date": "2024-10-20"
+    },
+    {
+      "review_id": "mbp_r014",
+      "content": "The HDMI port is a game changer! No more dongles for presentations. SDXC card slot is super convenient for photography work. Build quality is exceptional - feels like it'll last for years. The Space Black color is gorgeous and resists fingerprints better than I expected. Minor complaint: keyboard backlighting could be brighter.",
+      "rating": 4.5,
+      "date": "2024-10-18"
+    },
+    {
+      "review_id": "mbp_r015",
+      "content": "Terrible value for money. You can get a Windows laptop with better specs for half the price. The Apple tax is real. Yes, macOS is nice but not worth the premium. The base configuration is a ripoff - forces you to spend more on upgrades. Feels like planned obsolescence with non-upgradeable RAM and storage.",
+      "rating": 2.0,
+      "date": "2024-10-15"
+    },
+    {
+      "review_id": "mbp_r016",
+      "content": "The trackpad is incredible! Gestures are so intuitive and responsive. The haptic feedback feels natural. Precision is unmatched - best trackpad I've ever used. Makes me not want to use a mouse. Touch ID is fast and convenient. The quality of materials used throughout is evident. This is what a premium laptop should feel like.",
+      "rating": 5.0,
+      "date": "2024-10-12"
+    },
+    {
+      "review_id": "mbp_r017",
+      "content": "Screen uniformity issues on my unit - slight backlight bleeding in the corners. Also noticed some minor light leakage around the notch in dark environments. For a $2000+ laptop, QC should be better. Apple Store was helpful with the exchange process, but shouldn't have happened in the first place. Replacement unit is perfect though.",
+      "rating": 3.5,
+      "date": "2024-10-10"
+    },
+    {
+      "review_id": "mbp_r018",
+      "content": "The M3 chip is a beast for 3D rendering! Blender performance is outstanding. The Metal acceleration makes a huge difference. Fans rarely spin up even under heavy workloads. The cool and quiet operation is impressive. Battery efficiency during intensive tasks is remarkable. Can render complex scenes on battery power without issues.",
+      "rating": 5.0,
+      "date": "2024-10-08"
+    },
+    {
+      "review_id": "mbp_r019",
+      "content": "Coming from Windows, I miss some features. No touchscreen feels archaic in 2024. Window management in macOS is clunky compared to Windows 11. Some keyboard shortcuts are unintuitive. Gaming support is poor - most titles don't run well or at all. If you're deep in the Apple ecosystem it's great, otherwise it's limiting.",
+      "rating": 3.0,
+      "date": "2024-10-05"
+    },
+    {
+      "review_id": "mbp_r020",
+      "content": "This laptop has transformed my workflow! The speed of opening apps, switching between tasks, and handling multitasking is phenomenal. Never any beach ball or lag. The MagSafe connector is satisfying to connect and disconnect. Having HDMI and SD card built-in is so practical. The display makes everything look professional. Couldn't be happier with this purchase!",
+      "rating": 5.0,
+      "date": "2024-10-02"
+    },
+    {
+      "review_id": "mbp_r021",
+      "content": "Upgraded from an Intel MBP and compile times are absurdly faster. Fans barely spin during normal coding. Display is still the best laptop panel I've used. Only wish base RAM started at 16GB.",
+      "rating": 5.0,
+      "date": "2025-10-16"
+    },
+    {
+      "review_id": "mbp_r022",
+      "content": "Keyboard travel feels great for long writing sessions. MagSafe saved me twice already. Speakers punch above their weight. Price still hurts, but daily use feels premium.",
+      "rating": 4.5,
+      "date": "2024-04-24"
+    },
+    {
+      "review_id": "mbp_r023",
+      "content": "Too expensive for 8GB unified memory in 2025. Hit swap quickly with Docker and Chrome. Performance is fine until memory pressure kicks in — then stutter city.",
+      "rating": 2.5,
+      "date": "2024-01-26"
+    },
+    {
+      "review_id": "mbp_r024",
+      "content": "Great for photo edits in Lightroom. Colors look accurate enough for client drafts. Trackpad gestures are unmatched. Battery lasts a full teaching day with brightness around 60%.",
+      "rating": 5.0,
+      "date": "2026-01-29"
+    },
+    {
+      "review_id": "mbp_r025",
+      "content": "Port selection is better than the Air, but I still carry a hub. HDMI works with my studio monitor. Build quality is excellent; sharp chassis edges dig into wrists after hours.",
+      "rating": 3.5,
+      "date": "2024-10-08"
+    },
+    {
+      "review_id": "mbp_r026",
+      "content": "Silent most of the day — huge upgrade from my old gaming laptop. Xcode and simulators feel snappy. Notch is easy to ignore once Stage Manager is set up.",
+      "rating": 4.5,
+      "date": "2024-09-07"
+    },
+    {
+      "review_id": "mbp_r027",
+      "content": "Screen reflections are brutal near windows. Had to buy a matte protector. Otherwise the XDR brightness for HDR video is fantastic. Mixed feelings.",
+      "rating": 3.5,
+      "date": "2024-08-16"
+    },
+    {
+      "review_id": "mbp_r028",
+      "content": "Bought refurbished and it feels brand new. Migration Assistant made the switch painless. Touch ID is reliable. For software work this replaced my desktop.",
+      "rating": 5.0,
+      "date": "2024-05-22"
+    },
+    {
+      "review_id": "mbp_r029",
+      "content": "Storage fills fast with video projects. 512GB base is a trap if you edit locally. Performance is stellar when you have space; budgeting for 1TB next time.",
+      "rating": 3.0,
+      "date": "2026-01-24"
+    },
+    {
+      "review_id": "mbp_r030",
+      "content": "Best laptop speakers I've heard. Movie nights on the couch actually work. Mic quality on calls is clear. Wish webcam was better than 1080p at this price.",
+      "rating": 4.0,
+      "date": "2024-04-14"
+    },
+    {
+      "review_id": "mbp_r031",
+      "content": "Runs warm under sustained Blender renders but never thermal-throttled badly. GPU is surprisingly capable. Not a gaming machine, but creative apps fly.",
+      "rating": 4.5,
+      "date": "2025-11-23"
+    },
+    {
+      "review_id": "mbp_r032",
+      "content": "Customer support replaced a faulty MagSafe cable quickly. Machine itself has been rock solid for months. macOS quirks remain, hardware is the reason I stay.",
+      "rating": 4.5,
+      "date": "2026-01-28"
+    },
+    {
+      "review_id": "mbp_r033",
+      "content": "Trackpad clicks feel mushy compared to my previous M1. Maybe unit variance. Display and battery are still excellent. Returning to compare another unit.",
+      "rating": 3.0,
+      "date": "2026-07-02"
+    },
+    {
+      "review_id": "mbp_r034",
+      "content": "Docker Desktop plus two VMs is doable, but memory is the bottleneck. CPU is overkill; RAM config is the real decision. Plan upgrades carefully.",
+      "rating": 3.5,
+      "date": "2025-07-12"
+    },
+    {
+      "review_id": "mbp_r035",
+      "content": "Travel weight is fine in a backpack, though denser than it looks. Battery on flights is outstanding. One cable for charge and display is still a dream not fully met.",
+      "rating": 4.0,
+      "date": "2024-03-30"
+    },
+    {
+      "review_id": "mbp_r036",
+      "content": "Final Cut timelines with 4K multicam are smooth. Export times crushed my old Intel box. Color accuracy makes grading less guesswork. Worth it for video work.",
+      "rating": 5.0,
+      "date": "2025-08-27"
+    },
+    {
+      "review_id": "mbp_r037",
+      "content": "Hates dust — ports need cleaning often. Aluminum shows micro scratches even with careful use. Performance excellence doesn't erase cosmetic wear anxiety.",
+      "rating": 3.0,
+      "date": "2025-03-08"
+    },
+    {
+      "review_id": "mbp_r038",
+      "content": "Students will feel the cost, but campus labs feel slow afterward. Notes, coding, and browser research all day without hunting an outlet. Recommend with student discount.",
+      "rating": 4.5,
+      "date": "2024-02-02"
+    },
+    {
+      "review_id": "mbp_r039",
+      "content": "Wi-Fi 6E is fast at home; cafe networks still vary. Bluetooth peripherals reconnect cleanly. No major bugs after Sonoma updates so far.",
+      "rating": 4.0,
+      "date": "2024-01-31"
+    },
+    {
+      "review_id": "mbp_r040",
+      "content": "Overpriced incremental upgrade if you already own M2 Pro. Differences are real but subtle for email and docs. Wait a generation unless you need the GPU bump.",
+      "rating": 2.5,
+      "date": "2024-04-05"
+    },
+    {
+      "review_id": "mbp_r041",
+      "content": "Logic Pro with big sample libraries is comfortable now. Fan noise under load is modest. MIDI latency feels professional. Studio laptop done right.",
+      "rating": 5.0,
+      "date": "2024-08-11"
+    },
+    {
+      "review_id": "mbp_r042",
+      "content": "Clamshell mode with two external displays works for my desk, with caveats on which ports I use. Read the display limits before buying. Once set up, desk is clean.",
+      "rating": 4.0,
+      "date": "2024-08-26"
+    },
+    {
+      "review_id": "mbp_r043",
+      "content": "Box includes a weak charger for the Pro — had to buy a higher-watt brick for fast charge. Feels cheap for the sticker price. Laptop itself is otherwise excellent.",
+      "rating": 3.5,
+      "date": "2025-06-01"
+    },
+    {
+      "review_id": "mbp_r044",
+      "content": "Typing all day, no flex in the chassis. Keys are quiet enough for shared offices. Spotlight and window management still beat my Windows muscle memory.",
+      "rating": 5.0,
+      "date": "2025-09-08"
+    },
+    {
+      "review_id": "mbp_r045",
+      "content": "Repair quote for a liquid spill was terrifying. AppleCare feels mandatory. Love the machine; hate the repair economics.",
+      "rating": 3.0,
+      "date": "2024-01-28"
+    },
+    {
+      "review_id": "mbp_r046",
+      "content": "Gaming via cloud is fine; native titles are hit-or-miss. Not why I bought it. For creative multitasking it's still my favorite portable.",
+      "rating": 4.0,
+      "date": "2025-07-28"
+    },
+    {
+      "review_id": "mbp_r047",
+      "content": "Screen notch cuts into some full-screen apps awkwardly. Mostly a non-issue. Liquid Retina XDR makes SDR content look richer than my old panel.",
+      "rating": 4.0,
+      "date": "2024-07-22"
+    },
+    {
+      "review_id": "mbp_r048",
+      "content": "Company issued these to our team — support burden dropped vs Windows images. Developers stopped complaining about local build speeds overnight.",
+      "rating": 5.0,
+      "date": "2026-01-03"
+    },
+    {
+      "review_id": "mbp_r049",
+      "content": "Expected magic, got a very good laptop. Not transformative if you already lived on Apple Silicon. Still the one I'd buy again for travel + work.",
+      "rating": 4.0,
+      "date": "2025-10-27"
+    },
+    {
+      "review_id": "mbp_r050",
+      "content": "After three months: battery health strong, no weird throttling, sleep/wake instant. Minor software annoyances aside, this is the keeper.",
+      "rating": 4.5,
+      "date": "2025-12-19"
+    }
+  ]
+}

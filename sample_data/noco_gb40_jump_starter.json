@@ -1,0 +1,308 @@
+{
+  "product_id": "noco_gb40_jump_starter",
+  "name": "NOCO Genius Boost+ GB40 Jump Starter",
+  "image": "images/jumpstarter.jpg",
+  "description": "The NOCO Genius Boost+ GB40 is a portable lithium-ion jump starter rated for 12V vehicles with up to 1000A peak power, designed to start dead batteries safely without relying on a second car. It features heavy-duty clamps, spark-proof and reverse-polarity protection with error indicators, a multi-function LED flashlight, and USB ports for charging phones or recharging the unit. A front battery-level LED display helps confirm readiness before roadside use. Compact enough for a trunk or glove-adjacent storage, it targets everyday gasoline cars and similar 12V systems as an emergency power pack rather than a long-term battery charger.",
+  "reviews": [
+    {
+      "review_id": "jmp_r001",
+      "content": "Dead battery in a parking garage — GB40 fired the car on the first try. Clamps feel solid. Flashlight helped me see the terminals. Keep this in the trunk permanently.",
+      "rating": 5.0,
+      "date": "2025-04-08"
+    },
+    {
+      "review_id": "jmp_r002",
+      "content": "Charged fully before a road trip and it just works. USB-out topped up my phone too. Slightly bulky but worth the peace of mind.",
+      "rating": 4.5,
+      "date": "2026-06-05"
+    },
+    {
+      "review_id": "jmp_r003",
+      "content": "Instructions could be clearer for reverse-polarity warnings. Once I figured the lights out, jump was instant. Build quality is rugged.",
+      "rating": 4.0,
+      "date": "2025-07-27"
+    },
+    {
+      "review_id": "jmp_r004",
+      "content": "Failed to start my older diesel on a cold morning. Might be underpowered for that engine. Fine for my wife's sedan though.",
+      "rating": 2.5,
+      "date": "2026-05-27"
+    },
+    {
+      "review_id": "jmp_r005",
+      "content": "NOCO clamps are thick and bite well. No sketchy sparking. Case is tough. Best safety-oriented jumper pack I've owned.",
+      "rating": 5.0,
+      "date": "2026-08-04"
+    },
+    {
+      "review_id": "jmp_r006",
+      "content": "Unit arrived with 60% charge; wish it shipped fuller. After a top-up it's been reliable for two roadside saves already.",
+      "rating": 4.0,
+      "date": "2026-03-10"
+    },
+    {
+      "review_id": "jmp_r007",
+      "content": "Buttons are glove-friendly. Battery LEDs are easy to read. Only complaint is the cable length is a bit short for some engine bays.",
+      "rating": 4.0,
+      "date": "2025-04-21"
+    },
+    {
+      "review_id": "jmp_r008",
+      "content": "Overpriced versus generic Amazon packs, but the safety features sold me. Didn't regret it when the night jump worked flawlessly.",
+      "rating": 4.5,
+      "date": "2025-04-07"
+    },
+    {
+      "review_id": "jmp_r009",
+      "content": "Spark-proof claims held up when I briefly mismatched orientation — alarm screamed, no damage. That alone justifies the brand.",
+      "rating": 5.0,
+      "date": "2025-06-04"
+    },
+    {
+      "review_id": "jmp_r010",
+      "content": "Heavy for what it is. Lives in the garage more than the car now. When used, it starts mid-size SUVs without drama.",
+      "rating": 3.5,
+      "date": "2026-05-25"
+    },
+    {
+      "review_id": "jmp_r011",
+      "content": "USB input charging is slow overnight. Plan ahead before winter. Jump performance itself is excellent.",
+      "rating": 3.5,
+      "date": "2025-08-24"
+    },
+    {
+      "review_id": "jmp_r012",
+      "content": "Used it on a neighbor's Civic — cranked immediately. Neighborhood hero status achieved. Compact enough for the spare-tire well.",
+      "rating": 5.0,
+      "date": "2024-07-13"
+    },
+    {
+      "review_id": "jmp_r013",
+      "content": "Plastic housing scratched in the trunk. Wish it included a better storage bag. Internals seem fine; cosmetics suffer.",
+      "rating": 3.0,
+      "date": "2024-07-08"
+    },
+    {
+      "review_id": "jmp_r014",
+      "content": "Cold weather start assist worked at 5°F. Absolute confidence booster living in the Midwest.",
+      "rating": 5.0,
+      "date": "2026-04-03"
+    },
+    {
+      "review_id": "jmp_r015",
+      "content": "Manual is tiny and hard to read. Watch a quick video instead. Hardware is straightforward once you know the light codes.",
+      "rating": 3.5,
+      "date": "2025-06-08"
+    },
+    {
+      "review_id": "jmp_r016",
+      "content": "Also doubles as an emergency phone charger on camping trips. Dual-purpose value is real.",
+      "rating": 4.5,
+      "date": "2025-05-02"
+    },
+    {
+      "review_id": "jmp_r017",
+      "content": "Trigger button felt sticky out of box; loosened after a few uses. Jump current is strong. QC is mixed.",
+      "rating": 3.0,
+      "date": "2025-10-06"
+    },
+    {
+      "review_id": "jmp_r018",
+      "content": "Compared with cables-only, this is safer for beginners. Parents bought one after my demo. Highly recommend for new drivers.",
+      "rating": 5.0,
+      "date": "2025-09-20"
+    },
+    {
+      "review_id": "jmp_r019",
+      "content": "Won't replace a full shop charger for maintainence, but for dead-battery emergencies it's perfect.",
+      "rating": 4.0,
+      "date": "2026-03-23"
+    },
+    {
+      "review_id": "jmp_r020",
+      "content": "LED flashlight modes are genuinely useful for tire changes. Underrated feature.",
+      "rating": 4.5,
+      "date": "2024-07-09"
+    },
+    {
+      "review_id": "jmp_r021",
+      "content": "Tried on a truck V8 — struggled then succeeded on second attempt. Borderline for larger engines. Check amps vs your vehicle.",
+      "rating": 3.0,
+      "date": "2024-04-06"
+    },
+    {
+      "review_id": "jmp_r022",
+      "content": "No weird chemical smells, clamps store neatly. Feels like a serious tool not a toy.",
+      "rating": 4.5,
+      "date": "2025-04-02"
+    },
+    {
+      "review_id": "jmp_r023",
+      "content": "App? None needed — thankfully. Physical UI is enough. Less to break.",
+      "rating": 4.0,
+      "date": "2024-11-06"
+    },
+    {
+      "review_id": "jmp_r024",
+      "content": "Left it unused 4 months; still had charge to jump. Self-discharge seems decent if you top up seasonally.",
+      "rating": 4.5,
+      "date": "2024-05-25"
+    },
+    {
+      "review_id": "jmp_r025",
+      "content": "Returned first unit for a dead cell; replacement works. Support was okay, shipping slow.",
+      "rating": 3.0,
+      "date": "2024-04-02"
+    },
+    {
+      "review_id": "jmp_r026",
+      "content": "Polarity protection and error lights make this less scary than old-school cables. Taught my teen with it.",
+      "rating": 5.0,
+      "date": "2025-07-05"
+    },
+    {
+      "review_id": "jmp_r027",
+      "content": "Pricey, but one tow avoided pays for it. Already paid for itself once.",
+      "rating": 5.0,
+      "date": "2026-04-09"
+    },
+    {
+      "review_id": "jmp_r028",
+      "content": "Clamp springs are stiff — good grip, hard on small hands. Performance otherwise great.",
+      "rating": 4.0,
+      "date": "2026-06-30"
+    },
+    {
+      "review_id": "jmp_r029",
+      "content": "Doesn't like being stored in extreme heat; dashboard is a bad idea. Trunk floor is fine. Read the temps.",
+      "rating": 3.5,
+      "date": "2025-12-11"
+    },
+    {
+      "review_id": "jmp_r030",
+      "content": "Connections feel premium vs cheap boosters that melted tips. NOCO branding seems earned here.",
+      "rating": 4.5,
+      "date": "2025-10-11"
+    },
+    {
+      "review_id": "jmp_r031",
+      "content": "One-star reviews scared me; my experience has been flawless for a Corolla. Maybe vehicle dependent.",
+      "rating": 4.5,
+      "date": "2024-02-12"
+    },
+    {
+      "review_id": "jmp_r032",
+      "content": "Port covers keep dirt out. Nice detail. Overall pack is travel-ready.",
+      "rating": 4.0,
+      "date": "2025-09-01"
+    },
+    {
+      "review_id": "jmp_r033",
+      "content": "Could use a clearer 'ready to jump' indicator. Mistimed my first attempt. Second try perfect.",
+      "rating": 3.5,
+      "date": "2025-02-09"
+    },
+    {
+      "review_id": "jmp_r034",
+      "content": "Boat battery assist worked at the dock. Surprised me. Versatile 12V helper.",
+      "rating": 5.0,
+      "date": "2026-09-14"
+    },
+    {
+      "review_id": "jmp_r035",
+      "content": "Fan noise while charging the pack is noticeable on a nightstand. Charge in garage.",
+      "rating": 3.0,
+      "date": "2025-04-08"
+    },
+    {
+      "review_id": "jmp_r036",
+      "content": "Build feels like it survives being tossed under seats. Already scuffed, still works.",
+      "rating": 4.0,
+      "date": "2025-10-31"
+    },
+    {
+      "review_id": "jmp_r037",
+      "content": "Not for hybrids with weird 12V systems without checking the manual. On a normal ICE car: excellent.",
+      "rating": 3.5,
+      "date": "2026-01-26"
+    },
+    {
+      "review_id": "jmp_r038",
+      "content": "Gifted to my dad — he texted a photo after saving a stranger in a lot. Endorsement enough.",
+      "rating": 5.0,
+      "date": "2025-09-22"
+    },
+    {
+      "review_id": "jmp_r039",
+      "content": "Peak amp marketing is confusing versus real cranking. Still started my car from dead flat.",
+      "rating": 4.0,
+      "date": "2025-10-27"
+    },
+    {
+      "review_id": "jmp_r040",
+      "content": "MicroUSB/USB-C charging cable quality is meh. Pack is the star; cable is whatever.",
+      "rating": 3.5,
+      "date": "2024-06-10"
+    },
+    {
+      "review_id": "jmp_r041",
+      "content": "Winter kit essential alongside blanket and water. This is the item I'm gladdest I packed.",
+      "rating": 5.0,
+      "date": "2025-09-30"
+    },
+    {
+      "review_id": "jmp_r042",
+      "content": "Sometimes needs a few seconds after connecting before it arms. Patience. Then strong start.",
+      "rating": 4.0,
+      "date": "2024-01-16"
+    },
+    {
+      "review_id": "jmp_r043",
+      "content": "Cheaper units I've tried failed in the cold. This one didn't. Paying more made sense.",
+      "rating": 4.5,
+      "date": "2026-05-01"
+    },
+    {
+      "review_id": "jmp_r044",
+      "content": "Clamps won't reach on some Euro engine layouts without repositioning the pack. Annoying but workable.",
+      "rating": 3.0,
+      "date": "2025-06-25"
+    },
+    {
+      "review_id": "jmp_r045",
+      "content": "No leaky acid like old jump packs. Lithium convenience is the point. Happy convert.",
+      "rating": 5.0,
+      "date": "2024-03-05"
+    },
+    {
+      "review_id": "jmp_r046",
+      "content": "Status LEDs washed out in bright sun. Shade with your hand. Minor UX nit.",
+      "rating": 3.5,
+      "date": "2024-03-01"
+    },
+    {
+      "review_id": "jmp_r047",
+      "content": "Two years in with occasional use — still jumps. Longevity seems good if you recharge periodically.",
+      "rating": 4.5,
+      "date": "2024-02-06"
+    },
+    {
+      "review_id": "jmp_r048",
+      "content": "Feels safer than asking strangers for a jump. Independence matters late at night.",
+      "rating": 5.0,
+      "date": "2024-07-13"
+    },
+    {
+      "review_id": "jmp_r049",
+      "content": "Not a miracle for badly sulfated batteries that won't hold charge. Diagnosed that after two jumps. Tool is fine; battery was toast.",
+      "rating": 3.5,
+      "date": "2026-06-19"
+    },
+    {
+      "review_id": "jmp_r050",
+      "content": "Bottom line: reliable, safe, trunk-worthy. I'd buy the GB40 again for any gas daily driver.",
+      "rating": 4.5,
+      "date": "2024-09-04"
+    }
+  ]
+}

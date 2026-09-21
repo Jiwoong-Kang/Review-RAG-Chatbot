@@ -1,0 +1,308 @@
+{
+  "product_id": "roborock_robot_vacuum",
+  "name": "Roborock Robot Vacuum & Dock",
+  "image": "images/robotvacuum.jpg",
+  "description": "The Roborock robot vacuum and multi-function dock is a smart home cleaning system that maps rooms with lidar-style navigation, vacuums floors on a schedule, and returns to a self-emptying station for hands-light maintenance. The tall dock handles charging and dust collection so the robot can run repeatedly without constant bin emptying. App controls typically include room-by-room cleaning, no-go zones, suction levels, and optional mopping on supported configurations. It targets busy households and pet owners who want consistent hard-floor and low-pile rug cleaning with less daily manual sweeping.",
+  "reviews": [
+    {
+      "review_id": "vac_r001",
+      "content": "Maps the house accurately and empties itself into the dock. Hardwood looks better with almost zero effort from me.",
+      "rating": 5.0,
+      "date": "2026-08-05"
+    },
+    {
+      "review_id": "vac_r002",
+      "content": "App is polished — zones and no-go lines just work. Obstacle avoidance still bonks chair legs sometimes.",
+      "rating": 4.0,
+      "date": "2026-03-09"
+    },
+    {
+      "review_id": "vac_r003",
+      "content": "Loud on max carpet boost, quiet enough on eco for TV. Dock is bulky but the self-empty is life-changing.",
+      "rating": 4.5,
+      "date": "2026-08-29"
+    },
+    {
+      "review_id": "vac_r004",
+      "content": "Got stuck on fringe rugs twice. Removed them and it's flawless. Know your thresholds.",
+      "rating": 3.5,
+      "date": "2024-10-23"
+    },
+    {
+      "review_id": "vac_r005",
+      "content": "Pet hair on couches still needs a wand, but floors stay tidy between deep cleans. Worth it with two dogs.",
+      "rating": 4.5,
+      "date": "2026-07-02"
+    },
+    {
+      "review_id": "vac_r006",
+      "content": "Setup took an evening for Wi-Fi and mapping. After that it's schedule-and-forget. Battery covers our 1,400 sq ft.",
+      "rating": 5.0,
+      "date": "2026-04-29"
+    },
+    {
+      "review_id": "vac_r007",
+      "content": "Mopping is damp maintenance, not magic for sticky spills. Vacuum mode is the star.",
+      "rating": 3.5,
+      "date": "2024-03-26"
+    },
+    {
+      "review_id": "vac_r008",
+      "content": "Dock alerts for full bag are timely. Bags cost extra — budget consumables.",
+      "rating": 4.0,
+      "date": "2024-01-18"
+    },
+    {
+      "review_id": "vac_r009",
+      "content": "Climbs onto thick mat and stranded. Threshold ramps helped. Hardware is capable; home prep matters.",
+      "rating": 3.0,
+      "date": "2025-08-29"
+    },
+    {
+      "review_id": "vac_r010",
+      "content": "Far quieter than our old Roomba. Navigation is smarter, less random bumping.",
+      "rating": 5.0,
+      "date": "2024-11-10"
+    },
+    {
+      "review_id": "vac_r011",
+      "content": "Dark flooring confused cliff sensors once. Firmware update improved it. Support forums helped.",
+      "rating": 3.5,
+      "date": "2025-03-09"
+    },
+    {
+      "review_id": "vac_r012",
+      "content": "Kids think it's a pet. I think it's the best appliance purchase this year.",
+      "rating": 5.0,
+      "date": "2025-01-23"
+    },
+    {
+      "review_id": "vac_r013",
+      "content": "Initial map missed a room behind a baby gate. Remapped with gate open. App tools are good.",
+      "rating": 4.0,
+      "date": "2025-06-26"
+    },
+    {
+      "review_id": "vac_r014",
+      "content": "Self-empty puff of dust when the bag is overfull — change sooner. Otherwise clean process.",
+      "rating": 3.5,
+      "date": "2025-01-01"
+    },
+    {
+      "review_id": "vac_r015",
+      "content": "Cables are magnets for death. Cord management required. Then it thrives.",
+      "rating": 4.0,
+      "date": "2024-05-13"
+    },
+    {
+      "review_id": "vac_r016",
+      "content": "Suction on area rugs pulls grit impressively. Edges along baseboards still need occasional wand.",
+      "rating": 4.0,
+      "date": "2026-01-13"
+    },
+    {
+      "review_id": "vac_r017",
+      "content": "Pricey dock combo, but skipping daily sweeping paid back the sanity cost.",
+      "rating": 4.5,
+      "date": "2024-07-15"
+    },
+    {
+      "review_id": "vac_r018",
+      "content": "Lost connection after router swap. Remounted Wi-Fi in 10 minutes. Not brick-level scary.",
+      "rating": 4.0,
+      "date": "2024-09-30"
+    },
+    {
+      "review_id": "vac_r019",
+      "content": "Avoidance camera helps with socks… mostly. Still hide laundry day piles.",
+      "rating": 3.5,
+      "date": "2025-03-31"
+    },
+    {
+      "review_id": "vac_r020",
+      "content": "Scheduled after breakfast so we return to clean floors. Lifestyle upgrade, not a gadget toy.",
+      "rating": 5.0,
+      "date": "2024-01-15"
+    },
+    {
+      "review_id": "vac_r021",
+      "content": "Water tank for mop is small — fine for apartments. Large homes refill mid-job.",
+      "rating": 3.5,
+      "date": "2024-08-14"
+    },
+    {
+      "review_id": "vac_r022",
+      "content": "Compared to mid-tier bots, Roborock mapping feels premium. Less babysitting.",
+      "rating": 5.0,
+      "date": "2025-09-27"
+    },
+    {
+      "review_id": "vac_r023",
+      "content": "Wheel tracked mud onto light tile once after a rainy patio run. Wipe wheels monthly.",
+      "rating": 3.0,
+      "date": "2025-04-10"
+    },
+    {
+      "review_id": "vac_r024",
+      "content": "Night mode is considerate. LED isn't blinding. Partners appreciate quiet hours.",
+      "rating": 4.5,
+      "date": "2026-07-12"
+    },
+    {
+      "review_id": "vac_r025",
+      "content": "Consumables kit (filters, brushes) should be bought with the unit. Ongoing costs are real.",
+      "rating": 3.5,
+      "date": "2024-01-26"
+    },
+    {
+      "review_id": "vac_r026",
+      "content": "Multi-floor maps work if you carry it upstairs. Dock stays on main floor for us.",
+      "rating": 4.0,
+      "date": "2024-04-18"
+    },
+    {
+      "review_id": "vac_r027",
+      "content": "One door threshold was too high — aluminum ramp strip fixed it. Now full coverage.",
+      "rating": 4.5,
+      "date": "2024-03-28"
+    },
+    {
+      "review_id": "vac_r028",
+      "content": "Customer service replaced a bad lidar module under warranty. Slow shipping, fair outcome.",
+      "rating": 3.5,
+      "date": "2025-12-28"
+    },
+    {
+      "review_id": "vac_r029",
+      "content": "Hair wrap on the brush roll is less than older bots, still cut it out monthly with pets.",
+      "rating": 4.0,
+      "date": "2025-05-25"
+    },
+    {
+      "review_id": "vac_r030",
+      "content": "Smart home routine: leave house → vacuum. Feels like the future, works today.",
+      "rating": 5.0,
+      "date": "2025-03-07"
+    },
+    {
+      "review_id": "vac_r031",
+      "content": "Mop pad smelled musty if left wet. Dry it after runs. Maintenance literacy required.",
+      "rating": 3.0,
+      "date": "2024-01-21"
+    },
+    {
+      "review_id": "vac_r032",
+      "content": "Black furniture legs still trick it occasionally. Improving yearly with updates.",
+      "rating": 4.0,
+      "date": "2025-06-08"
+    },
+    {
+      "review_id": "vac_r033",
+      "content": "Dustbin on the robot is tiny by design because dock exists. Don't skip the station.",
+      "rating": 4.5,
+      "date": "2025-10-04"
+    },
+    {
+      "review_id": "vac_r034",
+      "content": "Neighbors joked about the dock spaceship. Then asked for the link. Conversion complete.",
+      "rating": 5.0,
+      "date": "2026-01-21"
+    },
+    {
+      "review_id": "vac_r035",
+      "content": "First week: babysitting. Second month: forget it exists until the clean floors remind you.",
+      "rating": 4.5,
+      "date": "2025-03-17"
+    },
+    {
+      "review_id": "vac_r036",
+      "content": "Not great on ultra-thick shag. We banned it from that room. Everywhere else: excellent.",
+      "rating": 3.5,
+      "date": "2025-01-02"
+    },
+    {
+      "review_id": "vac_r037",
+      "content": "Battery degradation after 18 months is mild. Still finishes the map on standard.",
+      "rating": 4.0,
+      "date": "2026-02-28"
+    },
+    {
+      "review_id": "vac_r038",
+      "content": "Object recognition labeled a scale as 'other' and avoided it. Cute and useful.",
+      "rating": 4.5,
+      "date": "2024-02-28"
+    },
+    {
+      "review_id": "vac_r039",
+      "content": "Setup manual is thin; YouTube is better. Once mapped, UI is intuitive.",
+      "rating": 4.0,
+      "date": "2024-07-29"
+    },
+    {
+      "review_id": "vac_r040",
+      "content": "Refunded a cheaper no-name bot and paid more here. Navigation difference is night and day.",
+      "rating": 5.0,
+      "date": "2026-03-12"
+    },
+    {
+      "review_id": "vac_r041",
+      "content": "Dock needs outlet + clearance. Measure your closet/laundry nook before buying.",
+      "rating": 3.5,
+      "date": "2024-02-06"
+    },
+    {
+      "review_id": "vac_r042",
+      "content": "Picks up litter crumbs better than I do. Cat owners: still scoop the box yourself.",
+      "rating": 4.5,
+      "date": "2025-08-26"
+    },
+    {
+      "review_id": "vac_r043",
+      "content": "Firmware added better carpet detect — auto boost actually helps now.",
+      "rating": 4.5,
+      "date": "2025-01-12"
+    },
+    {
+      "review_id": "vac_r044",
+      "content": "Occasional ghost path into a wall map artifact; remap cured it. Rare glitch.",
+      "rating": 3.5,
+      "date": "2025-11-04"
+    },
+    {
+      "review_id": "vac_r045",
+      "content": "Weight of the dock is serious. Place it once and don't plan to rearrange weekly.",
+      "rating": 4.0,
+      "date": "2024-06-25"
+    },
+    {
+      "review_id": "vac_r046",
+      "content": "Voice assistant start/stop is handy when hands are full. App remains more precise.",
+      "rating": 4.0,
+      "date": "2025-09-27"
+    },
+    {
+      "review_id": "vac_r047",
+      "content": "For apartments under 1k sq ft this is almost overkill — and I love the overkill.",
+      "rating": 5.0,
+      "date": "2024-08-09"
+    },
+    {
+      "review_id": "vac_r048",
+      "content": "Brush roll replacement was straightforward. Parts availability is good.",
+      "rating": 4.5,
+      "date": "2026-09-21"
+    },
+    {
+      "review_id": "vac_r049",
+      "content": "Doesn't replace annual deep carpet clean. Does replace daily 'quick sweep guilt'.",
+      "rating": 4.0,
+      "date": "2026-01-22"
+    },
+    {
+      "review_id": "vac_r050",
+      "content": "Bottom line: smart mapping, strong vacuuming, worthwhile self-empty dock if you accept consumables and home prep.",
+      "rating": 4.5,
+      "date": "2025-01-06"
+    }
+  ]
+}
