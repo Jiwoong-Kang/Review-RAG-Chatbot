@@ -100,7 +100,7 @@ See [UPLOAD_DATA_GUIDE.md](UPLOAD_DATA_GUIDE.md).
 
 ```
 products               # shared catalog (id, name, description, image, reviews JSONB)
-document_embeddings    # description + review text + vector(768) for RAG
+document_embeddings    # description + review text + vector(1536) for RAG
 saved_products         # per-user interest + note (RLS: own rows only)
 chat_messages          # per-user, per-product history + sources (RLS: own rows only)
 auth.users             # Supabase Auth

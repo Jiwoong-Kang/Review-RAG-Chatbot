@@ -49,10 +49,11 @@ Chat answers use retrieved reviews only; conflicting reviews should be summarize
 
 ## RAG / embeddings notes
 
-- Similarity search uses Sentence Transformers (`jhgan/ko-sroberta-multitask`) + Supabase pgvector
+- Similarity search uses OpenAI `text-embedding-3-small` (1536-dim) + Supabase pgvector
 - Vectors are durable in Postgres; restarting the API does **not** clear them
 - Re-upload (script or UI) when you change product/review content and want fresh embeddings
 - Match RPC: `match_document_embeddings(query_embedding, match_product_id, match_count)`
+- If you previously used 768-dim local embeddings, drop `document_embeddings` / recreate from `pgvector_setup.sql`, then re-upload
 
 ---
 

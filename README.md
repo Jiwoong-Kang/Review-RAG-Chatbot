@@ -18,7 +18,7 @@ reviewer/
 ├── backend/
 │   ├── main.py              # FastAPI app (CORS + routers)
 │   ├── chat_engine.py       # RAG generation + citations
-│   ├── vector_store.py      # Sentence Transformers + Supabase pgvector search
+│   ├── vector_store.py      # OpenAI embeddings + Supabase pgvector search
 │   ├── upload_sample_data.py
 │   ├── database/            # Supabase client, auth, products, saved, chat history
 │   ├── routers/             # auth, products, saved, chat
@@ -41,7 +41,7 @@ reviewer/
 | Store | Role |
 |-------|------|
 | **Supabase** | Products, reviews (source of truth), auth, saved products, chat messages, **embeddings (pgvector)** |
-| **OpenAI** | Answer generation from retrieved context |
+| **OpenAI** | Embeddings (`text-embedding-3-small`) + answer generation from retrieved context |
 | **localStorage** | Auth session only |
 
 Embeddings live in Supabase (`document_embeddings`) next to product data, so they survive backend restarts. Upload sample data once (or when you change products); you do not need to re-index after every API restart.
@@ -108,7 +108,7 @@ cd frontend && python3 -m http.server 3000
 
 ## Tech stack
 
-- **Backend**: FastAPI, OpenAI GPT-4o-mini, Sentence Transformers, Supabase + pgvector
+- **Backend**: FastAPI, OpenAI (`gpt-4o-mini` + `text-embedding-3-small`), Supabase + pgvector
 - **Frontend**: Vanilla JS (modular), HTML/CSS
 
 ## API (overview)
