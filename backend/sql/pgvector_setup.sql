@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS document_embeddings (
   rating TEXT,
   review_date TEXT,
   review_index INTEGER,
-  -- jhgan/ko-sroberta-multitask produces 768-dimensional embeddings
-  embedding vector(768) NOT NULL,
+  -- text-embedding-3-small produces 1536-dimensional embeddings
+  embedding vector(1536) NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -37,7 +37,7 @@ CREATE POLICY "Allow all operations on document_embeddings" ON document_embeddin
 
 -- Similarity search scoped to a single product
 CREATE OR REPLACE FUNCTION match_document_embeddings(
-  query_embedding vector(768),
+  query_embedding vector(1536),
   match_product_id text,
   match_count int DEFAULT 5
 )
@@ -71,5 +71,5 @@ AS $$
   LIMIT match_count;
 $$;
 
-GRANT EXECUTE ON FUNCTION match_document_embeddings(vector(768), text, int)
+GRANT EXECUTE ON FUNCTION match_document_embeddings(vector(1536), text, int)
   TO anon, authenticated, service_role;

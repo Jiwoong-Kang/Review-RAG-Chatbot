@@ -1,24 +1,31 @@
 import os
-from typing import List
 
-from sentence_transformers import SentenceTransformer
+from openai import OpenAI
 
 from database.supabase_client import supabase
 
-# Disable tokenizers parallelism warning
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Korean-capable embedding model (768-dim; must match pgvector column)
-model = SentenceTransformer("jhgan/ko-sroberta-multitask")
-
-
-def _embed_texts(texts: List[str]) -> List[List[float]]:
-    """Encode texts into L2-normalized vectors for cosine similarity."""
-    vectors = model.encode(texts, normalize_embeddings=True)
-    return [vector.tolist() for vector in vectors]
+EMBEDDING_MODEL = "text-embedding-3-small"
+EMBEDDING_DIMENSIONS = 1536
 
 
-def create_embeddings(product_id: str, description: str, reviews: List[dict]):
+def _embed_texts(texts: list[str]) -> list[list[float]]:
+    """Encode texts via OpenAI into vectors for cosine similarity."""
+    if not texts:
+        return []
+
+    response = client.embeddings.create(
+        model=EMBEDDING_MODEL,
+        input=texts,
+        dimensions=EMBEDDING_DIMENSIONS,
+    )
+    # API may not return data in input order; sort by index
+    sorted_data = sorted(response.data, key=lambda item: item.index)
+    return [item.embedding for item in sorted_data]
+
+
+def create_embeddings(product_id: str, description: str, reviews: list[dict]):
     """Upsert embeddings for a product description and its reviews into Supabase pgvector."""
     # Replace any previous vectors for this product (re-upload / add-review safe)
     supabase.table("document_embeddings").delete().eq("product_id", product_id).execute()

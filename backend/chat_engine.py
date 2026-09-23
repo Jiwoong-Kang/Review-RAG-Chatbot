@@ -5,7 +5,7 @@ from openai import OpenAI
 from vector_store import search_similar_content, get_all_reviews_summary
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY", "your-api-key-here"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # The model emits this on the first line when the context cannot answer the question
 INSUFFICIENT_EVIDENCE_TOKEN = "INSUFFICIENT_EVIDENCE"
