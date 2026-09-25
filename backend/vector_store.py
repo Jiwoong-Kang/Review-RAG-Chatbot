@@ -89,20 +89,30 @@ def create_embeddings(product_id: str, description: str, reviews: list[dict]):
         print(f"  - WARNING: Could not verify embeddings: {e}")
 
 
-def search_similar_content(product_id: str, query: str, top_k: int = 5):
-    """Search for reviews/descriptions similar to the query via pgvector."""
+def search_similar_content(
+    product_id: str,
+    query: str,
+    top_k: int = 5,
+    content_type: str | None = None,
+):
+    """Search embeddings via pgvector. Optionally keep only one content_type (e.g. 'review')."""
     try:
         query_embedding = _embed_texts([query])[0]
+        # Over-fetch when filtering so we still return up to top_k matches of that type
+        match_count = top_k * 3 if content_type else top_k
         result = supabase.rpc(
             "match_document_embeddings",
             {
                 "query_embedding": query_embedding,
                 "match_product_id": product_id,
-                "match_count": top_k,
+                "match_count": match_count,
             },
         ).execute()
 
         rows = result.data or []
+        if content_type:
+            rows = [row for row in rows if row.get("content_type") == content_type][:top_k]
+
         ids = []
         documents = []
         metadatas = []

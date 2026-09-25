@@ -1,7 +1,6 @@
 // Saved products list and "Save to My List" modal
 
 const Saved = (() => {
-    const openSaveBtn = document.getElementById('openSaveBtn');
     const saveModal = document.getElementById('saveModal');
     const closeSaveModal = document.getElementById('closeSaveModal');
     const saveModalTitle = document.getElementById('saveModalTitle');
@@ -11,8 +10,13 @@ const Saved = (() => {
     const removeSavedBtn = document.getElementById('removeSavedBtn');
     const saveMessage = document.getElementById('saveMessage');
     const savedList = document.getElementById('savedList');
+    const savedSection = document.getElementById('savedSection');
+    const savedToggle = document.getElementById('savedToggle');
+    const savedToggleLabel = document.getElementById('savedToggleLabel');
 
     let currentIsSaved = false;
+    let modalProductId = null;
+    let savedCount = 0;
 
     function setSaveMessage(text, isError = false) {
         saveMessage.textContent = text || '';
@@ -26,10 +30,18 @@ const Saved = (() => {
         return level || '';
     }
 
-    function syncHeaderButton() {
-        const show = Boolean(AppState.currentProductId);
-        openSaveBtn.classList.toggle('hidden', !show);
-        openSaveBtn.textContent = currentIsSaved ? 'Saved' : 'Save to My List';
+    function updateToggleLabel(count = savedCount) {
+        savedCount = count;
+        savedToggleLabel.textContent = `My Saved Products (${savedCount})`;
+    }
+
+    function setPanelOpen(open) {
+        savedSection.classList.toggle('open', open);
+        savedToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    function togglePanel() {
+        setPanelOpen(!savedSection.classList.contains('open'));
     }
 
     function applySavedState(item) {
@@ -48,20 +60,37 @@ const Saved = (() => {
             saveProductBtn.textContent = 'Save to My List';
             saveModalTitle.textContent = 'Save to My List';
         }
-        syncHeaderButton();
-    }
-
-    function openModal() {
-        if (!AppState.currentProductId) return;
-        setSaveMessage(
-            currentIsSaved ? 'Already in your list — edit and save to update.' : ''
-        );
-        saveModal.style.display = 'block';
     }
 
     function closeModal() {
         saveModal.style.display = 'none';
         setSaveMessage('');
+        modalProductId = null;
+    }
+
+    async function openForProduct(productId) {
+        if (!Auth.isLoggedIn()) {
+            alert('Sign in to save products.');
+            return;
+        }
+        if (!productId) return;
+
+        modalProductId = productId;
+        setSaveMessage('');
+        try {
+            const data = await Auth.apiJson(
+                `/api/saved-products/${encodeURIComponent(productId)}`
+            );
+            applySavedState(data.item || null);
+            setSaveMessage(
+                currentIsSaved ? 'Already in your list — edit and save to update.' : ''
+            );
+            saveModal.style.display = 'block';
+        } catch (e) {
+            applySavedState(null);
+            setSaveMessage(e.message, true);
+            saveModal.style.display = 'block';
+        }
     }
 
     async function loadList() {
@@ -69,6 +98,7 @@ const Saved = (() => {
         try {
             const data = await Auth.apiJson('/api/saved-products');
             const items = data.items || [];
+            updateToggleLabel(items.length);
             savedList.innerHTML = '';
             if (items.length === 0) {
                 const p = document.createElement('p');
@@ -95,10 +125,14 @@ const Saved = (() => {
                     note.textContent = item.personal_note;
                     el.appendChild(note);
                 }
-                el.addEventListener('click', () => Products.select(item.product_id));
+                el.addEventListener('click', () => {
+                    setPanelOpen(false);
+                    Products.select(item.product_id);
+                });
                 savedList.appendChild(el);
             });
         } catch (e) {
+            updateToggleLabel(0);
             savedList.innerHTML = '';
             const p = document.createElement('p');
             p.className = 'empty-message';
@@ -110,30 +144,26 @@ const Saved = (() => {
     async function showForCurrent() {
         if (!Auth.isLoggedIn() || !AppState.currentProductId) {
             currentIsSaved = false;
-            syncHeaderButton();
-            closeModal();
             return;
         }
         try {
             const data = await Auth.apiJson(
                 `/api/saved-products/${encodeURIComponent(AppState.currentProductId)}`
             );
-            applySavedState(data.item || null);
+            currentIsSaved = Boolean(data.item);
         } catch (e) {
             currentIsSaved = false;
-            syncHeaderButton();
-            setSaveMessage(e.message, true);
         }
     }
 
     async function save() {
-        if (!Auth.isLoggedIn() || !AppState.currentProductId) return;
+        if (!Auth.isLoggedIn() || !modalProductId) return;
         setSaveMessage('Saving...');
         try {
             await Auth.apiJson('/api/saved-products', {
                 method: 'POST',
                 body: JSON.stringify({
-                    product_id: AppState.currentProductId,
+                    product_id: modalProductId,
                     interest_level: interestLevel.value,
                     personal_note: personalNote.value.trim(),
                 }),
@@ -151,11 +181,11 @@ const Saved = (() => {
     }
 
     async function remove() {
-        if (!Auth.isLoggedIn() || !AppState.currentProductId) return;
+        if (!Auth.isLoggedIn() || !modalProductId) return;
         setSaveMessage('Removing...');
         try {
             await Auth.apiJson(
-                `/api/saved-products/${encodeURIComponent(AppState.currentProductId)}`,
+                `/api/saved-products/${encodeURIComponent(modalProductId)}`,
                 { method: 'DELETE' }
             );
             applySavedState(null);
@@ -168,8 +198,10 @@ const Saved = (() => {
 
     function reset() {
         currentIsSaved = false;
+        modalProductId = null;
         closeModal();
-        openSaveBtn.classList.add('hidden');
+        setPanelOpen(false);
+        updateToggleLabel(0);
         interestLevel.value = 'interested';
         personalNote.value = '';
         removeSavedBtn.classList.add('hidden');
@@ -180,7 +212,7 @@ const Saved = (() => {
     }
 
     function bind() {
-        openSaveBtn.addEventListener('click', openModal);
+        savedToggle.addEventListener('click', togglePanel);
         closeSaveModal.addEventListener('click', closeModal);
         saveProductBtn.addEventListener('click', save);
         removeSavedBtn.addEventListener('click', remove);
@@ -189,5 +221,5 @@ const Saved = (() => {
         });
     }
 
-    return { loadList, showForCurrent, bind, reset };
+    return { loadList, showForCurrent, openForProduct, bind, reset };
 })();

@@ -1,5 +1,4 @@
 import os
-import re
 
 from openai import OpenAI, OpenAIError
 
@@ -27,9 +26,9 @@ def generate_response(
 ) -> dict:
     """
     Generate responses using RAG (Retrieval-Augmented Generation) pattern.
-    1. Search for relevant reviews/descriptions related to user's question
-    2. Pass retrieved content as context to LLM, each review tagged with a citation marker
-    3. Return the answer along with the reviews it was allowed to cite
+    1. Search for relevant user reviews related to the user's question
+    2. Pass retrieved reviews as context to LLM, each tagged with a citation marker
+    3. Return the answer along with all reviews that were retrieved as context
 
     Returns a dict with keys: answer, sources, insufficient_evidence.
     """
@@ -37,42 +36,43 @@ def generate_response(
     if conversation_history is None:
         conversation_history = []
     
-    # 1. Search for relevant reviews and descriptions
-    search_results = search_similar_content(product_id, user_message, top_k=5)
+    # 1. Search for relevant reviews only (skip marketing description copy)
+    search_results = search_similar_content(
+        product_id, user_message, top_k=10, content_type="review"
+    )
     
     # Debug logging
     print(f"[DEBUG] Search results for '{user_message}':")
-    print(f"  - Found {len(search_results['documents'])} documents")
+    print(f"  - Found {len(search_results['documents'])} reviews")
     if search_results['documents']:
         print(f"  - First result type: {search_results['metadatas'][0].get('type', 'unknown')}")
     else:
-        print("  - WARNING: No documents found! Check embeddings.")
+        print("  - WARNING: No reviews found! Check embeddings.")
     
     # 2. Build context, numbering each review so the answer can cite it
     context_parts = []
     sources = []
     
     for doc, meta in zip(search_results['documents'], search_results['metadatas']):
-        if meta['type'] == 'description':
-            context_parts.append(f"[Product Description]\n{doc}\n")
-        elif meta['type'] == 'review':
-            marker = len(sources) + 1
-            rating = meta.get('rating', 'N/A')
-            date = meta.get('date') or ""
-            review_id = meta.get('review_id', f"review_{marker}")
-            
-            label = f"[{marker}] Review {review_id} - Rating: {rating}"
-            if date:
-                label += f" - Date: {date}"
-            context_parts.append(f"{label}\n{doc}\n")
-            
-            sources.append({
-                "marker": marker,
-                "review_id": review_id,
-                "content": doc,
-                "rating": _parse_rating(rating),
-                "date": date or None
-            })
+        if meta.get('type') != 'review':
+            continue
+        marker = len(sources) + 1
+        rating = meta.get('rating', 'N/A')
+        date = meta.get('date') or ""
+        review_id = meta.get('review_id', f"review_{marker}")
+        
+        label = f"[{marker}] Review {review_id} - Rating: {rating}"
+        if date:
+            label += f" - Date: {date}"
+        context_parts.append(f"{label}\n{doc}\n")
+        
+        sources.append({
+            "marker": marker,
+            "review_id": review_id,
+            "content": doc,
+            "rating": _parse_rating(rating),
+            "date": date or None
+        })
     
     context = "\n".join(context_parts)
     
@@ -88,20 +88,20 @@ def generate_response(
     
     # 3. Build prompt
     system_prompt = f"""You are a product review expert assistant.
-When users ask about a product, provide accurate and helpful answers based on the provided product descriptions and actual user reviews.
+When users ask about a product, provide accurate and helpful answers based only on the provided actual user reviews.
 
 Follow these rules:
-1. Answer only based on the provided context (product descriptions and reviews). Never use outside knowledge.
-2. Every factual claim from a review must include that review's marker inline, e.g. "Battery lasts a full day [1]." Combine markers when several reviews agree, e.g. "[2][3]". Do this for the whole answer — do not drop citations after the first paragraph.
-3. Only use markers that appear in the context below. Never invent a marker number.
+1. Answer only based on the provided user reviews. Never use outside knowledge or product marketing copy.
+2. You may paraphrase reviews in natural language — you do not need to quote them verbatim. But every factual claim that comes from a review must still include that review's marker inline, e.g. "Battery lasts a full day [1]." If several reviews support the same point, combine markers, e.g. "[2][3]". Do this for the whole answer — do not drop citations after the first paragraph. If no review in the context actually supports a sentence, do not write that sentence.
+3. Only attach a marker when that specific review supports the claim. Do not add a marker just because a review is loosely related to the topic. Only use markers that appear in the context below. Never invent a marker number.
 4. Balance positives with caveats. If the context mentions risks, limitations, conditions of use (e.g. season, water temperature, double-cleansing, skin type), packaging issues, or "not a cure / not enough alone" points, include them even when the overall tone is positive. Do not answer with praise only when caveats exist in context.
 5. When reviews disagree, that is still enough evidence. Lead with the majority/most common view if the context supports it, then acknowledge the minority with citations. Name the conditions under which the negative side appears. End with a short practical tip from the reviews when available (e.g. moisturize after, lukewarm water, seal the pump). Do not use vague "mixed / unclear / hard to say" without citing concrete opinions.
 6. Stay on the asked topic. Do not drag in unrelated review details just because they appeared in retrieval.
 7. Use {INSUFFICIENT_EVIDENCE_TOKEN} on the first line ONLY when the context does not discuss the asked topic at all. Conflicting opinions are not insufficient evidence. Do not guess or fill gaps with outside knowledge.
-8. Respond in friendly and natural language that users can easily understand. Match the user's language when possible.
+8. Respond in friendly and natural language that users can easily understand. Match the user's language when possible. Natural wording never excuses missing citation markers.
 9. Emphasize points commonly mentioned across multiple reviews.
 
-Product Information:
+User Reviews:
 {context}
 """
     
@@ -129,7 +129,8 @@ Product Information:
         
         answer = (response.choices[0].message.content or "").strip()
         
-        # 6. Resolve evidence state and keep only the reviews the answer actually cited
+        # 6. Resolve evidence state; keep all retrieved reviews as sources
+        # (inline [n] markers still show which ones the answer cited)
         insufficient_evidence = answer.startswith(INSUFFICIENT_EVIDENCE_TOKEN)
         if insufficient_evidence:
             answer = answer[len(INSUFFICIENT_EVIDENCE_TOKEN):].lstrip(" :-\n")
@@ -140,11 +141,7 @@ Product Information:
                 "sources": [],
                 "insufficient_evidence": True
             }
-        
-        cited_markers = {int(m) for m in re.findall(r"\[(\d+)\]", answer)}
-        if cited_markers:
-            sources = [s for s in sources if s["marker"] in cited_markers]
-        
+
         return {
             "answer": answer,
             "sources": sources,

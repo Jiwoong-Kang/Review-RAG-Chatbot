@@ -236,6 +236,41 @@ const Chat = (() => {
         }
     }
 
+    async function clearHistory(productId, productName) {
+        if (!Auth.isLoggedIn()) {
+            alert('Sign in to manage chat history.');
+            return;
+        }
+        const label = productName || 'this product';
+        const ok = window.confirm(
+            `Clear all chat history for "${label}"?\nThis cannot be undone.`
+        );
+        if (!ok) return;
+
+        try {
+            await Auth.apiJson(`/api/chat/history/${encodeURIComponent(productId)}`, {
+                method: 'DELETE',
+            });
+
+            if (AppState.currentProductId === productId) {
+                AppState.conversationHistory = [];
+                chatContainer.innerHTML = '';
+                const welcome = document.createElement('div');
+                welcome.className = 'message assistant';
+                welcome.innerHTML = `
+                    <div class="message-content">
+                        Chat history cleared. Ask me anything about ${label}.
+                    </div>
+                `;
+                chatContainer.appendChild(welcome);
+                setInputEnabled(true);
+            }
+        } catch (error) {
+            console.error('Failed to clear chat history:', error);
+            alert('Unable to clear chat history: ' + error.message);
+        }
+    }
+
     function bind() {
         sendBtn.addEventListener('click', send);
         messageInput.addEventListener('keypress', (e) => {
@@ -246,5 +281,5 @@ const Chat = (() => {
         });
     }
 
-    return { open, send, reset, bind, showError };
+    return { open, send, reset, bind, showError, clearHistory };
 })();

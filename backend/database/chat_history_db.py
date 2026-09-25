@@ -58,3 +58,15 @@ class ChatHistoryDatabase:
             return {"status": "success", "message": result.data[0] if result.data else payload}
         except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
+
+    @staticmethod
+    def clear_messages(access_token: str, product_id: str) -> dict:
+        try:
+            user = AuthService.get_user(access_token)
+            if not user:
+                return {"status": "error", "message": "Unauthorized"}
+            client = user_client(access_token)
+            client.table("chat_messages").delete().eq("product_id", product_id).execute()
+            return {"status": "success"}
+        except _DB_ERRORS as e:
+            return {"status": "error", "message": str(e)}

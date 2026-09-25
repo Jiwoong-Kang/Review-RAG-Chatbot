@@ -15,6 +15,14 @@ async def get_chat_history(product_id: str, token: str = Depends(bearer_token)):
     return result
 
 
+@router.delete("/history/{product_id}")
+async def clear_chat_history(product_id: str, token: str = Depends(bearer_token)):
+    result = ChatHistoryDatabase.clear_messages(token, product_id)
+    if result["status"] == "error":
+        raise HTTPException(status_code=400, detail=result["message"])
+    return result
+
+
 @router.post("")
 async def chat(
     message: ChatMessage,

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Review Chatbot</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
     <!-- Login / Sign up gate -->
@@ -53,10 +53,15 @@
             </div>
             <button id="uploadBtn" class="upload-btn">+ Upload Product</button>
 
-            <div class="saved-section">
-                <h2>My Saved Products</h2>
-                <div id="savedList" class="saved-list">
-                    <p class="empty-message">No saved products yet</p>
+            <div class="saved-section" id="savedSection">
+                <button type="button" id="savedToggle" class="saved-toggle" aria-expanded="false">
+                    <span id="savedToggleLabel">My Saved Products (0)</span>
+                    <span class="saved-toggle-chevron" aria-hidden="true">▲</span>
+                </button>
+                <div id="savedPanel" class="saved-panel">
+                    <div id="savedList" class="saved-list">
+                        <p class="empty-message">No saved products yet</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,7 +75,6 @@
                         <p id="productInfo" class="product-info"></p>
                     </div>
                     <div class="user-bar">
-                        <button type="button" id="openSaveBtn" class="open-save-btn hidden">Save to My List</button>
                         <span id="authUserLabel" class="user-email"></span>
                         <button type="button" id="signOutBtn" class="auth-btn secondary sign-out-btn" onclick="Auth.signOut()">Sign Out</button>
                     </div>
@@ -168,10 +172,10 @@
         </div>
     </div>
 
-    <script src="auth.js"></script>
-    <script src="products.js"></script>
-    <script src="chat.js"></script>
-    <script src="saved.js"></script>
-    <script src="app.js"></script>
+    <script src="auth.js?v=4"></script>
+    <script src="products.js?v=4"></script>
+    <script src="chat.js?v=4"></script>
+    <script src="saved.js?v=4"></script>
+    <script src="app.js?v=4"></script>
 </body>
 </html>

@@ -44,7 +44,39 @@ const Products = (() => {
                     ${imageHtml}
                     <h3>${product.name}</h3>
                     <p>${product.reviews_count} reviews</p>
+                    <div class="product-item-menu">
+                        <button type="button" class="product-menu-btn" aria-label="Product options">...</button>
+                        <div class="product-menu-dropdown">
+                            <button type="button" class="save-product-btn">Save to My List</button>
+                            <button type="button" class="clear-chat-btn">Clear chat for this product</button>
+                        </div>
+                    </div>
                 `;
+
+                const menuBtn = item.querySelector('.product-menu-btn');
+                const dropdown = item.querySelector('.product-menu-dropdown');
+                const saveBtn = item.querySelector('.save-product-btn');
+                const clearBtn = item.querySelector('.clear-chat-btn');
+
+                menuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const wasOpen = dropdown.classList.contains('open');
+                    closeAllProductMenus();
+                    if (!wasOpen) dropdown.classList.add('open');
+                });
+
+                saveBtn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    closeAllProductMenus();
+                    await Saved.openForProduct(product.product_id);
+                });
+
+                clearBtn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    closeAllProductMenus();
+                    await Chat.clearHistory(product.product_id, product.name);
+                });
+
                 item.addEventListener('click', () => select(product.product_id));
                 productList.appendChild(item);
             });
@@ -52,6 +84,12 @@ const Products = (() => {
             console.error('Failed to load products:', error);
             Chat.showError('Unable to load product list.');
         }
+    }
+
+    function closeAllProductMenus() {
+        document.querySelectorAll('.product-menu-dropdown.open').forEach((el) => {
+            el.classList.remove('open');
+        });
     }
 
     async function select(productId) {
@@ -146,6 +184,9 @@ const Products = (() => {
         window.addEventListener('click', (e) => {
             if (e.target === uploadModal) {
                 uploadModal.style.display = 'none';
+            }
+            if (!e.target.closest('.product-item-menu')) {
+                closeAllProductMenus();
             }
         });
         submitUpload.addEventListener('click', upload);
