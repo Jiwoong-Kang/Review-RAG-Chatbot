@@ -9,29 +9,26 @@ router = APIRouter(prefix="/api/products", tags=["products"])
 @router.post("/upload")
 async def upload_product(product: ProductUpload):
     """Upload product information and reviews."""
-    try:
-        result = await ProductDatabase.create_product(
-            product_id=product.product_id,
-            name=product.name,
-            description=product.description,
-            image=product.image,
-            reviews=[r.dict() for r in product.reviews],
-        )
+    result = await ProductDatabase.create_product(
+        product_id=product.product_id,
+        name=product.name,
+        description=product.description,
+        image=product.image,
+        reviews=[r.dict() for r in product.reviews],
+    )
 
-        if result["status"] == "error":
-            raise HTTPException(status_code=500, detail=result["message"])
+    if result["status"] == "error":
+        raise HTTPException(status_code=500, detail=result["message"])
 
-        from vector_store import create_embeddings
-        reviews_dict = [r.dict() for r in product.reviews]
-        create_embeddings(product.product_id, product.description, reviews_dict)
+    from vector_store import create_embeddings
+    reviews_dict = [r.dict() for r in product.reviews]
+    create_embeddings(product.product_id, product.description, reviews_dict)
 
-        return {
-            "status": "success",
-            "product_id": product.product_id,
-            "reviews_count": len(product.reviews),
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    return {
+        "status": "success",
+        "product_id": product.product_id,
+        "reviews_count": len(product.reviews),
+    }
 
 
 @router.get("")

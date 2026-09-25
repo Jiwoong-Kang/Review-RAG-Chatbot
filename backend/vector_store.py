@@ -1,6 +1,8 @@
 import os
 
-from openai import OpenAI
+import httpx
+from openai import OpenAI, OpenAIError
+from postgrest.exceptions import APIError
 
 from database.supabase_client import supabase
 
@@ -8,6 +10,8 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 EMBEDDING_MODEL = "text-embedding-3-small"
 EMBEDDING_DIMENSIONS = 1536
+
+_STORE_ERRORS = (APIError, httpx.HTTPError, OpenAIError)
 
 
 def _embed_texts(texts: list[str]) -> list[list[float]]:
@@ -81,7 +85,7 @@ def create_embeddings(product_id: str, description: str, reviews: list[dict]):
             print("  - Verification: Embeddings successfully saved ✓")
         else:
             print("  - WARNING: Verification failed - no embeddings found!")
-    except Exception as e:
+    except _STORE_ERRORS as e:
         print(f"  - WARNING: Could not verify embeddings: {e}")
 
 
@@ -126,7 +130,7 @@ def search_similar_content(product_id: str, query: str, top_k: int = 5):
             "metadatas": metadatas,
             "distances": distances,
         }
-    except Exception as e:
+    except _STORE_ERRORS as e:
         print(f"Error searching: {e}")
         return {"ids": [], "documents": [], "metadatas": [], "distances": []}
 
@@ -136,7 +140,7 @@ def delete_embeddings(product_id: str):
     try:
         supabase.table("document_embeddings").delete().eq("product_id", product_id).execute()
         print(f"✓ Deleted embeddings for product {product_id}")
-    except Exception as e:
+    except _STORE_ERRORS as e:
         print(f"Error deleting embeddings: {e}")
 
 
@@ -169,6 +173,6 @@ def get_all_reviews_summary(product_id: str):
             "reviews": reviews,
             "total_reviews": len(reviews),
         }
-    except Exception as e:
+    except _STORE_ERRORS as e:
         print(f"Error getting summary: {e}")
         return {"description": "", "reviews": [], "total_reviews": 0}

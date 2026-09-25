@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends, HTTPException
 
 from database import AuthService
-from routers.schemas import AuthSignUp, AuthSignIn
 from routers.deps import bearer_token
+from routers.schemas import AuthSignIn, AuthSignUp
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 

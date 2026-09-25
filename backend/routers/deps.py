@@ -1,8 +1,7 @@
-from typing import Optional
 from fastapi import Header, HTTPException
 
 
-def bearer_token(authorization: Optional[str] = Header(None)) -> str:
+def bearer_token(authorization: str | None = Header(None)) -> str:
     if not authorization or not authorization.lower().startswith("bearer "):
         raise HTTPException(status_code=401, detail="Missing or invalid Authorization header")
     token = authorization.split(" ", 1)[1].strip()
@@ -11,7 +10,7 @@ def bearer_token(authorization: Optional[str] = Header(None)) -> str:
     return token
 
 
-def optional_bearer(authorization: Optional[str] = Header(None)) -> Optional[str]:
+def optional_bearer(authorization: str | None = Header(None)) -> str | None:
     if not authorization:
         return None
     if not authorization.lower().startswith("bearer "):

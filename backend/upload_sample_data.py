@@ -4,9 +4,10 @@ Upload sample products from sample_data/*.json to the database via API
 """
 
 import json
-import requests
 import sys
 from pathlib import Path
+
+import requests
 
 # API endpoint
 API_BASE = "http://localhost:8000"
@@ -49,7 +50,7 @@ def delete_product(product_id):
         else:
             print(f"   ⚠️  Warning: Could not delete product: {product_id}")
             return False
-    except Exception as e:
+    except requests.RequestException as e:
         print(f"   ⚠️  Warning: Error deleting product: {e}")
         return False
 
@@ -83,20 +84,20 @@ def upload_product(product_data, auto_delete=True):
         # Check if it's a duplicate key error
         if "duplicate key" in error_text.lower() and auto_delete:
             print(f"⚠️  Product already exists: {product_data['name']}")
-            print(f"   Attempting to delete and re-upload...")
+            print("   Attempting to delete and re-upload...")
             
             if delete_product(product_data['product_id']):
                 # Try uploading again
-                print(f"   Retrying upload...")
+                print("   Retrying upload...")
                 return upload_product(product_data, auto_delete=False)
             else:
-                print(f"❌ Could not delete existing product")
+                print("❌ Could not delete existing product")
                 return False
         else:
             print(f"❌ HTTP Error: {e}")
             print(f"   Response: {error_text}")
             return False
-    except Exception as e:
+    except requests.RequestException as e:
         print(f"❌ Unexpected error: {e}")
         return False
 
@@ -114,7 +115,7 @@ def main():
         print(f"   Version: {server_info.get('version', 'Unknown')}")
         print(f"   Database: {server_info.get('database', 'Unknown')}")
         print()
-    except:
+    except requests.RequestException:
         print(f"❌ Cannot connect to API server at {API_BASE}")
         print()
         print("Please start the backend server first:")
@@ -155,7 +156,7 @@ def main():
     
     if success_count > 0:
         print("🎉 Products uploaded successfully!")
-        print(f"   Visit http://localhost:3000 to see them in action")
+        print("   Visit http://localhost:3000 to see them in action")
     
     if fail_count > 0:
         print("⚠️  Some uploads failed. Check the errors above.")

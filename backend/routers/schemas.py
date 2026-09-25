@@ -1,34 +1,33 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
 
 
 class Review(BaseModel):
     review_id: str
     content: str
-    rating: Optional[float] = None
-    date: Optional[str] = None
+    rating: float | None = None
+    date: str | None = None
 
 
 class Product(BaseModel):
     product_id: str
     name: str
     description: str
-    image: Optional[str] = None
-    reviews: List[Review] = []
+    image: str | None = None
+    reviews: list[Review] = []
 
 
 class ChatMessage(BaseModel):
     product_id: str
     message: str
-    conversation_history: Optional[List[dict]] = []
+    conversation_history: list[dict] | None = []
 
 
 class ProductUpload(BaseModel):
     product_id: str
     name: str
     description: str
-    image: Optional[str] = None
-    reviews: List[Review]
+    image: str | None = None
+    reviews: list[Review]
 
 
 class AuthSignUp(BaseModel):
@@ -45,4 +44,4 @@ class AuthSignIn(BaseModel):
 class SavedProductPayload(BaseModel):
     product_id: str
     interest_level: str
-    personal_note: Optional[str] = ""
+    personal_note: str | None = ""

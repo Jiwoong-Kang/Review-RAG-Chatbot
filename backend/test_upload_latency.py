@@ -29,7 +29,7 @@ def timed(label: str):
 
 def main() -> None:
     sample_dir = Path(__file__).resolve().parent.parent / "sample_data"
-    sample_path = sorted(sample_dir.glob("*.json"))[0]
+    sample_path = min(sample_dir.glob("*.json"))
     product = json.loads(sample_path.read_text(encoding="utf-8"))
     product_id = product["product_id"]
     description = product["description"]
@@ -42,8 +42,8 @@ def main() -> None:
     print()
 
     with timed("import vector_store"):
-        from vector_store import _embed_texts, search_similar_content
         from database.supabase_client import supabase
+        from vector_store import _embed_texts, search_similar_content
 
     with timed("supabase insert product"):
         supabase.table("products").insert(

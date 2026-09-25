@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends, HTTPException
 
 from database import SavedProductDatabase
-from routers.schemas import SavedProductPayload
 from routers.deps import bearer_token
+from routers.schemas import SavedProductPayload
 
 router = APIRouter(prefix="/api/saved-products", tags=["saved-products"])
 

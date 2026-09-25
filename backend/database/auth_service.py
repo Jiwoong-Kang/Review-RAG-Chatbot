@@ -1,5 +1,6 @@
 import re
-from typing import Dict, Optional
+
+from supabase_auth.errors import AuthError
 
 from .supabase_client import supabase, user_client
 
@@ -16,13 +17,13 @@ def _username_to_email(username: str) -> str:
     return f"{_normalize_username(username)}@{INTERNAL_EMAIL_DOMAIN}"
 
 
-def _validate_username(username: str) -> Optional[str]:
+def _validate_username(username: str) -> str | None:
     if not USERNAME_RE.match(username or ""):
         return "Username must be 3–30 characters: letters, numbers, underscore only."
     return None
 
 
-def _user_payload(user) -> Dict:
+def _user_payload(user) -> dict:
     meta = getattr(user, "user_metadata", None) or {}
     if not isinstance(meta, dict):
         meta = {}
@@ -42,7 +43,7 @@ class AuthService:
     """Username/password auth via Supabase (synthetic internal email, no email UX)."""
 
     @staticmethod
-    def sign_up(name: str, username: str, password: str) -> Dict:
+    def sign_up(name: str, username: str, password: str) -> dict:
         try:
             username = _normalize_username(username)
             name = (name or "").strip()
@@ -83,7 +84,7 @@ class AuthService:
                 "refresh_token": session.refresh_token,
                 "user": _user_payload(user),
             }
-        except Exception as e:
+        except AuthError as e:
             message = str(e)
             lower = message.lower()
             if "already" in lower or "registered" in lower:
@@ -91,7 +92,7 @@ class AuthService:
             return {"status": "error", "message": message}
 
     @staticmethod
-    def sign_in(username: str, password: str) -> Dict:
+    def sign_in(username: str, password: str) -> dict:
         try:
             username = _normalize_username(username)
             err = _validate_username(username)
@@ -111,7 +112,7 @@ class AuthService:
                 "refresh_token": session.refresh_token,
                 "user": _user_payload(user),
             }
-        except Exception as e:
+        except AuthError as e:
             message = str(e)
             lower = message.lower()
             if "email not confirmed" in lower:
@@ -128,22 +129,22 @@ class AuthService:
             return {"status": "error", "message": message}
 
     @staticmethod
-    def sign_out(access_token: str) -> Dict:
+    def sign_out(access_token: str) -> dict:
         try:
             client = user_client(access_token)
             client.auth.sign_out()
             return {"status": "success"}
-        except Exception as e:
+        except AuthError as e:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
-    def get_user(access_token: str) -> Optional[Dict]:
+    def get_user(access_token: str) -> dict | None:
         try:
             result = supabase.auth.get_user(access_token)
             user = result.user
             if not user:
                 return None
             return _user_payload(user)
-        except Exception as e:
+        except AuthError as e:
             print(f"Error getting user: {e}")
             return None

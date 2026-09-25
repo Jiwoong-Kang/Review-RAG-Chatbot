@@ -1,8 +1,9 @@
 import os
 import re
-from typing import Dict, List, Optional
-from openai import OpenAI
-from vector_store import search_similar_content, get_all_reviews_summary
+
+from openai import OpenAI, OpenAIError
+
+from vector_store import get_all_reviews_summary, search_similar_content
 
 # Initialize OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -12,7 +13,7 @@ INSUFFICIENT_EVIDENCE_TOKEN = "INSUFFICIENT_EVIDENCE"
 
 NO_EVIDENCE_MESSAGE = "I don't have any reviews indexed for this product yet, so I can't answer from evidence."
 
-def _parse_rating(raw_rating: str) -> Optional[float]:
+def _parse_rating(raw_rating: str) -> float | None:
     """Ratings are stored as strings in embedding metadata ('4.5', 'N/A')."""
     try:
         return float(raw_rating)
@@ -22,8 +23,8 @@ def _parse_rating(raw_rating: str) -> Optional[float]:
 def generate_response(
     product_id: str,
     user_message: str,
-    conversation_history: Optional[List[dict]] = None
-) -> Dict:
+    conversation_history: list[dict] | None = None
+) -> dict:
     """
     Generate responses using RAG (Retrieval-Augmented Generation) pattern.
     1. Search for relevant reviews/descriptions related to user's question
@@ -45,7 +46,7 @@ def generate_response(
     if search_results['documents']:
         print(f"  - First result type: {search_results['metadatas'][0].get('type', 'unknown')}")
     else:
-        print(f"  - WARNING: No documents found! Check embeddings.")
+        print("  - WARNING: No documents found! Check embeddings.")
     
     # 2. Build context, numbering each review so the answer can cite it
     context_parts = []
@@ -78,7 +79,7 @@ def generate_response(
     # Nothing retrieved: report missing evidence instead of asking the model to invent one
     if not context.strip():
         print(f"[WARNING] Empty context for product {product_id}!")
-        print(f"[WARNING] This means embeddings might not be created properly.")
+        print("[WARNING] This means embeddings might not be created properly.")
         return {
             "answer": NO_EVIDENCE_MESSAGE,
             "sources": [],
@@ -150,10 +151,10 @@ Product Information:
             "insufficient_evidence": False
         }
         
-    except Exception as e:
+    except OpenAIError as e:
         print(f"Error generating response: {e}")
         return {
-            "answer": f"Sorry, an error occurred while generating the response: {str(e)}",
+            "answer": f"Sorry, an error occurred while generating the response: {e!s}",
             "sources": [],
             "insufficient_evidence": False
         }
@@ -200,7 +201,7 @@ Please write in a friendly and easy-to-understand manner."""
         
         return response.choices[0].message.content
         
-    except Exception as e:
+    except OpenAIError as e:
         print(f"Error generating summary: {e}")
-        return f"An error occurred while generating summary: {str(e)}"
+        return f"An error occurred while generating summary: {e!s}"
 

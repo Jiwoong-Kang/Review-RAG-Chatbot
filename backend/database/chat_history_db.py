@@ -1,14 +1,19 @@
-from typing import List, Dict, Optional, Any
+from typing import Any
 
-from .supabase_client import user_client
+import httpx
+from postgrest.exceptions import APIError
+
 from .auth_service import AuthService
+from .supabase_client import user_client
+
+_DB_ERRORS = (APIError, httpx.HTTPError)
 
 
 class ChatHistoryDatabase:
     """Per-user, per-product chat messages (RLS via user JWT)."""
 
     @staticmethod
-    def list_messages(access_token: str, product_id: str) -> Dict:
+    def list_messages(access_token: str, product_id: str) -> dict:
         try:
             user = AuthService.get_user(access_token)
             if not user:
@@ -22,7 +27,7 @@ class ChatHistoryDatabase:
                 .execute()
             )
             return {"status": "success", "messages": result.data or []}
-        except Exception as e:
+        except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
@@ -31,9 +36,9 @@ class ChatHistoryDatabase:
         product_id: str,
         role: str,
         content: str,
-        sources: Optional[List[Any]] = None,
+        sources: list[Any] | None = None,
         insufficient_evidence: bool = False,
-    ) -> Dict:
+    ) -> dict:
         try:
             user = AuthService.get_user(access_token)
             if not user:
@@ -51,5 +56,5 @@ class ChatHistoryDatabase:
             }
             result = client.table("chat_messages").insert(payload).execute()
             return {"status": "success", "message": result.data[0] if result.data else payload}
-        except Exception as e:
+        except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}

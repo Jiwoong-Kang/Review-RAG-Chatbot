@@ -1,17 +1,24 @@
-from typing import Dict
-from datetime import datetime
+from datetime import datetime, timezone
+from typing import ClassVar
 
-from .supabase_client import supabase, user_client
+import httpx
+from postgrest.exceptions import APIError
+
 from .auth_service import AuthService
+from .supabase_client import supabase, user_client
+
+_DB_ERRORS = (APIError, httpx.HTTPError)
 
 
 class SavedProductDatabase:
     """Per-user saved products; all reads/writes go through the user JWT (RLS)."""
 
-    VALID_LEVELS = {"interested", "maybe", "not_for_me"}
+    VALID_LEVELS: ClassVar[frozenset[str]] = frozenset(
+        {"interested", "maybe", "not_for_me"}
+    )
 
     @staticmethod
-    def list_saved(access_token: str) -> Dict:
+    def list_saved(access_token: str) -> dict:
         try:
             client = user_client(access_token)
             result = (
@@ -33,7 +40,7 @@ class SavedProductDatabase:
                     )
                     if prod_result.data:
                         product = prod_result.data[0]
-                except Exception:
+                except _DB_ERRORS:
                     product = None
                 enriched.append({
                     **row,
@@ -41,11 +48,11 @@ class SavedProductDatabase:
                     "product_image": product.get("image") if product else None,
                 })
             return {"status": "success", "items": enriched}
-        except Exception as e:
+        except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
-    def get_saved_for_product(access_token: str, product_id: str) -> Dict:
+    def get_saved_for_product(access_token: str, product_id: str) -> dict:
         try:
             user = AuthService.get_user(access_token)
             if not user:
@@ -60,7 +67,7 @@ class SavedProductDatabase:
             )
             item = result.data[0] if result.data else None
             return {"status": "success", "item": item}
-        except Exception as e:
+        except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
@@ -69,7 +76,7 @@ class SavedProductDatabase:
         product_id: str,
         interest_level: str,
         personal_note: str = "",
-    ) -> Dict:
+    ) -> dict:
         try:
             if interest_level not in SavedProductDatabase.VALID_LEVELS:
                 return {
@@ -90,7 +97,7 @@ class SavedProductDatabase:
                 "product_id": product_id,
                 "interest_level": interest_level,
                 "personal_note": personal_note or "",
-                "updated_at": datetime.now().isoformat(),
+                "updated_at": datetime.now(timezone.utc).isoformat(),
             }
             result = (
                 client.table("saved_products")
@@ -98,11 +105,11 @@ class SavedProductDatabase:
                 .execute()
             )
             return {"status": "success", "item": result.data[0] if result.data else payload}
-        except Exception as e:
+        except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
-    def delete_saved(access_token: str, product_id: str) -> Dict:
+    def delete_saved(access_token: str, product_id: str) -> dict:
         try:
             user = AuthService.get_user(access_token)
             if not user:
@@ -110,5 +117,5 @@ class SavedProductDatabase:
             client = user_client(access_token)
             client.table("saved_products").delete().eq("product_id", product_id).execute()
             return {"status": "success"}
-        except Exception as e:
+        except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
