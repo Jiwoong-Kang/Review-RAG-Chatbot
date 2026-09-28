@@ -271,10 +271,6 @@ const Auth = (() => {
     function bindUi() {
         document.getElementById('tabSignIn')?.addEventListener('click', () => setMode('signin'));
         document.getElementById('tabSignUp')?.addEventListener('click', () => setMode('signup'));
-        document.getElementById('signInBtn')?.addEventListener('click', signIn);
-        document.getElementById('signUpBtn')?.addEventListener('click', signUp);
-        document.getElementById('signOutBtn')?.addEventListener('click', signOut);
-
         document.getElementById('signInPassword')?.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();

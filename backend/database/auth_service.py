@@ -2,7 +2,7 @@ import re
 
 from supabase_auth.errors import AuthError
 
-from .supabase_client import supabase, user_client
+from .supabase_client import supabase
 
 # Supabase Auth still needs an email under the hood; users only see username.
 INTERNAL_EMAIL_DOMAIN = "users.local"
@@ -131,8 +131,7 @@ class AuthService:
     @staticmethod
     def sign_out(access_token: str) -> dict:
         try:
-            client = user_client(access_token)
-            client.auth.sign_out()
+            supabase.auth.admin.sign_out(access_token, "local")
             return {"status": "success"}
         except AuthError as e:
             return {"status": "error", "message": str(e)}
