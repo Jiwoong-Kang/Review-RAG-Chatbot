@@ -7,9 +7,9 @@ router = APIRouter(prefix="/api/products", tags=["products"])
 
 
 @router.post("/upload")
-async def upload_product(product: ProductUpload):
+def upload_product(product: ProductUpload):
     """Upload product information and reviews."""
-    result = await ProductDatabase.create_product(
+    result = ProductDatabase.create_product(
         product_id=product.product_id,
         name=product.name,
         description=product.description,
@@ -32,9 +32,9 @@ async def upload_product(product: ProductUpload):
 
 
 @router.get("")
-async def list_products():
+def list_products():
     """Get all products list."""
-    products = await ProductDatabase.get_all_products()
+    products = ProductDatabase.get_all_products()
     return {
         "products": [
             {
@@ -50,25 +50,25 @@ async def list_products():
 
 
 @router.get("/{product_id}")
-async def get_product(product_id: str):
+def get_product(product_id: str):
     """Get product information."""
-    product = await ProductDatabase.get_product(product_id)
+    product = ProductDatabase.get_product(product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
     return product
 
 
 @router.delete("/{product_id}")
-async def delete_product(product_id: str):
+def delete_product(product_id: str):
     """Delete a product."""
-    product = await ProductDatabase.get_product(product_id)
+    product = ProductDatabase.get_product(product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
     from vector_store import delete_embeddings
     delete_embeddings(product_id)
 
-    result = await ProductDatabase.delete_product(product_id)
+    result = ProductDatabase.delete_product(product_id)
     if result["status"] == "error":
         raise HTTPException(status_code=500, detail=result["message"])
 
@@ -76,14 +76,14 @@ async def delete_product(product_id: str):
 
 
 @router.post("/{product_id}/reviews")
-async def add_review(product_id: str, review: Review):
+def add_review(product_id: str, review: Review):
     """Add a review to a product."""
-    result = await ProductDatabase.add_review(product_id, review.dict())
+    result = ProductDatabase.add_review(product_id, review.dict())
     if result["status"] == "error":
         raise HTTPException(status_code=500, detail=result["message"])
 
     from vector_store import create_embeddings
-    product = await ProductDatabase.get_product(product_id)
+    product = ProductDatabase.get_product(product_id)
     create_embeddings(product_id, product["description"], product.get("reviews", []))
 
     return {"status": "success", "message": "Review added"}

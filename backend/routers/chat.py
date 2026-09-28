@@ -8,7 +8,7 @@ router = APIRouter(prefix="/api/chat", tags=["chat"])
 
 
 @router.get("/history/{product_id}")
-async def get_chat_history(product_id: str, token: str = Depends(bearer_token)):
+def get_chat_history(product_id: str, token: str = Depends(bearer_token)):
     result = ChatHistoryDatabase.list_messages(token, product_id)
     if result["status"] == "error":
         raise HTTPException(status_code=400, detail=result["message"])
@@ -16,7 +16,7 @@ async def get_chat_history(product_id: str, token: str = Depends(bearer_token)):
 
 
 @router.delete("/history/{product_id}")
-async def clear_chat_history(product_id: str, token: str = Depends(bearer_token)):
+def clear_chat_history(product_id: str, token: str = Depends(bearer_token)):
     result = ChatHistoryDatabase.clear_messages(token, product_id)
     if result["status"] == "error":
         raise HTTPException(status_code=400, detail=result["message"])
@@ -24,12 +24,12 @@ async def clear_chat_history(product_id: str, token: str = Depends(bearer_token)
 
 
 @router.post("")
-async def chat(
+def chat(
     message: ChatMessage,
     token: str | None = Depends(optional_bearer),
 ):
     """Answer questions about the product."""
-    product = await ProductDatabase.get_product(message.product_id)
+    product = ProductDatabase.get_product(message.product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 

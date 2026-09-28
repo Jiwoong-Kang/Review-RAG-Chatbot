@@ -12,7 +12,7 @@ class ProductDatabase:
     """Product database management using Supabase"""
 
     @staticmethod
-    async def create_product(
+    def create_product(
         product_id: str,
         name: str,
         description: str,
@@ -38,7 +38,7 @@ class ProductDatabase:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
-    async def get_product(product_id: str) -> dict | None:
+    def get_product(product_id: str) -> dict | None:
         """Get a product by ID"""
         try:
             result = supabase.table("products").select("*").eq("id", product_id).execute()
@@ -50,7 +50,7 @@ class ProductDatabase:
             return None
 
     @staticmethod
-    async def get_all_products() -> list[dict]:
+    def get_all_products() -> list[dict]:
         """Get all products"""
         try:
             result = supabase.table("products").select(
@@ -62,7 +62,7 @@ class ProductDatabase:
             return []
 
     @staticmethod
-    async def update_product(
+    def update_product(
         product_id: str,
         name: str | None = None,
         description: str | None = None,
@@ -87,7 +87,7 @@ class ProductDatabase:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
-    async def delete_product(product_id: str) -> dict:
+    def delete_product(product_id: str) -> dict:
         """Delete a product"""
         try:
             supabase.table("products").delete().eq("id", product_id).execute()
@@ -96,10 +96,10 @@ class ProductDatabase:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
-    async def add_review(product_id: str, review: dict) -> dict:
+    def add_review(product_id: str, review: dict) -> dict:
         """Add a review to a product"""
         try:
-            product = await ProductDatabase.get_product(product_id)
+            product = ProductDatabase.get_product(product_id)
             if not product:
                 return {"status": "error", "message": "Product not found"}
 
