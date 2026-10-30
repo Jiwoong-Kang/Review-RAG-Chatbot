@@ -33,12 +33,15 @@ Several helpers return empty lists / empty summaries on DB or network failure. C
 ### 9. Similarity threshold on search
 `search_similar_content` always returns up to `top_k` rows by rank, even when they are weakly related. Drop results below a similarity cutoff so the model gets less noise.
 
+### 10. Wire up product summary in the UI
+`generate_product_summary` in `chat_engine.py` already builds an overall review summary (pros, cons, overall take, who it suits), but nothing calls it yet—no API route and no frontend entry point. Expose it (e.g. product detail page or a “Review overview” action) so users can see key points without asking a chat question first. Also fix stable review ordering (#6) before relying on the first-20 slice.
+
 ## Lower priority / cleanup
 
-### 10. Description embeddings vs chat usage
+### 11. Description embeddings vs chat usage
 Product descriptions are embedded and stored, but chat retrieval uses `content_type="review"` only. Decide whether to keep description vectors for future use / verification, or stop embedding them to save cost.
 
-### 11. Redundant `delete_embeddings` on product delete
+### 12. Redundant `delete_embeddings` on product delete
 Product delete already cascades to `document_embeddings`. Calling `delete_embeddings` first is redundant, and if product delete fails afterward the product can remain without embeddings.
 
 ## Suggested order
@@ -49,4 +52,5 @@ Product delete already cascades to `document_embeddings`. Calling `delete_embedd
 4. Safer embedding replace
 5. Real email auth
 6. Summary ordering, clearer errors, lighter list queries, similarity threshold
-7. Description-embedding policy and delete cleanup
+7. Wire up product summary UI
+8. Description-embedding policy and delete cleanup
