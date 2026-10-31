@@ -36,13 +36,28 @@ Several helpers return empty lists / empty summaries on DB or network failure. C
 ### 10. Wire up product summary in the UI
 `generate_product_summary` in `chat_engine.py` already builds an overall review summary (pros, cons, overall take, who it suits), but nothing calls it yet—no API route and no frontend entry point. Expose it (e.g. product detail page or a “Review overview” action) so users can see key points without asking a chat question first. Also fix stable review ordering (#6) before relying on the first-20 slice.
 
+### 11. Protect product write APIs with auth
+`products.py` upload / delete / add-review endpoints do not use `bearer_token`. The frontend login gate hides this in normal use, but anyone who can hit the API can create or delete products. Require auth (and later decide who is allowed to manage catalog data).
+
+### 12. Handle embedding failure after product upload/review add
+`upload_product` and `add_review` save to `products` first, then call `create_embeddings`. If embedding fails afterward, the product/review can exist while chat search has nothing useful. Return a clear partial-failure status, retry embeddings, or roll back / mark the product as not searchable until embeddings succeed.
+
+### 13. Align chat auth: optional API vs required UI
+`POST /api/chat` uses `optional_bearer`, but the frontend requires login before entering the app. Pick one policy: either allow true guest chat in both layers, or make the chat route require `bearer_token` like history/saved.
+
+### 14. Unify auth-related HTTP status codes
+Some routes map `"Unauthorized"` to 401 and others effectively surface auth/DB failures as 400. Standardize so the frontend can reliably detect “please sign in again” vs validation/server errors.
+
 ## Lower priority / cleanup
 
-### 11. Description embeddings vs chat usage
+### 15. Description embeddings vs chat usage
 Product descriptions are embedded and stored, but chat retrieval uses `content_type="review"` only. Decide whether to keep description vectors for future use / verification, or stop embedding them to save cost.
 
-### 12. Redundant `delete_embeddings` on product delete
+### 16. Redundant `delete_embeddings` on product delete
 Product delete already cascades to `document_embeddings`. Calling `delete_embeddings` first is redundant, and if product delete fails afterward the product can remain without embeddings.
+
+### 17. Tighten CORS for production
+`main.py` currently allows all origins (`allow_origins=["*"]`), which is fine for local development. Later restrict CORS to the real frontend origin(s).
 
 ## Suggested order
 
@@ -51,6 +66,8 @@ Product delete already cascades to `document_embeddings`. Calling `delete_embedd
 3. Incremental embeddings
 4. Safer embedding replace
 5. Real email auth
-6. Summary ordering, clearer errors, lighter list queries, similarity threshold
-7. Wire up product summary UI
-8. Description-embedding policy and delete cleanup
+6. Protect product write APIs; align chat auth policy
+7. Embedding failure handling after upload/review add
+8. Summary ordering, clearer errors, lighter list queries, similarity threshold, status-code consistency
+9. Wire up product summary UI
+10. Description-embedding policy, delete cleanup, CORS tightening
