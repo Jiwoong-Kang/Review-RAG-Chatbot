@@ -46,7 +46,8 @@ const Chat = (() => {
             card.className = 'source-card';
             card.dataset.marker = source.marker;
 
-            const parts = [`[${source.marker}]`, source.review_id];
+            const author = source.author_username || 'Anonymous';
+            const parts = [`[${source.marker}]`, author];
             if (source.rating !== null && source.rating !== undefined) parts.push(`★ ${source.rating}`);
             if (source.date) parts.push(source.date);
 

@@ -9,10 +9,16 @@ const Products = (() => {
     const productList = document.getElementById('productList');
     const uploadBtn = document.getElementById('uploadBtn');
     const uploadModal = document.getElementById('uploadModal');
-    const closeModal = document.querySelector('.close');
+    const closeModal = document.querySelector('#uploadModal .close');
     const submitUpload = document.getElementById('submitUpload');
     const productName = document.getElementById('productName');
     const productInfo = document.getElementById('productInfo');
+    const addReviewModal = document.getElementById('addReviewModal');
+    const closeAddReviewModal = document.getElementById('closeAddReviewModal');
+    const submitAddReview = document.getElementById('submitAddReview');
+    const addReviewMessage = document.getElementById('addReviewMessage');
+    const addReviewModalTitle = document.getElementById('addReviewModalTitle');
+    let addReviewProductId = null;
 
     function highlight(productId) {
         document.querySelectorAll('.product-item').forEach(item => {
@@ -48,6 +54,7 @@ const Products = (() => {
                         <button type="button" class="product-menu-btn" aria-label="Product options">...</button>
                         <div class="product-menu-dropdown">
                             <button type="button" class="save-product-btn">Save to My List</button>
+                            <button type="button" class="add-review-btn">Add review</button>
                             <button type="button" class="clear-chat-btn">Clear chat for this product</button>
                         </div>
                     </div>
@@ -56,6 +63,7 @@ const Products = (() => {
                 const menuBtn = item.querySelector('.product-menu-btn');
                 const dropdown = item.querySelector('.product-menu-dropdown');
                 const saveBtn = item.querySelector('.save-product-btn');
+                const addReviewBtn = item.querySelector('.add-review-btn');
                 const clearBtn = item.querySelector('.clear-chat-btn');
 
                 menuBtn.addEventListener('click', (e) => {
@@ -69,6 +77,12 @@ const Products = (() => {
                     e.stopPropagation();
                     closeAllProductMenus();
                     await Saved.openForProduct(product.product_id);
+                });
+
+                addReviewBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeAllProductMenus();
+                    openAddReview(product.product_id, product.name);
                 });
 
                 clearBtn.addEventListener('click', async (e) => {
@@ -167,6 +181,71 @@ const Products = (() => {
         }
     }
 
+    function openAddReview(productId, productLabel) {
+        addReviewProductId = productId;
+        addReviewModalTitle.textContent = `Add Review — ${productLabel || productId}`;
+        document.getElementById('addReviewContent').value = '';
+        document.getElementById('addReviewRating').value = '';
+        document.getElementById('addReviewDate').value = '';
+        addReviewMessage.textContent = '';
+        addReviewModal.style.display = 'block';
+    }
+
+    function closeAddReview() {
+        addReviewModal.style.display = 'none';
+        addReviewProductId = null;
+        addReviewMessage.textContent = '';
+    }
+
+    async function submitReview() {
+        if (!addReviewProductId) return;
+
+        const content = document.getElementById('addReviewContent').value.trim();
+        if (!content) {
+            addReviewMessage.textContent = 'Review content is required.';
+            return;
+        }
+
+        const ratingRaw = document.getElementById('addReviewRating').value.trim();
+        const dateRaw = document.getElementById('addReviewDate').value.trim();
+        const payload = {
+            review_id: `r_${Date.now()}`,
+            content: content,
+            rating: ratingRaw === '' ? null : Number(ratingRaw),
+            date: dateRaw || null,
+        };
+
+        if (payload.rating !== null && Number.isNaN(payload.rating)) {
+            addReviewMessage.textContent = 'Rating must be a number.';
+            return;
+        }
+
+        submitAddReview.disabled = true;
+        addReviewMessage.textContent = 'Adding…';
+        try {
+            await Auth.apiJson(
+                `/api/products/${encodeURIComponent(addReviewProductId)}/reviews`,
+                {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                }
+            );
+
+            const productId = addReviewProductId;
+            closeAddReview();
+            await load();
+            if (AppState.currentProductId === productId) {
+                await select(productId);
+            }
+            alert('Review added.');
+        } catch (error) {
+            console.error('Add review failed:', error);
+            addReviewMessage.textContent = 'Error: ' + error.message;
+        } finally {
+            submitAddReview.disabled = false;
+        }
+    }
+
     function resetList() {
         productList.innerHTML = '<p class="empty-message">Upload a product</p>';
         productName.textContent = 'Select a product';
@@ -181,9 +260,14 @@ const Products = (() => {
         closeModal.addEventListener('click', () => {
             uploadModal.style.display = 'none';
         });
+        closeAddReviewModal.addEventListener('click', closeAddReview);
+        submitAddReview.addEventListener('click', submitReview);
         window.addEventListener('click', (e) => {
             if (e.target === uploadModal) {
                 uploadModal.style.display = 'none';
+            }
+            if (e.target === addReviewModal) {
+                closeAddReview();
             }
             if (!e.target.closest('.product-item-menu')) {
                 closeAllProductMenus();
