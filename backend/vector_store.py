@@ -29,11 +29,28 @@ def _embed_texts(texts: list[str]) -> list[list[float]]:
     return [item.embedding for item in sorted_data]
 
 
-def create_embeddings(product_id: str, description: str, reviews: list[dict]):
-    """Upsert embeddings for a product description and its reviews into Supabase pgvector."""
-    # Replace any previous vectors for this product (re-upload / add-review safe)
-    supabase.table("document_embeddings").delete().eq("product_id", product_id).execute()
+def _review_embedding_row(product_id: str, review: dict, review_index: int, embedding: list[float]) -> dict:
+    return {
+        "id": f"{product_id}_review_{review_index}",
+        "product_id": product_id,
+        "content_type": "review",
+        "content": review.get("content", ""),
+        "review_id": review.get("review_id", f"review_{review_index}"),
+        "rating": str(review.get("rating", "N/A")),
+        "review_date": str(review.get("date") or ""),
+        "review_index": review_index,
+        "author_username": review.get("author_username") or None,
+        "embedding": embedding,
+    }
 
+
+def create_embeddings(product_id: str, description: str, reviews: list[dict]):
+    """Replace embeddings for a product without a delete-first gap.
+
+    1. Embed texts (OpenAI failure leaves existing vectors untouched)
+    2. Upsert new rows by primary key id
+    3. Delete only stale ids for this product that were not in this build
+    """
     documents = [description]
     rows_meta = [
         {
@@ -45,39 +62,51 @@ def create_embeddings(product_id: str, description: str, reviews: list[dict]):
             "rating": None,
             "review_date": None,
             "review_index": None,
+            "author_username": None,
         }
     ]
 
     for idx, review in enumerate(reviews):
-        content = review.get("content", "")
-        documents.append(content)
+        documents.append(review.get("content", ""))
         rows_meta.append(
             {
                 "id": f"{product_id}_review_{idx}",
                 "product_id": product_id,
                 "content_type": "review",
-                "content": content,
+                "content": review.get("content", ""),
                 "review_id": review.get("review_id", f"review_{idx}"),
                 "rating": str(review.get("rating", "N/A")),
                 "review_date": str(review.get("date") or ""),
                 "review_index": idx,
+                "author_username": review.get("author_username") or None,
             }
         )
 
     embeddings = _embed_texts(documents)
-    rows = []
-    for meta, embedding in zip(rows_meta, embeddings):
-        row = {**meta, "embedding": embedding}
-        rows.append(row)
+    rows = [{**meta, "embedding": emb} for meta, emb in zip(rows_meta, embeddings)]
+    new_ids = {row["id"] for row in rows}
 
-    # Supabase accepts batches; keep size modest for large review sets
     batch_size = 50
     for start in range(0, len(rows), batch_size):
-        supabase.table("document_embeddings").insert(rows[start : start + batch_size]).execute()
+        supabase.table("document_embeddings").upsert(
+            rows[start : start + batch_size]
+        ).execute()
+
+    existing = (
+        supabase.table("document_embeddings")
+        .select("id")
+        .eq("product_id", product_id)
+        .execute()
+    )
+    stale_ids = [row["id"] for row in (existing.data or []) if row["id"] not in new_ids]
+    if stale_ids:
+        supabase.table("document_embeddings").delete().in_("id", stale_ids).execute()
 
     print(f"✓ Created embeddings for product {product_id}: {len(rows)} documents")
     print("  - Description: 1")
     print(f"  - Reviews: {len(reviews)}")
+    if stale_ids:
+        print(f"  - Removed stale vectors: {len(stale_ids)}")
 
     try:
         probe = search_similar_content(product_id, description[:80] or "product", top_k=1)
@@ -87,6 +116,15 @@ def create_embeddings(product_id: str, description: str, reviews: list[dict]):
             print("  - WARNING: Verification failed - no embeddings found!")
     except _STORE_ERRORS as e:
         print(f"  - WARNING: Could not verify embeddings: {e}")
+
+
+def add_review_embedding(product_id: str, review: dict, review_index: int):
+    """Embed and insert a single new review without touching existing vectors."""
+    content = review.get("content", "")
+    embedding = _embed_texts([content])[0]
+    row = _review_embedding_row(product_id, review, review_index, embedding)
+    supabase.table("document_embeddings").insert(row).execute()
+    print(f"✓ Added review embedding for product {product_id} (index {review_index})")
 
 
 def search_similar_content(
@@ -129,6 +167,7 @@ def search_similar_content(
                     "rating": row.get("rating") or "N/A",
                     "date": row.get("review_date") or "",
                     "index": row.get("review_index"),
+                    "author_username": row.get("author_username") or "",
                 }
             )
             similarity = row.get("similarity")

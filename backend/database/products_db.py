@@ -17,19 +17,15 @@ class ProductDatabase:
         name: str,
         description: str,
         image: str | None = None,
-        reviews: list[dict] | None = None
     ) -> dict:
-        """Create a new product"""
-        if reviews is None:
-            reviews = []
+        """Create a new product (reviews live in the reviews table)."""
         try:
             data = {
                 "id": product_id,
                 "name": name,
                 "description": description,
                 "image": image,
-                "reviews": reviews,
-                "created_at": datetime.now(timezone.utc).isoformat()
+                "created_at": datetime.now(timezone.utc).isoformat(),
             }
 
             result = supabase.table("products").insert(data).execute()
@@ -39,9 +35,14 @@ class ProductDatabase:
 
     @staticmethod
     def get_product(product_id: str) -> dict | None:
-        """Get a product by ID"""
+        """Get a product by ID (without reviews)."""
         try:
-            result = supabase.table("products").select("*").eq("id", product_id).execute()
+            result = (
+                supabase.table("products")
+                .select("id, name, description, image, created_at")
+                .eq("id", product_id)
+                .execute()
+            )
             if result.data:
                 return result.data[0]
             return None
@@ -51,12 +52,12 @@ class ProductDatabase:
 
     @staticmethod
     def get_all_products() -> list[dict]:
-        """Get all products"""
+        """Get all products (without reviews)."""
         try:
             result = supabase.table("products").select(
-                "id, name, description, created_at, image, reviews"
+                "id, name, description, created_at, image"
             ).execute()
-            return result.data
+            return result.data or []
         except _DB_ERRORS as e:
             print(f"Error getting products: {e}")
             return []
@@ -67,7 +68,6 @@ class ProductDatabase:
         name: str | None = None,
         description: str | None = None,
         image: str | None = None,
-        reviews: list[dict] | None = None
     ) -> dict:
         """Update a product"""
         try:
@@ -78,35 +78,22 @@ class ProductDatabase:
                 update_data["description"] = description
             if image:
                 update_data["image"] = image
-            if reviews is not None:
-                update_data["reviews"] = reviews
 
-            result = supabase.table("products").update(update_data).eq("id", product_id).execute()
+            result = (
+                supabase.table("products")
+                .update(update_data)
+                .eq("id", product_id)
+                .execute()
+            )
             return {"status": "success", "data": result.data}
         except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
     def delete_product(product_id: str) -> dict:
-        """Delete a product"""
+        """Delete a product (reviews cascade via FK)."""
         try:
             supabase.table("products").delete().eq("id", product_id).execute()
             return {"status": "success"}
-        except _DB_ERRORS as e:
-            return {"status": "error", "message": str(e)}
-
-    @staticmethod
-    def add_review(product_id: str, review: dict) -> dict:
-        """Add a review to a product"""
-        try:
-            product = ProductDatabase.get_product(product_id)
-            if not product:
-                return {"status": "error", "message": "Product not found"}
-
-            reviews = product.get("reviews", [])
-            reviews.append(review)
-
-            result = supabase.table("products").update({"reviews": reviews}).eq("id", product_id).execute()
-            return {"status": "success", "data": result.data}
         except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}

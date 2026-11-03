@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS document_embeddings (
   rating TEXT,
   review_date TEXT,
   review_index INTEGER,
+  author_username TEXT,
   -- text-embedding-3-small produces 1536-dimensional embeddings
   embedding vector(1536) NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -36,6 +37,9 @@ CREATE POLICY "Allow all operations on document_embeddings" ON document_embeddin
   WITH CHECK (true);
 
 -- Similarity search scoped to a single product
+-- If this function already exists with an older signature, run review_author_setup.sql
+DROP FUNCTION IF EXISTS match_document_embeddings(vector(1536), text, int);
+
 CREATE OR REPLACE FUNCTION match_document_embeddings(
   query_embedding vector(1536),
   match_product_id text,
@@ -50,6 +54,7 @@ RETURNS TABLE (
   rating text,
   review_date text,
   review_index int,
+  author_username text,
   similarity float
 )
 LANGUAGE sql
@@ -64,6 +69,7 @@ AS $$
     de.rating,
     de.review_date,
     de.review_index,
+    de.author_username,
     (1 - (de.embedding <=> query_embedding))::float AS similarity
   FROM document_embeddings de
   WHERE de.product_id = match_product_id

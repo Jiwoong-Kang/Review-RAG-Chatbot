@@ -60,15 +60,17 @@ def generate_response(
         rating = meta.get('rating', 'N/A')
         date = meta.get('date') or ""
         review_id = meta.get('review_id', f"review_{marker}")
-        
-        label = f"[{marker}] Review {review_id} - Rating: {rating}"
+        author = (meta.get('author_username') or "").strip() or "Anonymous"
+
+        label = f"[{marker}] Review by {author} - Rating: {rating}"
         if date:
             label += f" - Date: {date}"
         context_parts.append(f"{label}\n{doc}\n")
-        
+
         sources.append({
             "marker": marker,
             "review_id": review_id,
+            "author_username": author,
             "content": doc,
             "rating": _parse_rating(rating),
             "date": date or None
