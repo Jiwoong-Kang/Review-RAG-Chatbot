@@ -1,5 +1,6 @@
 -- Supabase Table Setup
--- Run this SQL in your Supabase SQL Editor
+-- Run this SQL in your Supabase SQL Editor first.
+-- Reviews live in a separate table: run reviews_setup.sql (and review_author_setup.sql) after this.
 
 -- Create products table
 CREATE TABLE products (
@@ -7,7 +8,6 @@ CREATE TABLE products (
   name TEXT NOT NULL,
   description TEXT NOT NULL,
   image TEXT,
-  reviews JSONB DEFAULT '[]'::jsonb,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -25,14 +25,6 @@ CREATE POLICY "Allow all operations on products" ON products
   USING (true)
   WITH CHECK (true);
 
--- Optional: Create a function to count reviews
-CREATE OR REPLACE FUNCTION count_reviews(product_row products)
-RETURNS INTEGER AS $$
-BEGIN
-  RETURN jsonb_array_length(product_row.reviews);
-END;
-$$ LANGUAGE plpgsql STABLE;
-
--- Example query to test
--- SELECT id, name, count_reviews(products.*) as review_count FROM products;
-
+-- If this DB was created with the old products.reviews JSONB column:
+--   DROP FUNCTION IF EXISTS count_reviews(products);
+--   ALTER TABLE products DROP COLUMN IF EXISTS reviews;

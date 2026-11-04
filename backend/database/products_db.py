@@ -39,7 +39,7 @@ class ProductDatabase:
         try:
             result = (
                 supabase.table("products")
-                .select("id, name, description, image, created_at")
+                .select("*")
                 .eq("id", product_id)
                 .execute()
             )
@@ -54,9 +54,7 @@ class ProductDatabase:
     def get_all_products() -> list[dict]:
         """Get all products (without reviews)."""
         try:
-            result = supabase.table("products").select(
-                "id, name, description, created_at, image"
-            ).execute()
+            result = supabase.table("products").select("*").execute()
             return result.data or []
         except _DB_ERRORS as e:
             print(f"Error getting products: {e}")

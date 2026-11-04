@@ -1,9 +1,8 @@
 -- Reviews table (split out of products.reviews JSONB)
 -- Run in the Supabase SQL Editor AFTER supabase_setup.sql (products must exist).
 -- App code reads/writes this table via ReviewDatabase.
--- products.reviews JSONB is unused now; drop it when ready:
---   ALTER TABLE products DROP COLUMN IF EXISTS reviews;
---   DROP FUNCTION IF EXISTS count_reviews(products);
+-- Review counts for the product list come from ReviewDatabase.counts_by_product,
+-- not from a SQL count_reviews(products) helper.
 
 CREATE TABLE IF NOT EXISTS reviews (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

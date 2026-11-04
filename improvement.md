@@ -67,8 +67,14 @@ Product delete already cascades to `document_embeddings`. Calling `delete_embedd
 ### 17. Tighten CORS for production
 `main.py` currently allows all origins (`allow_origins=["*"]`), which is fine for local development. Later restrict CORS to the real frontend origin(s).
 
-### 18. Drop unused `products.reviews` JSONB
-After confirming the app only uses the `reviews` table, drop the column and `count_reviews(products)`.
+### 18. Drop unused `products.reviews` JSONB — done in repo setup
+`supabase_setup.sql` no longer creates `reviews` JSONB or `count_reviews(products)`.
+If an existing Supabase project still has them, run once:
+
+```sql
+DROP FUNCTION IF EXISTS count_reviews(products);
+ALTER TABLE products DROP COLUMN IF EXISTS reviews;
+```
 
 ## Suggested order (remaining)
 
@@ -78,4 +84,4 @@ After confirming the app only uses the `reviews` table, drop the column and `cou
 4. Real email auth
 5. Summary ordering, clearer errors, similarity threshold, status-code consistency
 6. Wire up product summary UI
-7. Description-embedding policy, delete cleanup, drop `products.reviews`, CORS tightening
+7. Description-embedding policy, delete cleanup, CORS tightening
