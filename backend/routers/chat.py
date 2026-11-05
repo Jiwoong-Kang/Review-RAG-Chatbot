@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from database import ChatHistoryDatabase, ProductDatabase
 from routers.deps import bearer_token, optional_bearer
 from routers.schemas import ChatMessage
+from chat_engine import generate_response
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 
@@ -33,7 +34,6 @@ def chat(
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
-    from chat_engine import generate_response
     result = generate_response(
         message.product_id,
         message.message,

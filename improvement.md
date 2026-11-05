@@ -44,8 +44,19 @@ List no longer selects review JSON; still could trim other unused fields if need
 ### 10. Wire up product summary in the UI
 `generate_product_summary` in `chat_engine.py` already builds an overall review summary (pros, cons, overall take, who it suits), but nothing calls it yet—no API route and no frontend entry point. Expose it (e.g. product detail page or a “Review overview” action) so users can see key points without asking a chat question first. Also fix stable review ordering (#6) before relying on the first-20 slice.
 
-### 11. Protect product write APIs with auth — partly done
-`add-review` requires `bearer_token`. Upload / delete still do not. Require auth on those too (and later decide who may manage catalog data).
+### 19. Browse reviews in the UI
+Selecting a product opens chat and shows a review **count**, but there is no screen to read the full review list. `GET /api/products/{id}` already returns `reviews` via `ReviewDatabase.list_reviews`, and chat Sources only show retrieved snippets. Add a product reviews view (panel, tab, or page) that lists content, rating, date, and `author_username` (or Anonymous). Can sit next to #10 on a product detail surface.
+
+### 11. Product ownership + admin role (catalog permissions)
+Today upload / delete are open (no auth). `add-review` already requires login.
+
+Target model:
+- **Owner:** `products` gets an `owner_id` (uploader). Only the owner can update / delete their own product.
+- **Admin role:** a role (e.g. user metadata or a profiles/roles table) that can manage **all** products (create / update / delete), overriding ownership.
+- **Reviews:** any **logged-in** user can add a review (keep current `bearer_token` on add-review; optionally tighten upload of bulk sample data to admin-only).
+- **Read:** product list / detail stay public (or logged-in-only if product policy requires it).
+
+Also lock upload / delete behind auth immediately as a stepping stone, then enforce owner-or-admin checks in the API (and ideally RLS on `products` for defense in depth).
 
 ### 12. Handle embedding failure after product upload/review add
 `upload_product` and `add_review` save to DB first, then call embedding helpers. If embedding fails afterward, the product/review can exist while chat search has nothing useful. Return a clear partial-failure status, retry embeddings, or roll back / mark the product as not searchable until embeddings succeed.
@@ -79,9 +90,9 @@ ALTER TABLE products DROP COLUMN IF EXISTS reviews;
 ## Suggested order (remaining)
 
 1. Token refresh with `refresh_token`
-2. Finish product write auth (upload / delete); align chat auth policy
+2. Product ownership + admin role (#11); align chat auth policy (#13)
 3. Embedding failure handling after upload/review add
 4. Real email auth
 5. Summary ordering, clearer errors, similarity threshold, status-code consistency
-6. Wire up product summary UI
+6. Wire up product summary UI (#10) and browse-reviews UI (#19)
 7. Description-embedding policy, delete cleanup, CORS tightening

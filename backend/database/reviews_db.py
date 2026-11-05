@@ -20,7 +20,7 @@ class ReviewDatabase:
     """Reviews stored as rows keyed by product_id (not JSONB on products)."""
 
     @staticmethod
-    def list_for_product(product_id: str) -> list[dict]:
+    def list_reviews(product_id: str) -> list[dict]:
         try:
             result = (
                 supabase.table("reviews")
@@ -37,7 +37,7 @@ class ReviewDatabase:
             return []
 
     @staticmethod
-    def counts_by_product() -> dict[str, int]:
+    def count_reviews_by_product() -> dict[str, int]:
         try:
             result = supabase.table("reviews").select("product_id").execute()
             counts: dict[str, int] = {}

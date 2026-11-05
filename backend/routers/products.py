@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from database import AuthService, ProductDatabase, ReviewDatabase
 from routers.deps import bearer_token
 from routers.schemas import ProductUpload, Review
-from vector_store import add_review_embedding
+from vector_store import add_review_embedding, create_embeddings, delete_embeddings
 
 router = APIRouter(prefix="/api/products", tags=["products"])
 
@@ -27,7 +27,6 @@ def upload_product(product: ProductUpload):
         ProductDatabase.delete_product(product.product_id)
         raise HTTPException(status_code=500, detail=reviews_result["message"])
 
-    from vector_store import create_embeddings
     create_embeddings(product.product_id, product.description, reviews_dict)
 
     return {
@@ -41,7 +40,7 @@ def upload_product(product: ProductUpload):
 def list_products():
     """Get all products list."""
     products = ProductDatabase.get_all_products()
-    counts = ReviewDatabase.counts_by_product()
+    counts = ReviewDatabase.count_reviews_by_product()
     return {
         "products": [
             {
@@ -62,7 +61,7 @@ def get_product(product_id: str):
     product = ProductDatabase.get_product(product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
-    reviews = ReviewDatabase.list_for_product(product_id)
+    reviews = ReviewDatabase.list_reviews(product_id)
     return {**product, "reviews": reviews}
 
 
@@ -73,7 +72,6 @@ def delete_product(product_id: str):
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
-    from vector_store import delete_embeddings
     delete_embeddings(product_id)
 
     result = ProductDatabase.delete_product(product_id)

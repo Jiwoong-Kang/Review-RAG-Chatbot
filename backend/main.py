@@ -1,10 +1,9 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routers import auth_router, chat_router, products_router, saved_router
 
 load_dotenv()
-
-from routers import auth_router, chat_router, products_router, saved_router
 
 app = FastAPI(title="Product Review Chat API")
 

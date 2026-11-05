@@ -1,7 +1,7 @@
 -- Reviews table (split out of products.reviews JSONB)
 -- Run in the Supabase SQL Editor AFTER supabase_setup.sql (products must exist).
 -- App code reads/writes this table via ReviewDatabase.
--- Review counts for the product list come from ReviewDatabase.counts_by_product,
+-- Review counts for the product list come from ReviewDatabase.count_reviews_by_product,
 -- not from a SQL count_reviews(products) helper.
 
 CREATE TABLE IF NOT EXISTS reviews (
