@@ -9,6 +9,13 @@ SUPABASE_KEY=your-supabase-anon-key
 HOST=0.0.0.0
 PORT=8000
 
+# Sample uploader (required for upload_sample_data.py; prefer an admin account)
+SAMPLE_UPLOAD_USERNAME=your_username
+SAMPLE_UPLOAD_PASSWORD=your_password
+
+# Optional comma-separated admins (also: user_metadata.role = "admin" in Supabase)
+# ADMIN_USERNAMES=your_username
+
 # How to use:
 # 1. Copy this file to .env: cp env_example.txt .env
 # 2. Replace placeholders with your real keys

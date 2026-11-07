@@ -131,43 +131,22 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Upload Product</h2>
-            
-            <div class="form-group">
-                <label>Product ID</label>
-                <input type="text" id="productId" placeholder="e.g., prod_001">
-            </div>
-            
+
             <div class="form-group">
                 <label>Product Name</label>
                 <input type="text" id="productNameInput" placeholder="e.g., Wireless Bluetooth Earbuds">
             </div>
-            
+
             <div class="form-group">
                 <label>Product Image URL (optional)</label>
                 <input type="text" id="productImage" placeholder="https://example.com/image.jpg">
             </div>
-            
+
             <div class="form-group">
                 <label>Product Description</label>
                 <textarea id="productDesc" rows="4" placeholder="Enter key features and description..."></textarea>
             </div>
-            
-            <div class="form-group">
-                <label>Reviews (JSON format)</label>
-                <textarea id="reviewsInput" rows="10" placeholder='[
-  {
-    "review_id": "r1",
-    "content": "Great sound quality!",
-    "rating": 5.0
-  },
-  {
-    "review_id": "r2",
-    "content": "Battery drains quickly",
-    "rating": 3.0
-  }
-]'></textarea>
-            </div>
-            
+
             <button id="submitUpload" class="submit-btn">Upload</button>
         </div>
     </div>

@@ -26,6 +26,36 @@ const Products = (() => {
         });
     }
 
+    function canDeleteProduct(product) {
+        const user = Auth.getSession()?.user;
+        if (!user) return false;
+        if ((user.role || '').toLowerCase() === 'admin') return true;
+        return Boolean(product.owner_id && product.owner_id === user.id);
+    }
+
+    async function deleteProduct(product) {
+        const label = product.name || product.product_id;
+        if (!confirm(`Delete "${label}"? Reviews, embeddings, and chat for this product will also be removed.`)) {
+            return;
+        }
+        try {
+            await Auth.apiJson(`/api/products/${encodeURIComponent(product.product_id)}`, {
+                method: 'DELETE',
+            });
+            if (AppState.currentProductId === product.product_id) {
+                AppState.currentProductId = null;
+                AppState.conversationHistory = [];
+                productName.textContent = 'Select a product';
+                productInfo.textContent = '';
+                Chat.reset();
+            }
+            await load();
+        } catch (error) {
+            console.error('Delete failed:', error);
+            alert('Delete failed: ' + error.message);
+        }
+    }
+
     async function load() {
         try {
             const response = await fetch(`${Auth.API_BASE}/api/products`);
@@ -46,6 +76,10 @@ const Products = (() => {
                     ? `<img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-bottom: 5px;">`
                     : '';
 
+                const deleteBtnHtml = canDeleteProduct(product)
+                    ? '<button type="button" class="delete-product-btn danger">Delete product</button>'
+                    : '';
+
                 item.innerHTML = `
                     ${imageHtml}
                     <h3>${product.name}</h3>
@@ -56,6 +90,7 @@ const Products = (() => {
                             <button type="button" class="save-product-btn">Save to My List</button>
                             <button type="button" class="add-review-btn">Add review</button>
                             <button type="button" class="clear-chat-btn">Clear chat for this product</button>
+                            ${deleteBtnHtml}
                         </div>
                     </div>
                 `;
@@ -65,6 +100,7 @@ const Products = (() => {
                 const saveBtn = item.querySelector('.save-product-btn');
                 const addReviewBtn = item.querySelector('.add-review-btn');
                 const clearBtn = item.querySelector('.clear-chat-btn');
+                const deleteBtn = item.querySelector('.delete-product-btn');
 
                 menuBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -90,6 +126,14 @@ const Products = (() => {
                     closeAllProductMenus();
                     await Chat.clearHistory(product.product_id, product.name);
                 });
+
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', async (e) => {
+                        e.stopPropagation();
+                        closeAllProductMenus();
+                        await deleteProduct(product);
+                    });
+                }
 
                 item.addEventListener('click', () => select(product.product_id));
                 productList.appendChild(item);
@@ -127,54 +171,31 @@ const Products = (() => {
     }
 
     async function upload() {
-        const productId = document.getElementById('productId').value.trim();
         const name = document.getElementById('productNameInput').value.trim();
         const image = document.getElementById('productImage').value.trim();
         const description = document.getElementById('productDesc').value.trim();
-        const reviewsText = document.getElementById('reviewsInput').value.trim();
 
-        if (!productId || !name || !description) {
-            alert('Please fill in all required fields.');
+        if (!name || !description) {
+            alert('Please fill in name and description.');
             return;
         }
 
-        let reviews = [];
-        if (reviewsText) {
-            try {
-                reviews = JSON.parse(reviewsText);
-            } catch (error) {
-                alert('Invalid JSON format for reviews.');
-                return;
-            }
-        }
-
         try {
-            const response = await fetch(`${Auth.API_BASE}/api/products/upload`, {
+            const data = await Auth.apiJson('/api/products/upload', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    product_id: productId,
                     name: name,
                     image: image || null,
                     description: description,
-                    reviews: reviews,
                 }),
             });
 
-            const data = await response.json();
-
-            if (data.status === 'success') {
-                alert('Product uploaded successfully!');
-                uploadModal.style.display = 'none';
-                document.getElementById('productId').value = '';
-                document.getElementById('productNameInput').value = '';
-                document.getElementById('productImage').value = '';
-                document.getElementById('productDesc').value = '';
-                document.getElementById('reviewsInput').value = '';
-                await load();
-            } else {
-                alert('Upload failed: ' + (data.detail || 'Unknown error'));
-            }
+            alert(`Product uploaded successfully!${data.product_id ? `\nID: ${data.product_id}` : ''}`);
+            uploadModal.style.display = 'none';
+            document.getElementById('productNameInput').value = '';
+            document.getElementById('productImage').value = '';
+            document.getElementById('productDesc').value = '';
+            await load();
         } catch (error) {
             console.error('Upload failed:', error);
             alert('Error during upload: ' + error.message);

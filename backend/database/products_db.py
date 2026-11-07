@@ -17,6 +17,7 @@ class ProductDatabase:
         name: str,
         description: str,
         image: str | None = None,
+        owner_id: str | None = None,
     ) -> dict:
         """Create a new product (reviews live in the reviews table)."""
         try:
@@ -25,6 +26,7 @@ class ProductDatabase:
                 "name": name,
                 "description": description,
                 "image": image,
+                "owner_id": owner_id,
                 "created_at": datetime.now(timezone.utc).isoformat(),
             }
 

@@ -17,3 +17,8 @@ def optional_bearer(authorization: str | None = Header(None)) -> str | None:
         return None
     token = authorization.split(" ", 1)[1].strip()
     return token or None
+
+
+def require_product_read(authorization: str | None = Header(None)) -> str:
+    """Login-required product read. Ready for later; GET list/detail stay public for now."""
+    return bearer_token(authorization)

@@ -1,3 +1,4 @@
+import os
 import re
 
 from supabase_auth.errors import AuthError
@@ -32,15 +33,45 @@ def _user_payload(user) -> dict:
         email = user.email or ""
         if email.endswith(f"@{INTERNAL_EMAIL_DOMAIN}"):
             username = email.split("@", 1)[0]
+    role = (meta.get("role") or "user").strip().lower()
     return {
         "id": user.id,
         "username": username,
         "name": meta.get("display_name") or meta.get("name") or username,
+        "role": role,
     }
+
+
+def _apply_effective_role(payload: dict) -> dict:
+    """Upgrade role to admin when user_metadata or ADMIN_USERNAMES says so."""
+    if AuthService.is_admin(payload):
+        payload["role"] = "admin"
+    return payload
 
 
 class AuthService:
     """Username/password auth via Supabase (synthetic internal email, no email UX)."""
+
+    @staticmethod
+    def is_admin(user: dict | None) -> bool:
+        if not user:
+            return False
+        if (user.get("role") or "").lower() == "admin":
+            return True
+        username = (user.get("username") or "").lower()
+        raw = os.getenv("ADMIN_USERNAMES", "")
+        admins = {part.strip().lower() for part in raw.split(",") if part.strip()}
+        return bool(username and username in admins)
+
+    @staticmethod
+    def can_manage_product(user: dict | None, product: dict | None) -> bool:
+        """Owner or admin may update/delete; products with no owner_id: admin only."""
+        if not user or not product:
+            return False
+        if AuthService.is_admin(user):
+            return True
+        owner_id = product.get("owner_id")
+        return bool(owner_id and owner_id == user.get("id"))
 
     @staticmethod
     def sign_up(name: str, username: str, password: str) -> dict:
@@ -82,7 +113,7 @@ class AuthService:
                 "status": "success",
                 "access_token": session.access_token,
                 "refresh_token": session.refresh_token,
-                "user": _user_payload(user),
+                "user": _apply_effective_role(_user_payload(user)),
             }
         except AuthError as e:
             message = str(e)
@@ -110,7 +141,7 @@ class AuthService:
                 "status": "success",
                 "access_token": session.access_token,
                 "refresh_token": session.refresh_token,
-                "user": _user_payload(user),
+                "user": _apply_effective_role(_user_payload(user)),
             }
         except AuthError as e:
             message = str(e)
@@ -151,7 +182,7 @@ class AuthService:
                 "status": "success",
                 "access_token": session.access_token,
                 "refresh_token": session.refresh_token,
-                "user": _user_payload(user),
+                "user": _apply_effective_role(_user_payload(user)),
             }
         except AuthError as e:
             return {"status": "error", "message": str(e)}
@@ -163,7 +194,7 @@ class AuthService:
             user = result.user
             if not user:
                 return None
-            return _user_payload(user)
+            return _apply_effective_role(_user_payload(user))
         except AuthError as e:
             print(f"Error getting user: {e}")
             return None

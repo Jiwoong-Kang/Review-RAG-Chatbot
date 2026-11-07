@@ -6,10 +6,16 @@ Upload MacBook Pro and iPhone sample products into Supabase and build pgvector e
 
 1. Supabase project ready
 2. `backend/sql/supabase_setup.sql` and `backend/sql/pgvector_setup.sql` run
-3. `backend/.env` with Supabase + OpenAI keys
-4. Backend dependencies installed (`pip install -r requirements.txt`)
-5. Images under `frontend/images/` (if you care about thumbnails)
-6. **Backend server running** on `http://localhost:8000` (upload script calls the API)
+3. For existing DBs without ownership: also run `backend/sql/products_owner_setup.sql`
+4. `backend/.env` with Supabase + OpenAI keys, plus sample uploader credentials:
+   ```
+   SAMPLE_UPLOAD_USERNAME=your_username
+   SAMPLE_UPLOAD_PASSWORD=your_password
+   ```
+   Prefer an **admin** account so re-upload can delete products owned by others (`user_metadata.role = "admin"` in Supabase, or `ADMIN_USERNAMES=your_username` in `.env`).
+5. Backend dependencies installed (`pip install -r requirements.txt`)
+6. Images under `frontend/images/` (if you care about thumbnails)
+7. **Backend server running** on `http://localhost:8000` (upload script calls the API)
 
 Saved products / chat history SQL are not required for upload, but you need them for those UI features.
 
@@ -33,7 +39,7 @@ source venv/bin/activate
 python upload_sample_data.py
 ```
 
-Expected: both products succeed, 20 reviews each. The script deletes and re-uploads if a product already exists.
+Expected: both products succeed, 20 reviews each. The script signs in, then deletes and re-uploads if a product already exists.
 
 Embeddings are stored in Supabase (`document_embeddings`), so a backend restart does **not** clear them. Re-run the upload script only when you want to refresh sample products or regenerate vectors.
 
@@ -50,7 +56,9 @@ Embeddings are stored in Supabase (`document_embeddings`), so a backend restart 
 ## Method 3: API (cURL)
 
 ```bash
+# Sign in first, then pass the access_token:
 curl -X POST http://localhost:8000/api/products/upload \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<'EOF'
 { ... product JSON ... }
@@ -83,7 +91,11 @@ curl http://localhost:8000/api/products
 | Error | Fix |
 |-------|-----|
 | Cannot connect to API | Start `python main.py` first |
-| Product already exists | Script usually deletes/retries; or `DELETE /api/products/{id}` then re-run |
+| Missing SAMPLE_UPLOAD_* | Set username/password in `backend/.env` for an existing account |
+| 401 Unauthorized | Sign in / refresh token; upload and delete require login |
+| 403 on delete/re-upload | Use owner account or set admin (`role: admin` metadata or `ADMIN_USERNAMES`) |
+| Product already exists | Script usually deletes/retries; or authenticated `DELETE /api/products/{id}` then re-run |
+| `column "owner_id" does not exist` | Run `backend/sql/products_owner_setup.sql` |
 | `SUPABASE_URL` / key issues | Check `backend/.env` |
 | `relation "products" does not exist` | Run `backend/sql/supabase_setup.sql` |
 | `relation "document_embeddings" does not exist` | Run `backend/sql/pgvector_setup.sql` |

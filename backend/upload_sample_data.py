@@ -1,16 +1,24 @@
 #!/usr/bin/env python3
 """
-Upload sample products from sample_data/*.json to the database via API
+Upload sample products from sample_data/*.json to the database via API.
+
+Requires a logged-in user (upload/delete are auth-protected).
+Set SAMPLE_UPLOAD_USERNAME / SAMPLE_UPLOAD_PASSWORD in backend/.env
+(or export them). Prefer an admin user so re-upload can delete others' products.
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 
 import requests
+from dotenv import load_dotenv
 
-# API endpoint
-API_BASE = "http://localhost:8000"
+load_dotenv(Path(__file__).parent / ".env")
+
+API_BASE = os.getenv("API_BASE", "http://localhost:8000")
+
 
 def load_sample_data():
     """Load sample products from sample_data/*.json (one product per file)."""
@@ -35,81 +43,118 @@ def load_sample_data():
 
     return products
 
-def delete_product(product_id):
-    """Delete a product if it exists"""
+
+def sign_in():
+    username = (os.getenv("SAMPLE_UPLOAD_USERNAME") or "").strip()
+    password = os.getenv("SAMPLE_UPLOAD_PASSWORD") or ""
+    if not username or not password:
+        print("❌ Set SAMPLE_UPLOAD_USERNAME and SAMPLE_UPLOAD_PASSWORD in backend/.env")
+        sys.exit(1)
+
+    response = requests.post(
+        f"{API_BASE}/api/auth/signin",
+        json={"username": username, "password": password},
+        timeout=30,
+    )
+    if response.status_code != 200:
+        print(f"❌ Sign-in failed: {response.status_code} {response.text}")
+        sys.exit(1)
+
+    data = response.json()
+    token = data.get("access_token")
+    if not token:
+        print(f"❌ Sign-in response missing access_token: {data}")
+        sys.exit(1)
+
+    user = data.get("user") or {}
+    print(f"✅ Signed in as {user.get('username') or username} (role={user.get('role', 'user')})")
+    return token
+
+
+def auth_headers(token: str) -> dict:
+    return {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+
+
+def delete_product(product_id: str, token: str) -> bool:
+    """Delete a product if it exists."""
     url = f"{API_BASE}/api/products/{product_id}"
-    
+
     try:
-        response = requests.delete(url)
+        response = requests.delete(url, headers=auth_headers(token), timeout=30)
         if response.status_code == 200:
             print(f"   🗑️  Deleted existing product: {product_id}")
             return True
-        elif response.status_code == 404:
-            # Product doesn't exist, that's fine
+        if response.status_code == 404:
             return True
-        else:
-            print(f"   ⚠️  Warning: Could not delete product: {product_id}")
-            return False
+        print(f"   ⚠️  Warning: Could not delete product: {product_id} ({response.status_code})")
+        print(f"      {response.text}")
+        return False
     except requests.RequestException as e:
         print(f"   ⚠️  Warning: Error deleting product: {e}")
         return False
 
-def upload_product(product_data, auto_delete=True):
-    """Upload a single product to the API"""
+
+def upload_product(product_data, token: str, auto_delete=True):
+    """Upload a single product to the API."""
     url = f"{API_BASE}/api/products/upload"
-    
+
     try:
-        response = requests.post(url, json=product_data)
+        response = requests.post(
+            url,
+            json=product_data,
+            headers=auth_headers(token),
+            timeout=120,
+        )
         response.raise_for_status()
-        
+
         result = response.json()
-        if result.get('status') == 'success':
+        if result.get("status") == "success":
             print(f"✅ Successfully uploaded: {product_data['name']}")
             print(f"   Product ID: {product_data['product_id']}")
             print(f"   Reviews: {len(product_data['reviews'])}")
             return True
-        else:
-            print(f"❌ Failed to upload: {product_data['name']}")
-            print(f"   Error: {result}")
-            return False
-            
+
+        print(f"❌ Failed to upload: {product_data['name']}")
+        print(f"   Error: {result}")
+        return False
+
     except requests.exceptions.ConnectionError:
         print(f"❌ Error: Cannot connect to API at {API_BASE}")
         print("   Make sure the backend server is running:")
         print("   cd backend && python main.py")
         return False
     except requests.exceptions.HTTPError as e:
-        error_text = e.response.text
-        
-        # Check if it's a duplicate key error
+        error_text = e.response.text if e.response is not None else str(e)
+
         if "duplicate key" in error_text.lower() and auto_delete:
             print(f"⚠️  Product already exists: {product_data['name']}")
             print("   Attempting to delete and re-upload...")
-            
-            if delete_product(product_data['product_id']):
-                # Try uploading again
+
+            if delete_product(product_data["product_id"], token):
                 print("   Retrying upload...")
-                return upload_product(product_data, auto_delete=False)
-            else:
-                print("❌ Could not delete existing product")
-                return False
-        else:
-            print(f"❌ HTTP Error: {e}")
-            print(f"   Response: {error_text}")
+                return upload_product(product_data, token, auto_delete=False)
+            print("❌ Could not delete existing product")
             return False
+
+        print(f"❌ HTTP Error: {e}")
+        print(f"   Response: {error_text}")
+        return False
     except requests.RequestException as e:
         print(f"❌ Unexpected error: {e}")
         return False
+
 
 def main():
     print("=" * 60)
     print("📦 Product Review Chatbot - Sample Data Uploader")
     print("=" * 60)
     print()
-    
-    # Check if server is running
+
     try:
-        response = requests.get(f"{API_BASE}/")
+        response = requests.get(f"{API_BASE}/", timeout=10)
         server_info = response.json()
         print(f"✅ Connected to: {server_info.get('message', 'API Server')}")
         print(f"   Version: {server_info.get('version', 'Unknown')}")
@@ -124,28 +169,28 @@ def main():
         print("  python main.py")
         print()
         sys.exit(1)
-    
-    # Load sample data
+
+    token = sign_in()
+    print()
+
     print("📂 Loading sample products...")
     products = load_sample_data()
     print(f"   Found {len(products)} products to upload")
     print()
-    
-    # Upload each product
+
     success_count = 0
     fail_count = 0
-    
+
     for i, product in enumerate(products, 1):
         print(f"[{i}/{len(products)}] Uploading: {product['name']}")
-        
-        if upload_product(product):
+
+        if upload_product(product, token):
             success_count += 1
         else:
             fail_count += 1
-        
+
         print()
-    
-    # Summary
+
     print("=" * 60)
     print("📊 Upload Summary")
     print("=" * 60)
@@ -153,15 +198,15 @@ def main():
     print(f"❌ Failed: {fail_count}")
     print(f"📦 Total: {len(products)}")
     print()
-    
+
     if success_count > 0:
         print("🎉 Products uploaded successfully!")
         print("   Visit http://localhost:3000 to see them in action")
-    
+
     if fail_count > 0:
         print("⚠️  Some uploads failed. Check the errors above.")
         sys.exit(1)
 
+
 if __name__ == "__main__":
     main()
-

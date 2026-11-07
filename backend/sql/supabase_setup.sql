@@ -8,12 +8,14 @@ CREATE TABLE products (
   name TEXT NOT NULL,
   description TEXT NOT NULL,
   image TEXT,
+  owner_id UUID REFERENCES auth.users(id) ON DELETE SET NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 -- Create indexes for better performance
 CREATE INDEX idx_products_created_at ON products(created_at DESC);
 CREATE INDEX idx_products_name ON products(name);
+CREATE INDEX idx_products_owner_id ON products(owner_id);
 
 -- Enable Row Level Security (RLS)
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;

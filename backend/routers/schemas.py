@@ -23,11 +23,12 @@ class ChatMessage(BaseModel):
 
 
 class ProductUpload(BaseModel):
-    product_id: str
+    product_id: str | None = None  # auto-generated when omitted (UI); sample script may set it
     name: str
     description: str
     image: str | None = None
-    reviews: list[Review]
+    reviews: list[Review] = []  # optional; UI adds reviews later via add-review
+
 
 
 class AuthSignUp(BaseModel):

@@ -23,14 +23,18 @@ Run these **in order** from this repo (paste each file into **SQL Editor → New
 
 | Order | File | Purpose |
 |-------|------|---------|
-| 1 | `backend/sql/supabase_setup.sql` | `products` table |
+| 1 | `backend/sql/supabase_setup.sql` | `products` table (includes `owner_id`) |
 | 2 | `backend/sql/pgvector_setup.sql` | `document_embeddings` + `match_document_embeddings` |
 | 3 | `backend/sql/saved_products_setup.sql` | `saved_products` + RLS |
 | 4 | `backend/sql/chat_history_setup.sql` | `chat_messages` + RLS |
 
+Existing DBs created before ownership: also run `backend/sql/products_owner_setup.sql`.
+
 SQL is **not** run by the Python app — only in the Supabase SQL Editor.
 
 If saved list or chat history returns 400, those tables/policies are usually missing. If chat finds no reviews, confirm `pgvector_setup.sql` ran and sample upload completed.
+
+**Admin role:** set `role` to `"admin"` in the user’s **User Metadata** (Authentication → Users), or list usernames in `ADMIN_USERNAMES` in `.env`.
 
 ---
 

@@ -3,7 +3,7 @@ const API_BASE = 'http://localhost:8000';
 const AUTH_STORAGE_KEY = 'reviewer_auth';
 
 const Auth = (() => {
-    let session = null; // { access_token, refresh_token, user: {id, username, name} }
+    let session = null; // { access_token, refresh_token, user: {id, username, name, role} }
     let onAuthenticated = null;
     let onSignedOut = null;
     let mode = 'signin'; // 'signin' | 'signup'

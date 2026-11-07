@@ -4,27 +4,16 @@ Remaining work first; completed items at the bottom.
 
 ## Suggested order
 
-1. Product ownership + admin role (#11)
-2. Real email auth (#5)
-3. Clearer errors (#7), similarity threshold (#9), status-code consistency (#14)
-4. Product summary UI (#10) and browse-reviews UI (#19)
-5. Description-embedding policy (#15), delete cleanup (#16), CORS (#17)
+1. Real email auth (#5)
+2. Clearer errors (#7), similarity threshold (#9), status-code consistency (#14)
+3. Product summary UI (#10) and browse-reviews UI (#19)
+4. Description-embedding policy (#15), delete cleanup (#16), CORS (#17)
+5. Optional: enforce `require_product_read` on GET list/detail; tighten products RLS
 
 ## High priority
 
 ### 5. Real email auth later
 For local development we avoid real email UX (synthetic `username@users.local`, Confirm email often disabled). Later, users should sign up / sign in with a real email address, including confirmation and recovery flows through Supabase Auth.
-
-### 11. Product ownership + admin role (catalog permissions)
-Today upload / delete are open (no auth). `add-review` already requires login.
-
-Target model:
-- **Owner:** `products` gets an `owner_id` (uploader). Only the owner can update / delete their own product.
-- **Admin role:** a role (e.g. user metadata or a profiles/roles table) that can manage **all** products (create / update / delete), overriding ownership.
-- **Reviews:** any **logged-in** user can add a review (keep current `bearer_token` on add-review; optionally tighten bulk sample upload to admin-only).
-- **Read:** product list / detail stay public (or logged-in-only if product policy requires it).
-
-Also lock upload / delete behind auth as a stepping stone, then enforce owner-or-admin checks in the API (and ideally RLS on `products`).
 
 ## Medium priority
 
@@ -78,3 +67,9 @@ Product delete already cascades to `document_embeddings`. Calling `delete_embedd
 - **#6** Summary uses all reviews, ordered by `review_index`
 - **#12** Embedding failure rolls back: delete product on upload embed fail; delete review on add-review embed fail
 - **#13** Chat requires login (`bearer_token`); `optional_bearer` kept in deps for possible future use
+- **#11** Product ownership + admin:
+  - `products.owner_id` (`products_owner_setup.sql` / `supabase_setup.sql`)
+  - Upload / delete require login; delete is owner-or-admin
+  - Admin via `user_metadata.role = "admin"` or `ADMIN_USERNAMES` env
+  - `require_product_read` helper exists but GET list/detail stay public
+  - Sample uploader signs in via `SAMPLE_UPLOAD_USERNAME` / `SAMPLE_UPLOAD_PASSWORD`
