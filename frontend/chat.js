@@ -164,13 +164,14 @@ const Chat = (() => {
                     sources: msg.sources || [],
                     insufficientEvidence: Boolean(msg.insufficient_evidence),
                 });
+                // Keep citation markers in history so later turns still cite;
+                // chat_engine tells the model to ignore old marker numbers.
                 AppState.conversationHistory.push({
                     role: msg.role,
-                    content: msg.role === 'assistant'
-                        ? String(msg.content || '').replace(/\[\d+\]/g, '')
-                        : msg.content,
+                    content: msg.content,
                 });
             });
+
         } catch (e) {
             console.warn('Could not load chat history:', e.message);
         }
@@ -199,10 +200,8 @@ const Chat = (() => {
         addMessage(message, 'user');
         messageInput.value = '';
 
-        AppState.conversationHistory.push({
-            role: 'user',
-            content: message,
-        });
+        // Prior turns only — current message is appended in chat_engine
+        const historyForApi = AppState.conversationHistory.slice();
 
         const typingId = showTypingIndicator();
         setInputEnabled(false);
@@ -213,7 +212,7 @@ const Chat = (() => {
                 body: JSON.stringify({
                     product_id: AppState.currentProductId,
                     message: message,
-                    conversation_history: AppState.conversationHistory,
+                    conversation_history: historyForApi,
                 }),
             });
 
@@ -225,8 +224,13 @@ const Chat = (() => {
             });
 
             AppState.conversationHistory.push({
+                role: 'user',
+                content: message,
+            });
+            // Keep [n] markers so follow-ups keep citing (numbers are per-turn in the prompt)
+            AppState.conversationHistory.push({
                 role: 'assistant',
-                content: data.response.replace(/\[\d+\]/g, ''),
+                content: data.response,
             });
         } catch (error) {
             removeTypingIndicator(typingId);
@@ -235,6 +239,7 @@ const Chat = (() => {
         } finally {
             setInputEnabled(true);
         }
+
     }
 
     async function clearHistory(productId, productName) {

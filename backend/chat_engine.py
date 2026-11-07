@@ -1,4 +1,5 @@
 import os
+import re
 
 from openai import OpenAI, OpenAIError
 
@@ -12,12 +13,59 @@ INSUFFICIENT_EVIDENCE_TOKEN = "INSUFFICIENT_EVIDENCE"
 
 NO_EVIDENCE_MESSAGE = "I don't have any reviews indexed for this product yet, so I can't answer from evidence."
 
+_CITATION_RE = re.compile(r"\[\d+\]")
+
+
 def _parse_rating(raw_rating: str) -> float | None:
     """Ratings are stored as strings in embedding metadata ('4.5', 'N/A')."""
     try:
         return float(raw_rating)
     except (TypeError, ValueError):
         return None
+
+
+def _build_user_prompt(user_message: str, conversation_history: list[dict]) -> str:
+    """Pack prior turns into one user message.
+
+    Multi-turn OpenAI chat roles make gpt-4o-mini drop [n] citations on follow-ups.
+    Keeping a single user turn (with a final citation reminder) is more reliable.
+    """
+    prior = conversation_history[-4:] if conversation_history else []
+    if not prior:
+        return (
+            f"{user_message}\n\n"
+            "Cite every review-backed claim with inline markers like [1] from User Reviews."
+        )
+
+    lines = []
+    for msg in prior:
+        role = (msg.get("role") or "user").upper()
+        content = re.sub(_CITATION_RE, "", str(msg.get("content") or "")).strip()
+        if len(content) > 240:
+            content = content[:240].rstrip() + "…"
+        if content:
+            lines.append(f"{role}: {content}")
+
+    prior_block = "\n".join(lines)
+    return (
+        "Prior conversation (context only — ignore any old citation numbers; "
+        "they are not valid for this answer):\n"
+        f"{prior_block}\n\n"
+        f"Current question:\n{user_message}\n\n"
+        "Answer the current question only. Every factual claim from the reviews must "
+        "include an inline marker such as [1] or [2][3] taken from User Reviews in the "
+        "system message. Do not write a review-based answer without markers."
+    )
+
+
+def _complete_answer(messages: list[dict]) -> str:
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=messages,
+        temperature=0.7,
+        max_tokens=1000,
+    )
+    return (response.choices[0].message.content or "").strip()
 
 def generate_response(
     product_id: str,
@@ -88,14 +136,14 @@ def generate_response(
             "insufficient_evidence": True
         }
     
-    # 3. Build prompt
+    # 3. Build prompt (single user turn — multi-role history drops citations on follow-ups)
     system_prompt = f"""You are a product review expert assistant.
 When users ask about a product, provide accurate and helpful answers based only on the provided actual user reviews.
 
 Follow these rules:
 1. Answer only based on the provided user reviews. Never use outside knowledge or product marketing copy.
 2. You may paraphrase reviews in natural language — you do not need to quote them verbatim. But every factual claim that comes from a review must still include that review's marker inline, e.g. "Battery lasts a full day [1]." If several reviews support the same point, combine markers, e.g. "[2][3]". Do this for the whole answer — do not drop citations after the first paragraph. If no review in the context actually supports a sentence, do not write that sentence.
-3. Only attach a marker when that specific review supports the claim. Do not add a marker just because a review is loosely related to the topic. Only use markers that appear in the context below. Never invent a marker number.
+3. Only attach a marker when that specific review supports the claim. Do not add a marker just because a review is loosely related to the topic. Only use markers that appear under "User Reviews" below. Never invent a marker number. First answers and follow-ups must both include markers.
 4. Balance positives with caveats. If the context mentions risks, limitations, conditions of use (e.g. season, water temperature, double-cleansing, skin type), packaging issues, or "not a cure / not enough alone" points, include them even when the overall tone is positive. Do not answer with praise only when caveats exist in context.
 5. When reviews disagree, that is still enough evidence. Lead with the majority/most common view if the context supports it, then acknowledge the minority with citations. Name the conditions under which the negative side appears. End with a short practical tip from the reviews when available (e.g. moisturize after, lukewarm water, seal the pump). Do not use vague "mixed / unclear / hard to say" without citing concrete opinions.
 6. Stay on the asked topic. Do not drag in unrelated review details just because they appeared in retrieval.
@@ -106,33 +154,16 @@ Follow these rules:
 User Reviews:
 {context}
 """
-    
-    # 4. Build conversation history
-    messages = [{"role": "system", "content": system_prompt}]
-    
-    # Add previous conversations (last 5 only)
-    for msg in conversation_history[-5:]:
-        messages.append({
-            "role": msg.get("role", "user"),
-            "content": msg.get("content", "")
-        })
-    
-    # Add current question
-    messages.append({"role": "user", "content": user_message})
-    
-    # 5. Call OpenAI API
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": _build_user_prompt(user_message, conversation_history)},
+    ]
+
+    # 4. Call OpenAI API (retry once if the model forgot markers)
     try:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",  # or "gpt-3.5-turbo"
-            messages=messages,
-            temperature=0.7,
-            max_tokens=1000
-        )
-        
-        answer = (response.choices[0].message.content or "").strip()
-        
-        # 6. Resolve evidence state; keep all retrieved reviews as sources
-        # (inline [n] markers still show which ones the answer cited)
+        answer = _complete_answer(messages)
+
         insufficient_evidence = answer.startswith(INSUFFICIENT_EVIDENCE_TOKEN)
         if insufficient_evidence:
             answer = answer[len(INSUFFICIENT_EVIDENCE_TOKEN):].lstrip(" :-\n")
@@ -141,21 +172,38 @@ User Reviews:
             return {
                 "answer": answer,
                 "sources": [],
-                "insufficient_evidence": True
+                "insufficient_evidence": True,
             }
+
+        if sources and not _CITATION_RE.search(answer):
+            print("[WARN] Answer missing citation markers; retrying once")
+            retry_messages = messages + [
+                {"role": "assistant", "content": answer},
+                {
+                    "role": "user",
+                    "content": (
+                        "Your previous reply had no inline citation markers like [1]. "
+                        "Rewrite the same answer and add the correct markers from User Reviews "
+                        "on every review-backed claim. Do not remove substance."
+                    ),
+                },
+            ]
+            retried = _complete_answer(retry_messages)
+            if not retried.startswith(INSUFFICIENT_EVIDENCE_TOKEN) and _CITATION_RE.search(retried):
+                answer = retried
 
         return {
             "answer": answer,
             "sources": sources,
-            "insufficient_evidence": False
+            "insufficient_evidence": False,
         }
-        
+
     except OpenAIError as e:
         print(f"Error generating response: {e}")
         return {
             "answer": f"Sorry, an error occurred while generating the response: {e!s}",
             "sources": [],
-            "insufficient_evidence": False
+            "insufficient_evidence": False,
         }
 
 def generate_product_summary(product_id: str) -> str:
