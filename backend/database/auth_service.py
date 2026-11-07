@@ -137,6 +137,26 @@ class AuthService:
             return {"status": "error", "message": str(e)}
 
     @staticmethod
+    def refresh_session(refresh_token: str) -> dict:
+        try:
+            token = (refresh_token or "").strip()
+            if not token:
+                return {"status": "error", "message": "Missing refresh token"}
+            result = supabase.auth.refresh_session(token)
+            session = result.session
+            user = result.user
+            if not session or not user:
+                return {"status": "error", "message": "Invalid or expired refresh token"}
+            return {
+                "status": "success",
+                "access_token": session.access_token,
+                "refresh_token": session.refresh_token,
+                "user": _user_payload(user),
+            }
+        except AuthError as e:
+            return {"status": "error", "message": str(e)}
+
+    @staticmethod
     def get_user(access_token: str) -> dict | None:
         try:
             result = supabase.auth.get_user(access_token)

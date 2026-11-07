@@ -19,10 +19,12 @@ Reviews live in a `reviews` table keyed by `product_id` (`reviews_setup.sql`, `R
 - `#8` partly done: product list no longer loads review JSON (counts from `reviews` table).
 - `#11` partly done: `POST .../reviews` requires `bearer_token`; upload / delete still open.
 
-## High priority
+## Done (2026-11-06)
 
-### 2. Refresh access tokens with `refresh_token`
-Sign-up / sign-in already return `access_token` and `refresh_token`, and the frontend stores both in `localStorage`. There is no flow yet that uses `refresh_token` to obtain a new access token when the current one expires. Add that so users stay signed in without logging in again.
+### 2. Refresh access tokens with `refresh_token` — done
+`POST /api/auth/refresh` + `AuthService.refresh_session`. Frontend `apiJson` retries once after 401 by refreshing, then re-persists tokens. Page load `refreshMe` also benefits via the same path.
+
+## High priority
 
 ### 5. Real email auth later
 For local development we avoid real email UX (synthetic `username@users.local`, Confirm email often disabled). Later, users should sign up / sign in with a real email address, including confirmation and recovery flows through Supabase Auth.
@@ -89,10 +91,9 @@ ALTER TABLE products DROP COLUMN IF EXISTS reviews;
 
 ## Suggested order (remaining)
 
-1. Token refresh with `refresh_token`
-2. Product ownership + admin role (#11); align chat auth policy (#13)
-3. Embedding failure handling after upload/review add
-4. Real email auth
-5. Summary ordering, clearer errors, similarity threshold, status-code consistency
-6. Wire up product summary UI (#10) and browse-reviews UI (#19)
-7. Description-embedding policy, delete cleanup, CORS tightening
+1. Product ownership + admin role (#11); align chat auth policy (#13)
+2. Embedding failure handling after upload/review add
+3. Real email auth
+4. Summary ordering, clearer errors, similarity threshold, status-code consistency
+5. Wire up product summary UI (#10) and browse-reviews UI (#19)
+6. Description-embedding policy, delete cleanup, CORS tightening

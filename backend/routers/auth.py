@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from database import AuthService
 from routers.deps import bearer_token
-from routers.schemas import AuthSignIn, AuthSignUp
+from routers.schemas import AuthRefresh, AuthSignIn, AuthSignUp
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
@@ -18,6 +18,14 @@ def signup(creds: AuthSignUp):
 @router.post("/signin")
 def signin(creds: AuthSignIn):
     result = AuthService.sign_in(creds.username, creds.password)
+    if result["status"] == "error":
+        raise HTTPException(status_code=401, detail=result["message"])
+    return result
+
+
+@router.post("/refresh")
+def refresh(body: AuthRefresh):
+    result = AuthService.refresh_session(body.refresh_token)
     if result["status"] == "error":
         raise HTTPException(status_code=401, detail=result["message"])
     return result

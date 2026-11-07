@@ -41,6 +41,10 @@ class AuthSignIn(BaseModel):
     password: str = Field(min_length=6)
 
 
+class AuthRefresh(BaseModel):
+    refresh_token: str
+
+
 class SavedProductPayload(BaseModel):
     product_id: str
     interest_level: str

@@ -7,6 +7,7 @@ const Auth = (() => {
     let onAuthenticated = null;
     let onSignedOut = null;
     let mode = 'signin'; // 'signin' | 'signup'
+    let refreshPromise = null;
 
     const loginView = () => document.getElementById('loginView');
     const appView = () => document.getElementById('appView');
@@ -53,25 +54,85 @@ const Auth = (() => {
         return { Authorization: `Bearer ${session.access_token}` };
     }
 
+    function errorMessageFromResponse(data, status) {
+        const detail = data?.detail;
+        if (typeof detail === 'string') return detail;
+        if (Array.isArray(detail)) return detail.map(d => d.msg).join(', ');
+        return `Request failed (${status})`;
+    }
+
+    async function refreshSession() {
+        if (!session?.refresh_token) return false;
+        if (refreshPromise) return refreshPromise;
+
+        refreshPromise = (async () => {
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/refresh`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ refresh_token: session.refresh_token }),
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || !data.access_token) {
+                    persistSession(null);
+                    return false;
+                }
+                persistSession({
+                    access_token: data.access_token,
+                    refresh_token: data.refresh_token,
+                    user: data.user,
+                });
+                return true;
+            } catch (e) {
+                console.warn('Token refresh failed:', e.message);
+                persistSession(null);
+                return false;
+            } finally {
+                refreshPromise = null;
+            }
+        })();
+
+        return refreshPromise;
+    }
+
     async function apiJson(path, options = {}) {
         const headers = {
             'Content-Type': 'application/json',
             ...(options.headers || {}),
             ...authHeaders(),
         };
-        const response = await fetch(`${API_BASE}${path}`, { ...options, headers });
+        let response = await fetch(`${API_BASE}${path}`, { ...options, headers });
         let data = null;
         try {
             data = await response.json();
         } catch (e) {
             data = null;
         }
+
+        const skipRefresh =
+            path === '/api/auth/refresh'
+            || path === '/api/auth/signup'
+            || path === '/api/auth/signin';
+
+        if (response.status === 401 && session?.refresh_token && !skipRefresh) {
+            const ok = await refreshSession();
+            if (ok) {
+                const retryHeaders = {
+                    'Content-Type': 'application/json',
+                    ...(options.headers || {}),
+                    ...authHeaders(),
+                };
+                response = await fetch(`${API_BASE}${path}`, { ...options, headers: retryHeaders });
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    data = null;
+                }
+            }
+        }
+
         if (!response.ok) {
-            const detail = data?.detail;
-            const message = typeof detail === 'string'
-                ? detail
-                : (Array.isArray(detail) ? detail.map(d => d.msg).join(', ') : `Request failed (${response.status})`);
-            throw new Error(message);
+            throw new Error(errorMessageFromResponse(data, response.status));
         }
         return data;
     }
@@ -104,7 +165,7 @@ const Auth = (() => {
     }
 
     async function refreshMe() {
-        if (!session?.access_token) return false;
+        if (!session?.access_token && !session?.refresh_token) return false;
         try {
             const data = await apiJson('/api/auth/me');
             session.user = data.user;
