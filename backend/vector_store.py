@@ -198,8 +198,9 @@ def get_all_reviews_summary(product_id: str):
     try:
         result = (
             supabase.table("document_embeddings")
-            .select("content_type, content, rating")
+            .select("content_type, content, rating, review_index")
             .eq("product_id", product_id)
+            .order("review_index")
             .execute()
         )
 

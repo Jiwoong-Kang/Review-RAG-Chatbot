@@ -174,7 +174,7 @@ Product Description:
 Reviews:
 """
     
-    for idx, review in enumerate(summary_data['reviews'][:20], 1):
+    for idx, review in enumerate(summary_data['reviews'], 1):
         prompt += f"\nReview {idx} (Rating: {review['rating']}): {review['content']}\n"
     
     prompt += """

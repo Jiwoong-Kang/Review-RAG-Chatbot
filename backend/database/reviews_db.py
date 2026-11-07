@@ -115,3 +115,17 @@ class ReviewDatabase:
             return {"status": "success", "data": result.data}
         except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
+
+    @staticmethod
+    def delete_review(product_id: str, review_id: str) -> dict:
+        try:
+            (
+                supabase.table("reviews")
+                .delete()
+                .eq("product_id", product_id)
+                .eq("review_id", review_id)
+                .execute()
+            )
+            return {"status": "success"}
+        except _DB_ERRORS as e:
+            return {"status": "error", "message": str(e)}

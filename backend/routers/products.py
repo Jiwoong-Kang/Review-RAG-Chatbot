@@ -27,7 +27,14 @@ def upload_product(product: ProductUpload):
         ProductDatabase.delete_product(product.product_id)
         raise HTTPException(status_code=500, detail=reviews_result["message"])
 
-    create_embeddings(product.product_id, product.description, reviews_dict)
+    try:
+        create_embeddings(product.product_id, product.description, reviews_dict)
+    except Exception as e:
+        ProductDatabase.delete_product(product.product_id)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Embedding failed; product was rolled back: {e}",
+        ) from e
 
     return {
         "status": "success",
@@ -113,13 +120,23 @@ def add_review(
             "author_username": row.get("author_username"),
         }
         review_index = row["review_index"]
+        saved_review_id = row["review_id"]
     else:
         review_for_embed = {
             **review_dict,
             "author_username": user.get("username") or user.get("name"),
         }
         review_index = 0
+        saved_review_id = review_dict.get("review_id")
 
-    add_review_embedding(product_id, review_for_embed, review_index)
+    try:
+        add_review_embedding(product_id, review_for_embed, review_index)
+    except Exception as e:
+        if saved_review_id:
+            ReviewDatabase.delete_review(product_id, saved_review_id)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Embedding failed; review was rolled back: {e}",
+        ) from e
 
     return {"status": "success", "message": "Review added"}

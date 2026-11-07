@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 
 from database import ChatHistoryDatabase, ProductDatabase
-from routers.deps import bearer_token, optional_bearer
+from routers.deps import bearer_token
 from routers.schemas import ChatMessage
 from chat_engine import generate_response
 
@@ -27,9 +27,9 @@ def clear_chat_history(product_id: str, token: str = Depends(bearer_token)):
 @router.post("")
 def chat(
     message: ChatMessage,
-    token: str | None = Depends(optional_bearer),
+    token: str = Depends(bearer_token),
 ):
-    """Answer questions about the product."""
+    """Answer questions about the product (login required)."""
     product = ProductDatabase.get_product(message.product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
@@ -40,18 +40,17 @@ def chat(
         message.conversation_history,
     )
 
-    if token:
-        ChatHistoryDatabase.add_message(
-            token, message.product_id, "user", message.message
-        )
-        ChatHistoryDatabase.add_message(
-            token,
-            message.product_id,
-            "assistant",
-            result["answer"],
-            sources=result.get("sources") or [],
-            insufficient_evidence=bool(result.get("insufficient_evidence")),
-        )
+    ChatHistoryDatabase.add_message(
+        token, message.product_id, "user", message.message
+    )
+    ChatHistoryDatabase.add_message(
+        token,
+        message.product_id,
+        "assistant",
+        result["answer"],
+        sources=result.get("sources") or [],
+        insufficient_evidence=bool(result.get("insufficient_evidence")),
+    )
 
     return {
         "status": "success",
