@@ -53,14 +53,13 @@ class ProductDatabase:
             return None
 
     @staticmethod
-    def get_all_products() -> list[dict]:
+    def get_all_products() -> dict:
         """Get all products (without reviews)."""
         try:
             result = supabase.table("products").select("*").execute()
-            return result.data or []
+            return {"status": "success", "data": result.data or []}
         except _DB_ERRORS as e:
-            print(f"Error getting products: {e}")
-            return []
+            return {"status": "error", "message": str(e)}
 
     @staticmethod
     def update_product(

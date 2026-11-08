@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 
 from database import ChatHistoryDatabase, ProductDatabase
-from routers.deps import bearer_token
+from routers.deps import bearer_token, raise_service_error
 from routers.schemas import ChatMessage
 from chat_engine import generate_response
 
@@ -12,7 +12,7 @@ router = APIRouter(prefix="/api/chat", tags=["chat"])
 def get_chat_history(product_id: str, token: str = Depends(bearer_token)):
     result = ChatHistoryDatabase.list_messages(token, product_id)
     if result["status"] == "error":
-        raise HTTPException(status_code=400, detail=result["message"])
+        raise_service_error(result)
     return result
 
 
@@ -20,7 +20,7 @@ def get_chat_history(product_id: str, token: str = Depends(bearer_token)):
 def clear_chat_history(product_id: str, token: str = Depends(bearer_token)):
     result = ChatHistoryDatabase.clear_messages(token, product_id)
     if result["status"] == "error":
-        raise HTTPException(status_code=400, detail=result["message"])
+        raise_service_error(result)
     return result
 
 
@@ -39,6 +39,9 @@ def chat(
         message.message,
         message.conversation_history,
     )
+
+    if result.get("error"):
+        raise HTTPException(status_code=500, detail=result["answer"])
 
     ChatHistoryDatabase.add_message(
         token, message.product_id, "user", message.message

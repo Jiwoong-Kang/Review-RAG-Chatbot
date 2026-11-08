@@ -132,6 +132,7 @@ def search_similar_content(
     query: str,
     top_k: int = 5,
     content_type: str | None = None,
+    min_similarity: float | None = 0.35,
 ):
     """Search embeddings via pgvector. Optionally keep only one content_type (e.g. 'review')."""
     try:
@@ -149,7 +150,12 @@ def search_similar_content(
 
         rows = result.data or []
         if content_type:
-            rows = [row for row in rows if row.get("content_type") == content_type][:top_k]
+            rows = [row for row in rows if row.get("content_type") == content_type]
+        
+        if min_similarity is not None:
+            rows = [row for row in rows if float(row.get("similarity") or 0.0) >= min_similarity]
+        
+        rows = rows[:top_k]
 
         ids = []
         documents = []
@@ -181,7 +187,7 @@ def search_similar_content(
         }
     except _STORE_ERRORS as e:
         print(f"Error searching: {e}")
-        return {"ids": [], "documents": [], "metadatas": [], "distances": []}
+        return {"ids": [], "documents": [], "metadatas": [], "distances": [], "error": str(e),}
 
 
 def delete_embeddings(product_id: str):
@@ -219,10 +225,10 @@ def get_all_reviews_summary(product_id: str):
                 )
 
         return {
+            "status": "success",
             "description": description,
             "reviews": reviews,
             "total_reviews": len(reviews),
         }
     except _STORE_ERRORS as e:
-        print(f"Error getting summary: {e}")
-        return {"description": "", "reviews": [], "total_reviews": 0}
+        return { "status": "error", "message": str(e) }

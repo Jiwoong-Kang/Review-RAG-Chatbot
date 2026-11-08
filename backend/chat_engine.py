@@ -86,8 +86,16 @@ def generate_response(
     
     # 1. Search for relevant reviews only (skip marketing description copy)
     search_results = search_similar_content(
-        product_id, user_message, top_k=10, content_type="review"
+        product_id, user_message, top_k=10, content_type="review", min_similarity=0.35,
     )
+
+    if search_results.get("error"):
+        return {
+            "answer": "Sorry, we couldn't search reviews right now. Please try again.",
+            "sources": [],
+            "insufficient_evidence": False,
+            "error": search_results["error"],
+        }
     
     # Debug logging
     print(f"[DEBUG] Search results for '{user_message}':")
@@ -210,7 +218,10 @@ def generate_product_summary(product_id: str) -> str:
     """Summarize all reviews for a product."""
     
     summary_data = get_all_reviews_summary(product_id)
-    
+
+    if summary_data.get("status") == "error":
+        return f"Sorry, we couldn't load reviews for summary: {summary_data['message']}"
+
     if summary_data['total_reviews'] == 0:
         return "No reviews available yet."
     

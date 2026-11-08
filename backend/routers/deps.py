@@ -22,3 +22,11 @@ def optional_bearer(authorization: str | None = Header(None)) -> str | None:
 def require_product_read(authorization: str | None = Header(None)) -> str:
     """Login-required product read. Ready for later; GET list/detail stay public for now."""
     return bearer_token(authorization)
+
+
+def raise_service_error(result: dict) -> None:
+    """Map service-layer error dicts to HTTP status (401 auth vs 500 otherwise)."""
+    msg = result.get("message") or "Unknown error"
+    if msg == "Unauthorized":
+        raise HTTPException(status_code=401, detail=msg)
+    raise HTTPException(status_code=500, detail=msg)

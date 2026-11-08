@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from database import AuthService, ProductDatabase, ReviewDatabase
 from routers.deps import bearer_token
 from routers.schemas import ProductUpload, Review
-from vector_store import add_review_embedding, create_embeddings, delete_embeddings
+from vector_store import add_review_embedding, create_embeddings
 
 router = APIRouter(prefix="/api/products", tags=["products"])
 
@@ -64,7 +64,11 @@ def upload_product(product: ProductUpload, token: str = Depends(bearer_token)):
 def list_products():
     """Get all products list (public read for now)."""
     products = ProductDatabase.get_all_products()
+    if products.get("status") == "error":
+        raise HTTPException(status_code=500, detail=products["message"])
     counts = ReviewDatabase.count_reviews_by_product()
+    if counts.get("status") == "error":
+        raise HTTPException(status_code=500, detail=counts["message"])
     return {
         "products": [
             {
@@ -72,10 +76,10 @@ def list_products():
                 "name": p["name"],
                 "image": p.get("image"),
                 "created_at": p.get("created_at"),
-                "reviews_count": counts.get(p["id"], 0),
+                "reviews_count": counts["data"].get(p["id"], 0),
                 "owner_id": p.get("owner_id"),
             }
-            for p in products
+            for p in products["data"]
         ]
     }
 
@@ -87,7 +91,9 @@ def get_product(product_id: str):
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
     reviews = ReviewDatabase.list_reviews(product_id)
-    return {**product, "reviews": reviews}
+    if reviews.get("status") == "error":
+        raise HTTPException(status_code=500, detail=reviews["message"])
+    return {**product, "reviews": reviews["data"]}
 
 
 @router.delete("/{product_id}")
@@ -106,8 +112,6 @@ def delete_product(product_id: str, token: str = Depends(bearer_token)):
             status_code=403,
             detail="Only the product owner or an admin can delete this product",
         )
-
-    delete_embeddings(product_id)
 
     result = ProductDatabase.delete_product(product_id)
     if result["status"] == "error":

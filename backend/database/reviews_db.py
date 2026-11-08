@@ -20,7 +20,7 @@ class ReviewDatabase:
     """Reviews stored as rows keyed by product_id (not JSONB on products)."""
 
     @staticmethod
-    def list_reviews(product_id: str) -> list[dict]:
+    def list_reviews(product_id: str) -> dict:
         try:
             result = (
                 supabase.table("reviews")
@@ -31,23 +31,24 @@ class ReviewDatabase:
                 .order("review_index")
                 .execute()
             )
-            return [_row_to_api(row) for row in (result.data or [])]
+            return {
+                "status": "success",
+                "data": [_row_to_api(row) for row in (result.data or [])],
+            }
         except _DB_ERRORS as e:
-            print(f"Error listing reviews: {e}")
-            return []
+            return {"status": "error", "message": str(e)}
 
     @staticmethod
-    def count_reviews_by_product() -> dict[str, int]:
+    def count_reviews_by_product() -> dict:
         try:
             result = supabase.table("reviews").select("product_id").execute()
             counts: dict[str, int] = {}
             for row in result.data or []:
                 pid = row["product_id"]
                 counts[pid] = counts.get(pid, 0) + 1
-            return counts
+            return {"status": "success", "data": counts}
         except _DB_ERRORS as e:
-            print(f"Error counting reviews: {e}")
-            return {}
+            return {"status": "error", "message": str(e)}
 
     @staticmethod
     def create_reviews(product_id: str, reviews: list[dict]) -> dict:
