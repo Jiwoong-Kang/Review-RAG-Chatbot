@@ -154,12 +154,13 @@ def add_review(
         review_index = row["review_index"]
         saved_review_id = row["review_id"]
     else:
-        review_for_embed = {
-            **review_dict,
-            "author_username": user.get("username") or user.get("name"),
-        }
-        review_index = 0
-        saved_review_id = review_dict.get("review_id")
+        rid = review_dict.get("review_id")
+        if rid:
+            ReviewDatabase.delete_review(product_id, rid)
+        raise HTTPException(
+            status_code=500, 
+            detail="Review saved but no row was returned; rolled back;"
+        )
 
     try:
         add_review_embedding(product_id, review_for_embed, review_index)
