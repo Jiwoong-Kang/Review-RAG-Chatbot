@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from database import AuthService, ProductDatabase, ReviewDatabase
 from routers.deps import bearer_token
 from routers.schemas import ProductUpload, Review
-from vector_store import add_review_embedding, create_embeddings
+from vector_store import add_review_embedding, create_embeddings, delete_review_embedding
 
 router = APIRouter(prefix="/api/products", tags=["products"])
 
@@ -173,3 +173,33 @@ def add_review(
         ) from e
 
     return {"status": "success", "message": "Review added"}
+    
+@router.delete("/{product_id}/reviews/{review_id}")
+def delete_review(product_id: str, review_id: str, token: str = Depends(bearer_token)):
+    """Delete a review (author or admin only)."""
+    user = AuthService.get_user(token)
+    if not user:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    review = ReviewDatabase.get_review(product_id, review_id)
+    if not review:
+        raise HTTPException(status_code=404, detail="Review not found")
+
+    if not AuthService.can_manage_review(user, review):
+        raise HTTPException(
+            status_code=403,
+            detail="Only the author or an admin can delete this review",
+        )
+    
+    result = ReviewDatabase.delete_review(product_id, review_id)
+    if result["status"] == "error":
+        raise HTTPException(status_code=500, detail=result["message"])
+    
+    embed_result = delete_review_embedding(product_id, review_id)
+    if embed_result.get("status") == "error":
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error deleting review embedding: {embed_result['message']}",
+        ) 
+    
+    return {"status": "success", "message": "Review deleted"}

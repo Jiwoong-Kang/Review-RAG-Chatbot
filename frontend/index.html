@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Review Chatbot</title>
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
     <!-- Login / Sign up gate -->
@@ -173,10 +173,21 @@
         </div>
     </div>
 
-    <script src="auth.js?v=7"></script>
-    <script src="products.js?v=7"></script>
-    <script src="chat.js?v=7"></script>
-    <script src="saved.js?v=7"></script>
-    <script src="app.js?v=7"></script>
+    <!-- Browse Reviews Modal -->
+    <div id="reviewsModal" class="modal">
+        <div class="modal-content reviews-modal-content">
+            <span class="close" id="closeReviewsModal">&times;</span>
+            <h2 id="reviewsModalTitle">Reviews</h2>
+            <p id="reviewsModalMeta" class="reviews-modal-meta"></p>
+            <div id="reviewsModalList" class="reviews-modal-list"></div>
+            <p id="reviewsModalMessage" class="save-message"></p>
+        </div>
+    </div>
+
+    <script src="auth.js?v=8"></script>
+    <script src="products.js?v=11"></script>
+    <script src="chat.js?v=8"></script>
+    <script src="saved.js?v=8"></script>
+    <script src="app.js?v=8"></script>
 </body>
 </html>

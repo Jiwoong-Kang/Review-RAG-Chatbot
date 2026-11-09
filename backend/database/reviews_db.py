@@ -13,6 +13,7 @@ def _row_to_api(row: dict) -> dict:
         "rating": row.get("rating"),
         "date": row.get("review_date"),
         "author_username": row.get("author_username"),
+        "author_user_id": row.get("author_user_id"),
     }
 
 
@@ -25,7 +26,8 @@ class ReviewDatabase:
             result = (
                 supabase.table("reviews")
                 .select(
-                    "review_id, content, rating, review_date, review_index, author_username"
+                    "review_id, content, rating, review_date, review_index, "
+                    "author_username, author_user_id"
                 )
                 .eq("product_id", product_id)
                 .order("review_index")
@@ -72,6 +74,25 @@ class ReviewDatabase:
             return {"status": "success", "data": result.data}
         except _DB_ERRORS as e:
             return {"status": "error", "message": str(e)}
+    
+    @staticmethod
+    def get_review(product_id: str, review_id: str) -> dict | None:
+        try:
+            result = (
+                supabase.table("reviews")
+                .select("*")
+                .eq("product_id", product_id)
+                .eq("review_id", review_id)
+                .limit(1)
+                .execute()
+            )
+            
+            if result.data:
+                return result.data[0]
+            return None
+        except _DB_ERRORS as e:
+            print(f"Error getting product: {e}")
+            return None
 
     @staticmethod
     def add_review(

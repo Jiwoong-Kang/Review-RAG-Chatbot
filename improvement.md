@@ -5,7 +5,7 @@ Remaining work first; completed items at the bottom.
 ## Suggested order
 
 1. Real email auth (#5)
-2. Product summary UI (#10) and browse-reviews UI (#19)
+2. Product summary UI (#10)
 3. Description-embedding policy (#15), CORS (#17)
 4. Optional: enforce `require_product_read` on GET list/detail; tighten products RLS
 
@@ -18,9 +18,6 @@ For local development we avoid real email UX (synthetic `username@users.local`, 
 
 ### 10. Wire up product summary in the UI
 `generate_product_summary` in `chat_engine.py` already builds an overall review summary, but nothing calls it yet—no API route and no frontend entry point. Expose it (e.g. product detail or a “Review overview” action). On-demand generation (fetch current reviews when opened) is enough; no need for realtime auto-refresh at first.
-
-### 19. Browse reviews in the UI
-Selecting a product opens chat and shows a review **count**, but there is no screen to read the full review list. `GET /api/products/{id}` already returns `reviews`. Add a reviews view (panel, tab, or page) with content, rating, date, and `author_username` (or Anonymous). Fits well next to #10.
 
 ## Lower priority / cleanup
 
@@ -67,3 +64,4 @@ Product descriptions are embedded and stored, but chat retrieval uses `content_t
   - `search_similar_content` / chat: search failure vs insufficient evidence
   - `list_reviews`, `get_all_products`, `count_reviews_by_product` → `{status, data|message}`
   - `get_all_reviews_summary` → status error vs empty reviews for `#10`
+- **#19** Browse reviews UI (`View reviews` modal) + review delete (author/admin); API returns `author_user_id`; `DELETE /reviews/{id}` cleans embedding

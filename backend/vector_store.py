@@ -190,13 +190,15 @@ def search_similar_content(
         return {"ids": [], "documents": [], "metadatas": [], "distances": [], "error": str(e),}
 
 
-def delete_embeddings(product_id: str):
-    """Delete embeddings for a product (also cascaded when the product row is deleted)."""
+def delete_review_embedding(product_id: str, review_id: str):
+    """Delete a review embedding for a product."""
     try:
-        supabase.table("document_embeddings").delete().eq("product_id", product_id).execute()
-        print(f"✓ Deleted embeddings for product {product_id}")
+        supabase.table("document_embeddings").delete().eq("product_id", product_id).eq("review_id", review_id).execute()
+        print(f"✓ Deleted review embedding for review {review_id}")
+        return {"status": "success"}
     except _STORE_ERRORS as e:
-        print(f"Error deleting embeddings: {e}")
+        print(f"Error deleting review embeddings: {e}")
+        return {"status": "error", "message": str(e)} 
 
 
 def get_all_reviews_summary(product_id: str):

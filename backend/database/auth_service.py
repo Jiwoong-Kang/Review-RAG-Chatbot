@@ -72,6 +72,15 @@ class AuthService:
             return True
         owner_id = product.get("owner_id")
         return bool(owner_id and owner_id == user.get("id"))
+    
+    @staticmethod
+    def can_manage_review(user:dict | None, review: dict | None) -> bool:
+        if not user or not review:
+            return False
+        if AuthService.is_admin(user):
+            return True
+        author_id = review.get("author_user_id")
+        return bool(author_id and author_id == user.get("id"))
 
     @staticmethod
     def sign_up(name: str, username: str, password: str) -> dict:
